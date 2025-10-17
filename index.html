@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Litografía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input:invalid:not(:placeholder-shown),
+        select:invalid:not(:placeholder-shown) {
+            border-color: #fc8181;
+        }
+
+        input:valid:not(:placeholder-shown),
+        select:valid:not(:placeholder-shown) {
+            border-color: #68d391;
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #742a2a;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #718096;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📦 Cotización Litografía</h1>
+            <p>Completa el formulario para generar tu cotización en segundos</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            ✅ Cotización generada exitosamente
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            ❌ Error al procesar la cotización. Intenta nuevamente.
+        </div>
+
+        <form id="cotizacionForm">
+            <!-- Cliente -->
+            <div class="form-group">
+                <label for="cliente">Cliente <span class="required">*</span></label>
+                <input 
+                    type="text" 
+                    id="cliente" 
+                    name="cliente" 
+                    placeholder="Nombre del cliente"
+                    required
+                    minlength="3"
+                >
+                <div class="input-hint">Nombre completo o empresa</div>
+            </div>
+
+            <!-- Vendedor -->
+            <div class="form-group">
+                <label for="vendedor">Vendedor <span class="required">*</span></label>
+                <select id="vendedor" name="vendedor" required>
+                    <option value="">Selecciona un vendedor</option>
+                    <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
+                    <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
+                    <option value="JOSE MORENO">JOSE MORENO</option>
+                    <option value="JEISSON TOVAR">JEISSON TOVAR</option>
+                    <option value="DANIEL ACEVEDO">DANIEL ACEVEDO</option>
+                    <option value="CESAR BLANCO">CESAR BLANCO</option>
+                    <option value="ELKIN GARCIA">ELKIN GARCIA</option>
+                    <option value="RONALD WATEXIKE">RONALD WATEXIKE</option>
+                    <option value="LUIS ESPINOSA">LUIS ESPINOSA</option>
+                    <option value="ANAITYS HENAO">ANAITYS HENAO</option>
+                </select>
+            </div>
+
+            <!-- Medidas del producto -->
+            <div class="form-group">
+                <label for="medidas">Medidas del Producto <span class="required">*</span></label>
+                <input 
+                    type="text" 
+                    id="medidas" 
+                    name="medidas" 
+                    placeholder="Ej: 22 X 12 X 33"
+                    required
+                    pattern="^\d+\s*[Xx]\s*\d+\s*[Xx]\s*\d+$"
+                >
+                <div class="input-hint">Formato: Ancho X Fondo X Alto (ej: 22 X 12 X 33)</div>
+            </div>
+
+            <!-- Cantidad y Material -->
+            <div class="row">
+                <div class="form-group">
+                    <label for="cantidad">Cantidad <span class="required">*</span></label>
+                    <input 
+                        type="number" 
+                        id="cantidad" 
+                        name="cantidad" 
+                        placeholder="500"
+                        required
+                        min="100"
+                        step="1"
+                    >
+                    <div class="input-hint">Mínimo 100 unidades</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="material">Material <span class="required">*</span></label>
+                    <select id="material" name="material" required>
+                        <option value="">Selecciona</option>
+                        <option value="CART_BLANCO_16">Cart. Blanco Cal 16</option>
+                        <option value="CART_BLANCO_22">Cart. Blanco Cal 22</option>
+                        <option value="CART_KRAFT_16">Cart. Kraft Cal 16</option>
+                        <option value="ZENITH_16">ZENITH Cal.16</option>
+                        <option value="ZENITH_20_320">ZENITH Cal.20 320gr</option>
+                        <option value="KRAFT_NAT_90">Papel Kraft Natural</option>
+                        <option value="KRAFT_BLANCO">Papel Kraft Blanco</option>
+                        <option value="PARAFINADO">Papel Parafinado</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Número de tintas -->
+            <div class="form-group">
+                <label for="tintas">Número de Tintas <span class="required">*</span></label>
+                <select id="tintas" name="tintas" required>
+                    <option value="">Selecciona</option>
+                    <option value="1">1 Tinta (Monocromo)</option>
+                    <option value="2">2 Tintas</option>
+                    <option value="3">3 Tintas</option>
+                    <option value="4">4 Tintas (Full Color)</option>
+                </select>
+            </div>
+
+            <!-- Acabados -->
+            <div class="form-group">
+                <label>Acabados Adicionales</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="plastificado" name="acabados" value="PLAST_BRILL_EXT">
+                        <label for="plastificado">Plastificado</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="estampado" name="acabados" value="ESTAMPADO_FOIL">
+                        <label for="estampado">Estampado Foil</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="uv" name="acabados" value="UV_SELECTIVO">
+                        <label for="uv">UV Selectivo</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
+                        <label for="ventanilla">Ventanilla</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pegado" name="acabados" value="PEGADO_CAJA">
+                        <label for="pegado">Pegado</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Observaciones -->
+            <div class="form-group">
+                <label for="observaciones">Observaciones</label>
+                <textarea 
+                    id="observaciones" 
+                    name="observaciones" 
+                    rows="3"
+                    placeholder="Notas adicionales sobre el pedido (opcional)"
+                ></textarea>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn" id="submitBtn">
+                🚀 Generar Cotización
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: #718096;">Procesando cotización...</p>
+            </div>
+        </form>
+
+        <div class="form-footer">
+            ⏱️ Tiempo estimado: ~30 segundos
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('cotizacionForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Mostrar loading
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Recopilar datos del formulario
+            const formData = new FormData(form);
+            const data = {
+                cliente: formData.get('cliente'),
+                vendedor: formData.get('vendedor'),
+                medidas: formData.get('medidas'),
+                cantidad: parseInt(formData.get('cantidad')),
+                material: formData.get('material'),
+                num_tintas: parseInt(formData.get('tintas')),
+                acabados: formData.getAll('acabados'),
+                observaciones: formData.get('observaciones') || '',
+                fecha_solicitud: new Date().toISOString()
+            };
+
+            console.log('Datos a enviar:', data);
+
+            try {
+                // WEBHOOK DE N8N - Reemplazar con la URL real
+                const webhookURL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
+                
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error en el servidor');
+                }
+
+                const result = await response.json();
+
+                // Mostrar éxito
+                loading.style.display = 'none';
+                successMessage.style.display = 'block';
+                submitBtn.disabled = false;
+
+                // Si hay un PDF en la respuesta, descargarlo
+                if (result.pdf_url) {
+                    window.open(result.pdf_url, '_blank');
+                }
+
+                // Resetear formulario después de 3 segundos
+                setTimeout(() => {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                }, 3000);
+
+            } catch (error) {
+                // Mostrar error
+                console.error('Error:', error);
+                loading.style.display = 'none';
+                errorMessage.style.display = 'block';
+                submitBtn.disabled = false;
+
+                // Ocultar error después de 5 segundos
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // Validación en tiempo real para medidas
+        const medidasInput = document.getElementById('medidas');
+        medidasInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            const pattern = /^\d+\s*[Xx]\s*\d+\s*[Xx]\s*\d+$/;
+            
+            if (value && !pattern.test(value)) {
+                e.target.style.borderColor = '#fc8181';
+            } else if (value) {
+                e.target.style.borderColor = '#68d391';
+            }
+        });
+    </script>
+</body>
+</html>
