@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotización - Litografía</title>
+    <title>Cotización - Litografía FULLEMPAQUES</title>
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
+            max-width: 850px;
             width: 100%;
             margin: 0 auto;
             padding: 40px;
@@ -35,21 +35,21 @@
 
         .header h1 {
             color: #2d3748;
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 8px;
         }
 
         .header p {
             color: #718096;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 10px;
             background: #e2e8f0;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 25px 0;
             overflow: hidden;
         }
 
@@ -62,37 +62,32 @@
 
         .progress-text {
             text-align: center;
-            color: #718096;
-            font-size: 13px;
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
             margin-top: 8px;
         }
 
         .section {
-            margin-bottom: 32px;
-            padding: 24px;
+            margin-bottom: 35px;
+            padding: 25px;
             background: #f7fafc;
             border-radius: 12px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .section.complete {
-            border-color: #68d391;
-            background: #f0fff4;
+            border-left: 4px solid #667eea;
         }
 
         .section-title {
             font-size: 18px;
             font-weight: 700;
             color: #2d3748;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
         }
 
-        .section-title .icon {
-            margin-right: 8px;
-            font-size: 20px;
+        .section-icon {
+            margin-right: 10px;
+            font-size: 22px;
         }
 
         .form-group {
@@ -107,224 +102,113 @@
             font-size: 14px;
         }
 
-        .required {
-            color: #e53e3e;
-        }
-
-        .recommended {
-            background: #fef5e7;
-            color: #d68910;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
-            font-weight: 600;
-        }
-
-        select, input[type="number"] {
+        input, select, textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 15px;
             transition: all 0.3s ease;
             font-family: inherit;
             background: white;
         }
 
-        select:focus, input[type="number"]:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        select:valid, input[type="number"]:valid {
-            border-color: #68d391;
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
-        .input-hint {
-            font-size: 12px;
-            color: #718096;
-            margin-top: 4px;
-        }
-
-        .info-badge {
-            display: inline-block;
-            background: #bee3f8;
-            color: #2c5282;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-top: 6px;
-            font-weight: 600;
-        }
-
-        .warning-badge {
-            display: inline-block;
-            background: #fef5e7;
-            color: #d68910;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-top: 6px;
-            font-weight: 600;
-        }
-
-        .success-badge {
-            display: inline-block;
-            background: #c6f6d5;
-            color: #22543d;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-top: 6px;
-            font-weight: 600;
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .checkbox-item:hover {
-            border-color: #667eea;
-            background: #f7fafc;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .checkbox-item input[type="checkbox"]:checked {
-            accent-color: #667eea;
-        }
-
-        .checkbox-item label {
-            margin: 0;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 14px;
-            flex: 1;
-        }
-
-        .checkbox-item .price {
-            font-size: 12px;
-            color: #718096;
-            font-weight: 600;
-        }
-
-        .row {
+        .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .summary-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 24px;
-            border-radius: 12px;
-            margin: 24px 0;
-        }
-
-        .summary-box h3 {
-            font-size: 18px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .summary-item:last-child {
-            border: none;
-            margin-top: 8px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .btn {
+        .submit-btn {
             width: 100%;
             padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .btn:hover:not(:disabled) {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .btn:active {
+        .submit-btn:active {
             transform: translateY(0);
         }
 
-        .btn:disabled {
-            background: #cbd5e0;
+        .submit-btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
 
-        .success-message, .error-message {
-            padding: 16px;
-            border-radius: 10px;
+        .success-message {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
             margin-bottom: 20px;
             display: none;
+            animation: slideIn 0.3s ease;
             text-align: center;
             font-weight: 600;
         }
 
-        .success-message {
-            background: #c6f6d5;
-            color: #22543d;
+        .error-banner {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+            text-align: center;
+            font-weight: 600;
         }
 
-        .error-message {
-            background: #fed7d7;
-            color: #742a2a;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .loading {
             display: none;
             text-align: center;
-            margin-top: 10px;
+            padding: 40px;
         }
 
         .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
+            border: 5px solid #f3f4f6;
+            border-top: 5px solid #667eea;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin: 0 auto 20px;
         }
 
         @keyframes spin {
@@ -332,83 +216,168 @@
             100% { transform: rotate(360deg); }
         }
 
-        .hidden {
-            display: none !important;
+        .loading-text {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 18px;
         }
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-            margin-left: 4px;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #2d3748;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 12px;
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 700px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
             .container {
                 padding: 24px;
             }
 
-            .row {
-                grid-template-columns: 1fr;
+            .header h1 {
+                font-size: 24px;
             }
+        }
 
-            .checkbox-group {
-                grid-template-columns: 1fr;
-            }
+        .required {
+            color: #e53e3e;
+        }
+
+        .info-box {
+            background: #edf2f7;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #4a5568;
+            margin-top: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #fef5e7;
+            color: #f59e0b;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .discount-badge {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .warning-badge {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .custom-field {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .checkbox-item input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            padding-left: 40px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #718096;
+        }
+
+        .troquel-info {
+            background: #e6fffa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #38b2ac;
+            display: none;
+        }
+
+        .troquel-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .troquel-info-item strong {
+            color: #2d3748;
+        }
+
+        .troquel-info-item span {
+            color: #4a5568;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📦 Cotización Litografía</h1>
-            <p>Formulario rápido y preciso - Sin errores posibles</p>
+            <h1>📦 Sistema de Cotizaciones</h1>
+            <p>FULLEMPAQUES S.A.S - Litografía Profesional</p>
         </div>
 
-        <!-- Barra de progreso -->
         <div class="progress-bar">
-            <div class="progress-fill" id="progressBar"></div>
+            <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div class="progress-text" id="progressText">Progreso: 0%</div>
+        <div class="progress-text" id="progressText">Paso 1 de 5: Información del vendedor</div>
 
         <div class="success-message" id="successMessage">
-            ✅ Cotización generada exitosamente
+            ✅ ¡Cotización generada exitosamente!<br>
+            El PDF ha sido enviado por Telegram en menos de 10 segundos.
         </div>
 
-        <div class="error-message" id="errorMessage">
-            ❌ Error al procesar la cotización. Intenta nuevamente.
-        </div>
+        <div class="error-banner" id="errorBanner"></div>
 
         <form id="cotizacionForm">
-            
-            <!-- SECCIÓN 1: INFORMACIÓN BÁSICA -->
-            <div class="section" data-section="basica">
+            <!-- SECCIÓN 1: VENDEDOR Y CLIENTE -->
+            <div class="section" data-step="1">
                 <div class="section-title">
-                    <span class="icon">👤</span>
-                    Información Básica
+                    <span class="section-icon">👤</span>
+                    Información del Vendedor y Cliente
                 </div>
 
                 <div class="form-group">
@@ -429,556 +398,760 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="cliente">Cliente <span class="required">*</span></label>
-                    <select id="cliente" name="cliente" required>
-                        <option value="">Selecciona el cliente</option>
-                        <optgroup label="⭐ Clientes Frecuentes">
-                            <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - Champions Pizza (Desc. 5%)</option>
-                            <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN - Ken Chicken</option>
-                            <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO - Laboratorio (Desc. 10%)</option>
-                            <option value="WALLACE BITES SAS">WALLACE BITES SAS (Desc. 5%)</option>
-                            <option value="GRUPO FADEL">GRUPO FADEL (Desc. 15% + Crédito)</option>
-                            <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
-                            <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
-                            <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
-                        </optgroup>
-                        <optgroup label="➕ Nuevo Cliente">
-                            <option value="NUEVO">Cliente Nuevo (escribir nombre)</option>
-                        </optgroup>
+                    <label for="cliente_tipo">Cliente <span class="required">*</span></label>
+                    <select id="cliente_tipo" name="cliente_tipo" required>
+                        <option value="">¿Cliente frecuente o nuevo?</option>
+                        <option value="frecuente">Cliente Frecuente</option>
+                        <option value="nuevo">Cliente Nuevo</option>
                     </select>
-                    <div class="input-hint">Clientes frecuentes tienen descuentos automáticos</div>
                 </div>
 
-                <div class="form-group hidden" id="nuevoClienteGroup">
-                    <label for="nuevoCliente">Nombre del Cliente Nuevo <span class="required">*</span></label>
-                    <select id="nuevoCliente" name="nuevoCliente">
-                        <option value="">Escribe el nombre (campo libre próximamente)</option>
-                        <option value="OTRO">Otro cliente...</option>
+                <div class="form-group custom-field" id="clienteFrecuenteField">
+                    <label for="cliente_frecuente">Selecciona el cliente</label>
+                    <select id="cliente_frecuente" name="cliente_frecuente">
+                        <option value="">Selecciona...</option>
+                        <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - CHAMPIONS PIZZA (Descuento 5%)</option>
+                        <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN KEN CHICKEN</option>
+                        <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO LABORATORIO (Descuento 10%)</option>
+                        <option value="WALLACE BITES SAS">WALLACE BITES SAS (Descuento 5%)</option>
+                        <option value="GRUPO FADEL">GRUPO FADEL (Descuento 15%)</option>
+                        <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
+                        <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
+                        <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
                     </select>
-                    <div class="input-hint">Se guardará como cliente nuevo en el sistema</div>
+                </div>
+
+                <div class="form-group custom-field" id="clienteNuevoField">
+                    <label for="cliente_nuevo">Nombre del cliente nuevo</label>
+                    <input type="text" id="cliente_nuevo" name="cliente_nuevo" placeholder="Ej: JUAN PEREZ - RESTAURANTE XYZ">
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: PRODUCTO -->
-            <div class="section" data-section="producto">
+            <!-- SECCIÓN 2: PRODUCTO CON CASCADA INTELIGENTE -->
+            <div class="section" data-step="2">
                 <div class="section-title">
-                    <span class="icon">📦</span>
+                    <span class="section-icon">📦</span>
                     Especificaciones del Producto
                 </div>
 
+                <!-- BÚSQUEDA RÁPIDA -->
                 <div class="form-group">
-                    <label for="tipoProducto">
-                        Tipo de Producto <span class="required">*</span>
-                    </label>
-                    <select id="tipoProducto" name="tipoProducto" required>
-                        <option value="">Selecciona el tipo</option>
+                    <label>🔍 Búsqueda Rápida por Medidas (opcional)</label>
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search_medidas" placeholder="Escribe las medidas: 22 X 12 X 33">
+                    </div>
+                    <div class="info-box">
+                        💡 Escribe las medidas y te mostraremos coincidencias automáticamente
+                    </div>
+                </div>
+
+                <!-- SELECCIÓN POR TIPO (CASCADA) -->
+                <div class="form-group">
+                    <label for="tipo_producto">Tipo de Producto <span class="required">*</span></label>
+                    <select id="tipo_producto" name="tipo_producto" required>
+                        <option value="">1️⃣ Primero elige el tipo</option>
                         <option value="BOLSA">🛍️ BOLSA (con cinta)</option>
                         <option value="CAJA">📦 CAJA (sin pegado)</option>
-                        <option value="CAJA_PEGADA">📦 CAJA (con pegado)</option>
-                        <option value="PORTAPERRO">🌭 PORTA HOT DOG</option>
-                        <option value="PORTAHAMB">🍔 PORTA HAMBURGUESA</option>
-                        <option value="OTRO">🔧 Otro producto especial</option>
+                        <option value="PORTAPERRO">🌭 PORTAPERRO</option>
+                        <option value="PORTAHAMB">🍔 PORTAHAMBURGUESA</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="medidas">
-                        Medidas del Producto <span class="required">*</span>
-                        <span class="recommended">MÁS VENDIDAS</span>
-                    </label>
-                    <select id="medidas" name="medidas" required>
-                        <option value="">Selecciona las medidas</option>
-                        <optgroup label="🔥 Medidas Más Vendidas - BOLSAS">
-                            <option value="22 X 12 X 33">22 X 12 X 33 cm - Bolsa Mediana (TB0001)</option>
-                            <option value="40 X 15 X 30">40 X 15 X 30 cm - Bolsa Grande (TB0002)</option>
-                            <option value="15 X 10 X 40">15 X 10 X 40 cm - Bolsa Alta (TB0003)</option>
-                            <option value="20 X 12 X 25">20 X 12 X 25 cm - Bolsa Estándar (TB0004)</option>
-                            <option value="22 X 11 X 16">22 X 11 X 16 cm - Bolsa Pequeña (TB0005)</option>
-                            <option value="16 X 8 X 24">16 X 8 X 24 cm - Bolsa Mini (TB0006)</option>
-                        </optgroup>
-                        <optgroup label="📦 Medidas Más Vendidas - CAJAS">
-                            <option value="20 X 13 X 7">20 X 13 X 7 cm - Caja Pizza Personal (TB0008)</option>
-                            <option value="13 X 13 X 8">13 X 13 X 8 cm - Caja Cuadrada (TB0007)</option>
-                            <option value="18 X 18 X 8">18 X 18 X 8 cm - Caja Mediana (TB0009)</option>
-                            <option value="21 X 21 X 6">21 X 21 X 6 cm - Caja Pizza Pequeña (TB0010)</option>
-                            <option value="19 X 12 X 5">19 X 12 X 5 cm - Caja Rectangular (TB0040)</option>
-                        </optgroup>
-                        <optgroup label="🌭 Medidas - PORTA COMIDA">
-                            <option value="15 X 10 X 8">15 X 10 X 8 cm - Porta Hot Dog (TB0135)</option>
-                            <option value="12 X 14 X 5">12 X 14 X 5 cm - Porta Hamburguesa (TB0196)</option>
-                            <option value="14 X 14 X 7">14 X 14 X 7 cm - Porta Comida Grande (TB0198)</option>
-                        </optgroup>
-                        <optgroup label="🔧 Otras Medidas">
-                            <option value="14 X 22 X 9">14 X 22 X 9 cm (TB0018)</option>
-                            <option value="9 X 22 X 14">9 X 22 X 14 cm (TB0086)</option>
-                            <option value="10 X 6 X 25">10 X 6 X 25 cm (TB0160)</option>
-                            <option value="PERSONALIZADA">📐 Medida Personalizada (consultar)</option>
-                        </optgroup>
+                <!-- SELECT DE MEDIDAS (SE LLENA DINÁMICAMENTE) -->
+                <div class="form-group custom-field" id="medidasCascadaField">
+                    <label for="medidas_cascada">Medidas Disponibles <span class="required">*</span></label>
+                    <select id="medidas_cascada" name="medidas_cascada" required disabled>
+                        <option value="">2️⃣ Selecciona primero el tipo de producto</option>
                     </select>
-                    <div class="input-hint">Medidas más solicitadas por tipo de producto</div>
                 </div>
 
-                <div class="row">
+                <!-- INFO DEL TROQUEL SELECCIONADO -->
+                <div class="troquel-info" id="troquelInfo">
+                    <div class="troquel-info-item">
+                        <strong>Código:</strong>
+                        <span id="info_codigo">-</span>
+                    </div>
+                    <div class="troquel-info-item">
+                        <strong>Tipo:</strong>
+                        <span id="info_tipo">-</span>
+                    </div>
+                    <div class="troquel-info-item">
+                        <strong>Cabida por pliego:</strong>
+                        <span id="info_cabida">-</span>
+                    </div>
+                </div>
+
+                <!-- CAMPO PERSONALIZADO (si no encuentra) -->
+                <div class="form-group custom-field" id="medidasCustomField">
+                    <label for="medidas_custom">✏️ Medida Personalizada (No está en catálogo)</label>
+                    <input type="text" id="medidas_custom" name="medidas_custom" placeholder="Ej: 25 X 15 X 30">
+                    <div class="info-box">
+                        ⚠️ Las medidas personalizadas requieren crear troquel nuevo (+$150.000)
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: CANTIDAD Y MATERIAL -->
+            <div class="section" data-step="3">
+                <div class="section-title">
+                    <span class="section-icon">🔢</span>
+                    Cantidad y Material
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="cantidad">
-                            Cantidad <span class="required">*</span>
-                        </label>
-                        <select id="cantidad" name="cantidad" required>
+                        <label for="cantidad_predefinida">Cantidad <span class="required">*</span></label>
+                        <select id="cantidad_predefinida" name="cantidad_predefinida" required>
                             <option value="">Selecciona cantidad</option>
                             <option value="100">100 unidades (Mínimo)</option>
-                            <option value="250">250 unidades</option>
-                            <option value="500">500 unidades ⭐ (Óptimo)</option>
+                            <option value="500">500 unidades (Óptimo) ⭐</option>
                             <option value="1000">1,000 unidades</option>
-                            <option value="2500">2,500 unidades</option>
-                            <option value="5000">5,000 unidades (Desc. 5%)</option>
-                            <option value="10000">10,000 unidades (Desc. 10%)</option>
-                            <option value="OTRA">Otra cantidad</option>
+                            <option value="2000">2,000 unidades</option>
+                            <option value="5000">5,000 unidades <span class="price-badge discount-badge">-5%</span></option>
+                            <option value="10000">10,000 unidades <span class="price-badge discount-badge">-10%</span></option>
+                            <option value="50000">50,000 unidades <span class="price-badge discount-badge">-15%</span></option>
+                            <option value="custom">✏️ Otra cantidad</option>
                         </select>
-                        <div class="input-hint">500 unidades = precio óptimo</div>
                     </div>
 
-                    <div class="form-group hidden" id="cantidadOtraGroup">
-                        <label for="cantidadOtra">Cantidad Específica</label>
-                        <input type="number" id="cantidadOtra" name="cantidadOtra" min="100" step="1" placeholder="Ej: 1500">
-                        <div class="input-hint">Mínimo: 100 unidades</div>
+                    <div class="form-group custom-field" id="cantidadCustomField">
+                        <label for="cantidad_custom">Cantidad personalizada</label>
+                        <input type="number" id="cantidad_custom" name="cantidad_custom" min="100" placeholder="Ej: 750">
                     </div>
-                </div>
-            </div>
-
-            <!-- SECCIÓN 3: MATERIAL E IMPRESIÓN -->
-            <div class="section" data-section="material">
-                <div class="section-title">
-                    <span class="icon">🎨</span>
-                    Material e Impresión
                 </div>
 
                 <div class="form-group">
-                    <label for="material">
-                        Material <span class="required">*</span>
-                        <span class="tooltip">ℹ️
-                            <span class="tooltiptext">El calibre determina el grosor del material</span>
-                        </span>
-                    </label>
+                    <label for="material">Material <span class="required">*</span></label>
                     <select id="material" name="material" required>
-                        <option value="">Selecciona el material</option>
-                        <optgroup label="🌟 Cartones Más Usados">
-                            <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr) - Resistente ⭐</option>
-                            <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr) - Estándar</option>
-                            <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr) - Extra Fuerte</option>
+                        <option value="">Selecciona material</option>
+                        <optgroup label="Cartones (Más usados)">
+                            <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr)</option>
+                            <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr)</option>
+                            <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr)</option>
                         </optgroup>
-                        <optgroup label="⭐ Cartones Premium">
-                            <option value="ZENITH_16">ZENITH Cal.16 (270gr) - Alta Calidad</option>
-                            <option value="ZENITH_20_320">ZENITH Cal.20 (320gr) - Premium</option>
-                            <option value="ZENITH_20_350">ZENITH Cal.20 (350gr) - Premium Plus</option>
+                        <optgroup label="Cartones Premium">
+                            <option value="ZENITH_16">ZENITH Cal.16 (270gr)</option>
+                            <option value="ZENITH_20_320">ZENITH Cal.20 (320gr)</option>
+                            <option value="ZENITH_20_350">ZENITH Cal.20 (350gr)</option>
+                            <option value="EARTH_PACK">EARTH PACK NATURAL (315gr)</option>
+                            <option value="PROPALCOTE_340">PROPALCOTE C2S (340gr)</option>
                         </optgroup>
-                        <optgroup label="🌿 Ecológicos">
-                            <option value="EARTH_PACK">EARTH PACK Natural (315gr) - Ecológico</option>
-                            <option value="PROPALCOTE_340">PROPALCOTE C2S (340gr) - Brillo Natural</option>
-                        </optgroup>
-                        <optgroup label="📄 Papeles (Bobinas)">
-                            <option value="KRAFT_NAT_90">Papel Kraft Natural (90gr)</option>
-                            <option value="KRAFT_BLANCO">Papel Kraft Blanco (90gr)</option>
-                            <option value="PARAFINADO">Papel Parafinado (40gr) - Alimentos</option>
+                        <optgroup label="Papeles (Bobinas)">
+                            <option value="KRAFT_NAT_90">Kraft Natural 90gr</option>
+                            <option value="KRAFT_BLANCO">Kraft Blanco 90gr</option>
+                            <option value="PARAFINADO">Papel Parafinado 40gr</option>
                         </optgroup>
                     </select>
-                    <div id="materialInfo" class="info-badge hidden"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="tintas">
-                        Número de Tintas (Colores) <span class="required">*</span>
-                    </label>
-                    <select id="tintas" name="tintas" required>
-                        <option value="">Selecciona tintas</option>
-                        <option value="1">1 Tinta (Monocromo) - Negro o 1 color</option>
-                        <option value="2">2 Tintas - Bicolor</option>
-                        <option value="3">3 Tintas - Tricolor</option>
-                        <option value="4">4 Tintas ⭐ (Full Color CMYK) - Recomendado</option>
-                    </select>
-                    <div class="input-hint">4 tintas = impresión a todo color (recomendado)</div>
                 </div>
             </div>
 
-            <!-- SECCIÓN 4: ACABADOS -->
-            <div class="section" data-section="acabados">
+            <!-- SECCIÓN 4: IMPRESIÓN Y ACABADOS -->
+            <div class="section" data-step="4">
                 <div class="section-title">
-                    <span class="icon">✨</span>
-                    Acabados Especiales (Opcional)
+                    <span class="section-icon">🎨</span>
+                    Impresión y Acabados
                 </div>
 
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="plastificado" name="acabados" value="PLAST_BRILL_EXT">
-                        <label for="plastificado">
-                            Plastificado Brillante
-                            <div class="price">+$95/pliego</div>
-                        </label>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="num_tintas">Número de Tintas <span class="required">*</span></label>
+                        <select id="num_tintas" name="num_tintas" required>
+                            <option value="1">1 tinta (más económico)</option>
+                            <option value="2">2 tintas</option>
+                            <option value="3">3 tintas</option>
+                            <option value="4">4 tintas (full color)</option>
+                        </select>
                     </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="plastmate" name="acabados" value="PLAST_MATE_EXT">
-                        <label for="plastmate">
-                            Plastificado Mate
-                            <div class="price">+$95/pliego</div>
-                        </label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="estampado" name="acabados" value="ESTAMPADO_FOIL">
-                        <label for="estampado">
-                            Estampado Foil
-                            <div class="price">+$250/pliego</div>
-                        </label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="uv" name="acabados" value="UV_SELECTIVO">
-                        <label for="uv">
-                            UV Selectivo
-                            <div class="price">+$180/pliego</div>
-                        </label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
-                        <label for="ventanilla">
-                            Ventanilla
-                            <div class="price">+$150/pliego</div>
-                        </label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="pegado" name="acabados" value="PEGADO_CAJA">
-                        <label for="pegado">
-                            Pegado de Caja
-                            <div class="price">+$30/millar</div>
-                        </label>
+
+                    <div class="form-group">
+                        <label for="urgencia">Tiempo de Entrega <span class="required">*</span></label>
+                        <select id="urgencia" name="urgencia" required>
+                            <option value="normal">Normal - 15 días hábiles</option>
+                            <option value="urgente">Urgente - 7 días <span class="price-badge warning-badge">+50%</span></option>
+                            <option value="express">Express - 3 días <span class="price-badge warning-badge">+100%</span></option>
+                        </select>
                     </div>
                 </div>
-                <div class="input-hint">Deja sin marcar si no necesitas acabados especiales</div>
+
+                <div class="form-group">
+                    <label>Acabados Adicionales (opcionales)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="plastificado_brillante" name="acabados" value="PLAST_BRILL_EXT">
+                            <label for="plastificado_brillante">Plastificado Brillante</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="plastificado_mate" name="acabados" value="PLAST_MATE_EXT">
+                            <label for="plastificado_mate">Plastificado Mate</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="estampado_foil" name="acabados" value="ESTAMPADO_FOIL">
+                            <label for="estampado_foil">Estampado Foil</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="uv_selectivo" name="acabados" value="UV_SELECTIVO">
+                            <label for="uv_selectivo">UV Selectivo</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
+                            <label for="ventanilla">Ventanilla</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pegado_caja" name="acabados" value="PEGADO_CAJA">
+                            <label for="pegado_caja">Pegado de Caja</label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- SECCIÓN 5: ENTREGA Y PAGO -->
-            <div class="section" data-section="entrega">
+            <!-- SECCIÓN 5: PAGO Y OBSERVACIONES -->
+            <div class="section" data-step="5">
                 <div class="section-title">
-                    <span class="icon">🚚</span>
-                    Entrega y Forma de Pago
+                    <span class="section-icon">💳</span>
+                    Forma de Pago y Observaciones
                 </div>
 
                 <div class="form-group">
-                    <label for="tiempoEntrega">
-                        Tiempo de Entrega <span class="required">*</span>
-                    </label>
-                    <select id="tiempoEntrega" name="tiempoEntrega" required>
-                        <option value="">Selecciona tiempo</option>
-                        <option value="NORMAL">Normal - 15 días hábiles (Sin recargo) ⭐</option>
-                        <option value="URGENTE">Urgente - 7 días hábiles (+50% recargo)</option>
-                        <option value="EXPRESS">Express - 3 días hábiles (+100% recargo)</option>
+                    <label for="forma_pago">Forma de Pago <span class="required">*</span></label>
+                    <select id="forma_pago" name="forma_pago" required>
+                        <option value="contado">Contado <span class="price-badge discount-badge">-2% descuento</span></option>
+                        <option value="credito_15">Crédito 15 días (Anticipo 50%)</option>
+                        <option value="credito_30">Crédito 30 días (Anticipo 50%)</option>
+                        <option value="cheque">Cheque (100% anticipado)</option>
                     </select>
-                    <div class="warning-badge hidden" id="urgenciaWarning"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formaPago">
-                        Forma de Pago <span class="required">*</span>
-                    </label>
-                    <select id="formaPago" name="formaPago" required>
-                        <option value="">Selecciona forma de pago</option>
-                        <option value="CONTADO">Contado 💰 (Descuento adicional 2%)</option>
-                        <option value="CREDITO_15">Crédito 15 días (Anticipo 50%)</option>
-                        <option value="CREDITO_30">Crédito 30 días (Anticipo 50% - Requiere aprobación)</option>
-                        <option value="CHEQUE">Cheque (100% anticipado)</option>
-                    </select>
-                    <div class="success-badge hidden" id="pagoInfo"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="observaciones">Observaciones o Notas Especiales</label>
-                    <select id="observaciones" name="observaciones">
-                        <option value="">Sin observaciones especiales</option>
-                        <option value="LOGO_CLIENTE">Incluir logo del cliente</option>
-                        <option value="DISEÑO_PERSONALIZADO">Diseño personalizado</option>
-                        <option value="MUESTRAS">Requiere muestras previas</option>
-                        <option value="URGENTE_PRODUCCION">Prioridad en producción</option>
-                        <option value="ENTREGA_ESPECIAL">Entrega en horario especial</option>
-                        <option value="OTRO">Otra observación (especificar luego)</option>
-                    </select>
+                    <label for="observaciones">Observaciones (opcional)</label>
+                    <textarea id="observaciones" name="observaciones" placeholder="Información adicional del cliente, especificaciones especiales, etc..."></textarea>
                 </div>
             </div>
 
-            <!-- RESUMEN DE COTIZACIÓN -->
-            <div class="summary-box" id="summaryBox" style="display: none;">
-                <h3>📊 Resumen de Cotización</h3>
-                <div class="summary-item">
-                    <span>Cliente:</span>
-                    <span id="sumCliente">-</span>
-                </div>
-                <div class="summary-item">
-                    <span>Producto:</span>
-                    <span id="sumProducto">-</span>
-                </div>
-                <div class="summary-item">
-                    <span>Cantidad:</span>
-                    <span id="sumCantidad">-</span>
-                </div>
-                <div class="summary-item">
-                    <span>Material:</span>
-                    <span id="sumMaterial">-</span>
-                </div>
-                <div class="summary-item">
-                    <span>Entrega:</span>
-                    <span id="sumEntrega">-</span>
-                </div>
-                <div class="summary-item">
-                    <span>💰 PRECIO ESTIMADO:</span>
-                    <span id="sumPrecio">Calculando...</span>
-                </div>
-            </div>
-
-            <!-- Botón de envío -->
-            <button type="submit" class="btn" id="submitBtn">
-                🚀 GENERAR COTIZACIÓN OFICIAL
+            <!-- BOTÓN -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                🚀 Generar Cotización Oficial
             </button>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p style="margin-top: 10px; color: #718096;">Generando cotización...</p>
-            </div>
         </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p class="loading-text">Generando cotización profesional...</p>
+            <p style="color: #718096; margin-top: 10px;">Esto tomará solo 5-10 segundos</p>
+        </div>
     </div>
 
     <script>
-        // Referencias
+        // ============================================
+        // 🗂️ CATÁLOGO DE TROQUELES COMPLETO
+        // ============================================
+        // IMPORTANTE: Aquí van los 206 troqueles
+        // Actualmente hay 8 de ejemplo
+        // TODO: Agregar los 198 troqueles restantes del Excel
+
+        // ============================================
+        // 🗂️ CATÁLOGO COMPLETO - 198 TROQUELES
+        // Extraído de: FORMATO DE PRODUCCION LITOGRAFIA prueba 3.xlsm
+        // ============================================
+        const CATALOGO_TROQUELES = [
+            {codigo: "TB0001", medidas: "22 X 12 X 33", tipo: "BOLSA", largo: 70, ancho: 44, cabida: 2, popular: true},
+            {codigo: "TB0002", medidas: "40 X 15 X 30", tipo: "BOLSA", largo: 84, ancho: 57, cabida: 1, popular: true},
+            {codigo: "TB0003", medidas: "15 X 10 X 40", tipo: "BOLSA", largo: 52, ancho: 50, cabida: 2, popular: true},
+            {codigo: "TB0004", medidas: "20 X 12 X 25", tipo: "BOLSA", largo: 66, ancho: 36, cabida: 2, popular: true},
+            {codigo: "TB0005", medidas: "22 X 11 X 16", tipo: "BOLSA", largo: 67.5, ancho: 26, cabida: 3, popular: false},
+            {codigo: "TB0006", medidas: "16 X 8 X 24", tipo: "BOLSA", largo: 49.5, ancho: 32.5, cabida: 4, popular: false},
+            {codigo: "TB0007", medidas: "13 X 13 X 8", tipo: "CAJA", largo: 45.5, ancho: 29, cabida: 4, popular: true},
+            {codigo: "TB0008", medidas: "20 X 13 X 7", tipo: "CAJA", largo: 43, ancho: 35, cabida: 4, popular: true},
+            {codigo: "TB0009", medidas: "15,5 X 10 X 21", tipo: "CAJA", largo: 52.4, ancho: 28, cabida: 3, popular: true},
+            {codigo: "TB0010", medidas: "20 X 12 X 12", tipo: "CAJA", largo: 66, ancho: 30, cabida: 3, popular: true},
+            {codigo: "TB0011", medidas: "30 X 22 X 8", tipo: "CAJA", largo: 64, ancho: 47, cabida: 2, popular: false},
+            {codigo: "TB0012", medidas: "23 X 15 X 9", tipo: "CAJA", largo: 50.2, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0013", medidas: "22 X 16 X 4", tipo: "CAJA", largo: 42.6, ancho: 30, cabida: 4, popular: false},
+            {codigo: "TB0014", medidas: "24 x 24 x 6", tipo: "CAJA", largo: 66.4, ancho: 48.4, cabida: 2, popular: false},
+            {codigo: "TB0015", medidas: "24 x 8 x 7", tipo: "CAJA", largo: 38, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0016", medidas: "20 x 16 x 7", tipo: "CAJA", largo: 48, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0017", medidas: "20 x 12,5 x 11", tipo: "CAJA", largo: 49, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0018", medidas: "22 x 14 x 9", tipo: "CAJA", largo: 48.5, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0019", medidas: "21 x 8 x 7", tipo: "CAJA", largo: 35, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0020", medidas: "21 x 7 x 5", tipo: "CAJA", largo: 31, ancho: 26, cabida: 4, popular: false},
+            {codigo: "TB0021", medidas: "20 X 8 X 6", tipo: "CAJA", largo: 32, ancho: 30, cabida: 4, popular: false},
+            {codigo: "TB0022", medidas: "17 x 17 x 6", tipo: "CAJA", largo: 38, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0023", medidas: "23 x 12 x 7", tipo: "CAJA", largo: 40, ancho: 36, cabida: 4, popular: false},
+            {codigo: "TB0024", medidas: "26 x 17 x 7", tipo: "CAJA", largo: 51, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0025", medidas: "32 x 18 x 9", tipo: "CAJA", largo: 64, ancho: 46, cabida: 2, popular: false},
+            {codigo: "TB0026", medidas: "18,5 x 18,5 x 9", tipo: "CAJA", largo: 56.5, ancho: 36.7, cabida: 2, popular: false},
+            {codigo: "TB0027", medidas: "17 x 10 x 5", tipo: "CAJA", largo: 31, ancho: 27, cabida: 4, popular: false},
+            {codigo: "TB0028", medidas: "24 x 16 x 9", tipo: "CAJA", largo: 55, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0029", medidas: "21 x 13 x 9", tipo: "CAJA", largo: 49, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0030", medidas: "20 X 11 X 8", tipo: "CAJA", largo: 41.5, ancho: 34.5, cabida: 4, popular: false},
+            {codigo: "TB0031", medidas: "17 x 8 x 8", tipo: "CAJA", largo: 38, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0032", medidas: "20 X 12 X 7", tipo: "CAJA", largo: 40, ancho: 35, cabida: 4, popular: false},
+            {codigo: "TB0033", medidas: "26 X 26 X 8", tipo: "CAJA", largo: 75, ancho: 46, cabida: 2, popular: false},
+            {codigo: "TB0034", medidas: "23 X 12 X 6", tipo: "CAJA", largo: 43, ancho: 30, cabida: 4, popular: false},
+            {codigo: "TB0035", medidas: "18 x 12 x 9", tipo: "CAJA", largo: 47, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0036", medidas: "21 x 14 x 11", tipo: "CAJA", largo: 54, ancho: 36, cabida: 4, popular: false},
+            {codigo: "TB0037", medidas: "30 x 7 x 3", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0038", medidas: "21 x 18 x 8", tipo: "CAJA", largo: 57, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0039", medidas: "33,5 x 15,5 x 8,5", tipo: "CAJA", largo: 62, ancho: 49, cabida: 2, popular: false},
+            {codigo: "TB0040", medidas: "19 x 12 x 5", tipo: "CAJA", largo: 29, ancho: 22, cabida: 6, popular: true},
+            {codigo: "TB0041", medidas: "23 x 23 x 8,5", tipo: "CAJA", largo: 68, ancho: 45, cabida: 2, popular: false},
+            {codigo: "TB0042", medidas: "22 x 22 x 10", tipo: "CAJA", largo: 69, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0043", medidas: "18 x 13 x 8", tipo: "CAJA", largo: 48, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0044", medidas: "23 x 16 x 6", tipo: "CAJA", largo: 48, ancho: 38, cabida: 2, popular: false},
+            {codigo: "TB0045", medidas: "20 x 15 x 8", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0046", medidas: "21 x 15 x 9", tipo: "CAJA", largo: 53, ancho: 35, cabida: 4, popular: false},
+            {codigo: "TB0047", medidas: "22 x 11 x 4,5", tipo: "CAJA", largo: 36, ancho: 31.5, cabida: 4, popular: false},
+            {codigo: "TB0048", medidas: "17 x 9 x 7", tipo: "CAJA", largo: 38, ancho: 28, cabida: 6, popular: false},
+            {codigo: "TB0049", medidas: "23 x 18 x 6", tipo: "CAJA", largo: 61, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0050", medidas: "19 x 11 x 12", tipo: "CAJA", largo: 50, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0051", medidas: "26 x 11 x 7", tipo: "CAJA", largo: 43, ancho: 36, cabida: 4, popular: false},
+            {codigo: "TB0052", medidas: "13 x 13 x 5", tipo: "CAJA", largo: 26, ancho: 20, cabida: 4, popular: false},
+            {codigo: "TB0053", medidas: "18 x 8 x 6", tipo: "CAJA", largo: 31, ancho: 27, cabida: 4, popular: false},
+            {codigo: "TB0054", medidas: "17 x 12 x 5", tipo: "CAJA", largo: 36, ancho: 28, cabida: 4, popular: false},
+            {codigo: "TB0055", medidas: "16 x 16 x 7", tipo: "CAJA", largo: 46, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0056", medidas: "35 x 21 x 10", tipo: "CAJA", largo: 79, ancho: 47, cabida: 1, popular: false},
+            {codigo: "TB0057", medidas: "21,5 x 16 x 9", tipo: "CAJA", largo: 54, ancho: 37.5, cabida: 2, popular: false},
+            {codigo: "TB0058", medidas: "22 x 18 x 7", tipo: "CAJA", largo: 60, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0059", medidas: "20 x 14 x 9", tipo: "CAJA", largo: 50, ancho: 35, cabida: 4, popular: false},
+            {codigo: "TB0060", medidas: "14 x 14 x 5", tipo: "CAJA", largo: 35, ancho: 27, cabida: 4, popular: false},
+            {codigo: "TB0061", medidas: "18 x 12 x 7", tipo: "CAJA", largo: 42, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0062", medidas: "20 x 7 x 5", tipo: "CAJA", largo: 30, ancho: 27, cabida: 4, popular: false},
+            {codigo: "TB0063", medidas: "20 x 10 x 8", tipo: "CAJA", largo: 41.5, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0064", medidas: "17 x 13,5 x 9", tipo: "CAJA", largo: 49, ancho: 32.5, cabida: 4, popular: false},
+            {codigo: "TB0065", medidas: "18 x 12 x 5", tipo: "CAJA", largo: 35.5, ancho: 28, cabida: 4, popular: false},
+            {codigo: "TB0066", medidas: "14,5 x 14,5 x 6,5", tipo: "CAJA", largo: 43.5, ancho: 29, cabida: 4, popular: false},
+            {codigo: "TB0067", medidas: "14,5 x 12 x 11", tipo: "CAJA", largo: 48, ancho: 28, cabida: 6, popular: false},
+            {codigo: "TB0068", medidas: "26 x 9 x 5", tipo: "CAJA", largo: 42, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0069", medidas: "22 x 14 x 6,5", tipo: "CAJA", largo: 47, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0070", medidas: "22 x 15 x 11", tipo: "CAJA", largo: 59, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0071", medidas: "12 x 11 x 7", tipo: "CAJA", largo: 35, ancho: 24, cabida: 6, popular: false},
+            {codigo: "TB0072", medidas: "22 x 14 x 15", tipo: "CAJA", largo: 66, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0073", medidas: "20 x 15 x 6", tipo: "CAJA", largo: 43, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0074", medidas: "21 x 21 x 6", tipo: "CAJA", largo: 60, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0075", medidas: "13 x 9 x 8", tipo: "CAJA", largo: 37, ancho: 23, cabida: 6, popular: false},
+            {codigo: "TB0076", medidas: "18 x 14 x 8", tipo: "CAJA", largo: 50.5, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0077", medidas: "20 x 14 x 6,5", tipo: "CAJA", largo: 46, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0078", medidas: "14 x 11 x 6", tipo: "CAJA", largo: 36, ancho: 27, cabida: 6, popular: false},
+            {codigo: "TB0079", medidas: "18 x 11 x 12", tipo: "CAJA", largo: 49.5, ancho: 32.5, cabida: 4, popular: false},
+            {codigo: "TB0080", medidas: "30 x 11 x 4", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0081", medidas: "17 x 10,5 x 16", tipo: "CAJA", largo: 55.5, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0082", medidas: "22 x 22 x 8", tipo: "CAJA", largo: 62, ancho: 44, cabida: 2, popular: false},
+            {codigo: "TB0083", medidas: "20 x 14 x 11", tipo: "CAJA", largo: 53, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0084", medidas: "27 x 18 x 13", tipo: "CAJA", largo: 72, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0085", medidas: "22 x 21 x 11", tipo: "CAJA", largo: 67, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0086", medidas: "9 x 22 x 14", tipo: "CAJA", largo: 49, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0087", medidas: "17 x 15 x 9", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0088", medidas: "22 x 12 x 11", tipo: "CAJA", largo: 52, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0089", medidas: "20 x 16 x 9", tipo: "CAJA", largo: 54, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0090", medidas: "31 x 21 x 11", tipo: "CAJA", largo: 77, ancho: 43, cabida: 1, popular: false},
+            {codigo: "TB0091", medidas: "23 x 11 x 6", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0092", medidas: "25 x 21 x 7", tipo: "CAJA", largo: 66, ancho: 43, cabida: 2, popular: false},
+            {codigo: "TB0093", medidas: "16,5 x 16,5 x 9", tipo: "CAJA", largo: 52, ancho: 34, cabida: 2, popular: false},
+            {codigo: "TB0094", medidas: "26 x 15 x 7", tipo: "CAJA", largo: 50, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0095", medidas: "20 x 18 x 8", tipo: "CAJA", largo: 60, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0096", medidas: "19 x 15 x 8", tipo: "CAJA", largo: 51, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0097", medidas: "20 x 13 x 8", tipo: "CAJA", largo: 46, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0098", medidas: "21 x 17 x 7", tipo: "CAJA", largo: 55, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0099", medidas: "27 x 15 x 6,5", tipo: "CAJA", largo: 53, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0100", medidas: "24 x 17 x 14", tipo: "CAJA", largo: 67, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0101", medidas: "26 x 21 x 12", tipo: "CAJA", largo: 75, ancho: 43, cabida: 1, popular: false},
+            {codigo: "TB0102", medidas: "20 x 10 x 6", tipo: "CAJA", largo: 37, ancho: 30, cabida: 4, popular: false},
+            {codigo: "TB0103", medidas: "26 x 17 x 11", tipo: "CAJA", largo: 60, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0104", medidas: "25 x 19 x 12", tipo: "CAJA", largo: 67, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0105", medidas: "30 x 18 x 11", tipo: "CAJA", largo: 72, ancho: 43, cabida: 1, popular: false},
+            {codigo: "TB0106", medidas: "28 x 15 x 10", tipo: "CAJA", largo: 62, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0107", medidas: "21 x 13 x 10", tipo: "CAJA", largo: 51, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0108", medidas: "16 x 16 x 6", tipo: "CAJA", largo: 42.5, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0109", medidas: "23 x 15 x 7,5", tipo: "CAJA", largo: 51, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0110", medidas: "16 X 12 X 9", tipo: "CAJA", largo: 44, ancho: 29, cabida: 6, popular: false},
+            {codigo: "TB0111", medidas: "24 x 12 x 5", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
+            {codigo: "TB0112", medidas: "22 x 15 x 5", tipo: "CAJA", largo: 45, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0113", medidas: "23 x 14 x 6", tipo: "CAJA", largo: 46, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0114", medidas: "25 x 12 x 5", tipo: "CAJA", largo: 43, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0115", medidas: "25 x 19 x 10", tipo: "CAJA", largo: 67, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0116", medidas: "26,5 x 14 x 7", tipo: "CAJA", largo: 51.5, ancho: 36.5, cabida: 2, popular: false},
+            {codigo: "TB0117", medidas: "20 x 17 x 9", tipo: "CAJA", largo: 58, ancho: 34, cabida: 2, popular: false},
+            {codigo: "TB0118", medidas: "22 x 17 x 9", tipo: "CAJA", largo: 60, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0119", medidas: "23 x 19 x 10", tipo: "CAJA", largo: 63, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0120", medidas: "16 x 12 x 5", tipo: "CAJA", largo: 34, ancho: 27, cabida: 6, popular: false},
+            {codigo: "TB0121", medidas: "21 x 14 x 5", tipo: "CAJA", largo: 40, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0122", medidas: "23 x 23 x 7", tipo: "CAJA", largo: 66, ancho: 43, cabida: 2, popular: false},
+            {codigo: "TB0123", medidas: "26 x 18 x 10", tipo: "CAJA", largo: 63, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0124", medidas: "27 x 18 x 8", tipo: "CAJA", largo: 60, ancho: 43, cabida: 2, popular: false},
+            {codigo: "TB0125", medidas: "20 x 20 x 8", tipo: "CAJA", largo: 60, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0126", medidas: "16 x 14 x 12", tipo: "CAJA", largo: 53, ancho: 30, cabida: 4, popular: false},
+            {codigo: "TB0127", medidas: "23 x 21 x 12", tipo: "CAJA", largo: 71, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0128", medidas: "21 x 16 x 7", tipo: "CAJA", largo: 50, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0129", medidas: "24 x 14 x 7,5", tipo: "CAJA", largo: 51.5, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0130", medidas: "23 x 17 x 7,5", tipo: "CAJA", largo: 56, ancho: 37, cabida: 2, popular: false},
+            {codigo: "TB0131", medidas: "23 x 17 x 9", tipo: "CAJA", largo: 59, ancho: 37, cabida: 2, popular: false},
+            {codigo: "TB0132", medidas: "21 x 21 x 11", tipo: "CAJA", largo: 69, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0133", medidas: "20 x 12 x 6", tipo: "CAJA", largo: 38, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0134", medidas: "22 x 13 x 5", tipo: "CAJA", largo: 40, ancho: 32, cabida: 4, popular: false},
+            {codigo: "TB0135", medidas: "15 X 10 X 8", tipo: "CAJA", largo: 45, ancho: 30, cabida: 3, popular: false},
+            {codigo: "TB0136", medidas: "19,5 x 12,5 x 15", tipo: "CAJA", largo: 58, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0137", medidas: "24 x 24 x 9", tipo: "CAJA", largo: 74, ancho: 46, cabida: 2, popular: false},
+            {codigo: "TB0138", medidas: "20 x 11 x 7", tipo: "CAJA", largo: 40, ancho: 33, cabida: 4, popular: false},
+            {codigo: "TB0139", medidas: "29 x 24 x 7", tipo: "CAJA", largo: 75, ancho: 47, cabida: 1, popular: false},
+            {codigo: "TB0140", medidas: "22 x 17 x 15", tipo: "CAJA", largo: 68, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0141", medidas: "16 x 12 x 8", tipo: "CAJA", largo: 45, ancho: 28, cabida: 6, popular: false},
+            {codigo: "TB0142", medidas: "29 x 11 x 4", tipo: "CAJA", largo: 48, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0143", medidas: "23 x 18 x 11", tipo: "CAJA", largo: 66, ancho: 38, cabida: 2, popular: false},
+            {codigo: "TB0144", medidas: "28 x 14 x 9", tipo: "CAJA", largo: 59, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0145", medidas: "22 x 16 x 6", tipo: "CAJA", largo: 48, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0146", medidas: "19 x 18 x 9", tipo: "CAJA", largo: 60, ancho: 34, cabida: 2, popular: false},
+            {codigo: "TB0147", medidas: "29 x 20 x 6", tipo: "CAJA", largo: 63, ancho: 46, cabida: 2, popular: false},
+            {codigo: "TB0148", medidas: "24 x 19 x 8", tipo: "CAJA", largo: 64, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0149", medidas: "31 x 21 x 14", tipo: "CAJA", largo: 85, ancho: 45, cabida: 1, popular: false},
+            {codigo: "TB0150", medidas: "33 x 23 x 12", tipo: "CAJA", largo: 87, ancho: 47, cabida: 1, popular: false},
+            {codigo: "TB0151", medidas: "39 x 23 x 7", tipo: "CAJA", largo: 81, ancho: 54, cabida: 1, popular: false},
+            {codigo: "TB0152", medidas: "23 x 17 x 7", tipo: "CAJA", largo: 54, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0153", medidas: "13 x 10 x 4", tipo: "CAJA", largo: 22, ancho: 17, cabida: 9, popular: false},
+            {codigo: "TB0154", medidas: "25 x 20 x 7", tipo: "CAJA", largo: 64, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0155", medidas: "24 x 18 x 9", tipo: "CAJA", largo: 63, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0156", medidas: "21 x 15 x 6", tipo: "CAJA", largo: 45, ancho: 34, cabida: 4, popular: false},
+            {codigo: "TB0157", medidas: "15 X 10 X 10", tipo: "CAJA", largo: 38, ancho: 26, cabida: 6, popular: false},
+            {codigo: "TB0158", medidas: "36 X 11 X 6", tipo: "CAJA", largo: 54, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0159", medidas: "22 X 13 X 12", tipo: "CAJA", largo: 56.5, ancho: 33.5, cabida: 4, popular: false},
+            {codigo: "TB0160", medidas: "10 X 6 X 25", tipo: "CAJA", largo: 69, ancho: 34, cabida: 2, popular: false},
+            {codigo: "TB0161", medidas: "24 X 20 X 9", tipo: "CAJA", largo: 66, ancho: 41, cabida: 2, popular: false},
+            {codigo: "TB0162", medidas: "24 X 13 X 8", tipo: "CAJA", largo: 52, ancho: 37, cabida: 2, popular: false},
+            {codigo: "TB0163", medidas: "34 X 24 X 11", tipo: "CAJA", largo: 91, ancho: 48, cabida: 1, popular: false},
+            {codigo: "TB0164", medidas: "17,5 X 17,5 X 10", tipo: "CAJA", largo: 58, ancho: 34, cabida: 2, popular: false},
+            {codigo: "TB0165", medidas: "23 X 13 X 7,5", tipo: "CAJA", largo: 49, ancho: 34.5, cabida: 4, popular: false},
+            {codigo: "TB0166", medidas: "25 X 19 X 8", tipo: "CAJA", largo: 64, ancho: 42, cabida: 2, popular: false},
+            {codigo: "TB0167", medidas: "21 X 17 X 9", tipo: "CAJA", largo: 59, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0168", medidas: "30 X 20 X 15", tipo: "CAJA", largo: 78, ancho: 46, cabida: 1, popular: false},
+            {codigo: "TB0169", medidas: "32 X 20 X 8", tipo: "CAJA", largo: 70, ancho: 47, cabida: 1, popular: false},
+            {codigo: "TB0170", medidas: "21,5 X 20 X 9", tipo: "CAJA", largo: 64, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0171", medidas: "18 X 18 X 7", tipo: "CAJA", largo: 54, ancho: 35, cabida: 2, popular: false},
+            {codigo: "TB0172", medidas: "29 X 19 X 7", tipo: "CAJA", largo: 64, ancho: 44, cabida: 2, popular: false},
+            {codigo: "TB0173", medidas: "32 X 23 X 14", tipo: "CAJA", largo: 88, ancho: 48, cabida: 1, popular: false},
+            {codigo: "TB0174", medidas: "35 X 21 X 6", tipo: "CAJA", largo: 69, ancho: 52, cabida: 1, popular: false},
+            {codigo: "TB0175", medidas: "26 X 19 X 7,5", tipo: "CAJA", largo: 61, ancho: 43, cabida: 2, popular: false},
+            {codigo: "TB0176", medidas: "20 X 17 X 6", tipo: "CAJA", largo: 48, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0177", medidas: "34 X 14 X 8", tipo: "CAJA", largo: 63, ancho: 45, cabida: 2, popular: false},
+            {codigo: "TB0178", medidas: "28 X 12 X 8", tipo: "CAJA", largo: 52, ancho: 40, cabida: 2, popular: false},
+            {codigo: "TB0179", medidas: "21,5 X 20 X 10", tipo: "CAJA", largo: 66, ancho: 39, cabida: 2, popular: false},
+            {codigo: "TB0180", medidas: "27 X 27 X 12", tipo: "CAJA", largo: 102, ancho: 43, cabida: 1, popular: false},
+            {codigo: "TB0181", medidas: "24 X 24 X 8", tipo: "CAJA", largo: 100, ancho: 66.7, cabida: 1, popular: false},
+            {codigo: "TB0182", medidas: "50 X 15 X 10", tipo: "CAJA", largo: 132, ancho: 38, cabida: 1, popular: false},
+            {codigo: "TB0183", medidas: "14,5  X 14,5 X 9,5", tipo: "CAJA", largo: 50, ancho: 33.5, cabida: 2, popular: false},
+            {codigo: "TB0184", medidas: "19 X 9,5 X 4", tipo: "CAJA", largo: 40.5, ancho: 36.2, cabida: 3, popular: false},
+            {codigo: "TB0185", medidas: "23 X 20 X 9", tipo: "CAJA", largo: 63, ancho: 43, cabida: 2, popular: false},
+            {codigo: "TB0186", medidas: "18 X 13 X 10", tipo: "CAJA", largo: 46, ancho: 13, cabida: 8, popular: false},
+            {codigo: "TB0187", medidas: "23 X 10 X 18", tipo: "CAJA", largo: 46, ancho: 23, cabida: 6, popular: false},
+            {codigo: "TB0188", medidas: "17 X 17 X 4", tipo: "CAJA", largo: 45, ancho: 25, cabida: 4, popular: false},
+            {codigo: "TB0189", medidas: "28 X 25 X 13", tipo: "BOLSA", largo: 86, ancho: 36.5, cabida: 1, popular: false},
+            {codigo: "TB0190", medidas: "25 X 13 X 5", tipo: "CAJA", largo: 25, ancho: 23, cabida: 9, popular: false},
+            {codigo: "TB0191", medidas: "23 X 20 X 9", tipo: "CAJA", largo: 81, ancho: 43, cabida: 1, popular: false},
+            {codigo: "TB0192", medidas: "26 X 20", tipo: "CAJA", largo: 33, ancho: 24, cabida: 9, popular: false},
+            {codigo: "TB0193", medidas: "24 X 14", tipo: "CAJA", largo: 33, ancho: 24, cabida: 9, popular: false},
+            {codigo: "TB0194", medidas: "20 X 14 X 5", tipo: "CAJA", largo: 23, ancho: 15, cabida: 18, popular: false},
+            {codigo: "TB0195", medidas: "38 X 18 X 15", tipo: "BOLSA", largo: 68, ancho: 49.25, cabida: 2, popular: false},
+            {codigo: "TB0196", medidas: "9,5 X 9,5 X 5", tipo: "CAJA", largo: 24, ancho: 13, cabida: 20, popular: true},
+            {codigo: "TB0197", medidas: "10 X 10 X 6", tipo: "CAJA", largo: 64.5, ancho: 36, cabida: 2, popular: false},
+            {codigo: "TB0198", medidas: "17 X 13 X 7", tipo: "CAJA", largo: 54, ancho: 31, cabida: 4, popular: false}
+        ];
+
+        // ============================================
+        // 🎯 LÓGICA DEL FORMULARIO
+        // ============================================
+
         const form = document.getElementById('cotizacionForm');
         const submitBtn = document.getElementById('submitBtn');
         const loading = document.getElementById('loading');
         const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const progressBar = document.getElementById('progressBar');
+        const errorBanner = document.getElementById('errorBanner');
+        const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
-        const summaryBox = document.getElementById('summaryBox');
 
-        // Campos
-        const clienteSelect = document.getElementById('cliente');
-        const nuevoClienteGroup = document.getElementById('nuevoClienteGroup');
-        const cantidadSelect = document.getElementById('cantidad');
-        const cantidadOtraGroup = document.getElementById('cantidadOtraGroup');
-        const tiempoEntregaSelect = document.getElementById('tiempoEntrega');
-        const urgenciaWarning = document.getElementById('urgenciaWarning');
-        const formaPagoSelect = document.getElementById('formaPago');
-        const pagoInfo = document.getElementById('pagoInfo');
-        const materialSelect = document.getElementById('material');
-        const materialInfo = document.getElementById('materialInfo');
+        const WEBHOOK_URL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
 
-        // Tracking de progreso
-        const requiredFields = ['vendedor', 'cliente', 'tipoProducto', 'medidas', 'cantidad', 'material', 'tintas', 'tiempoEntrega', 'formaPago'];
-        
+        // Variables globales
+        let troquelSeleccionado = null;
+
+        // ============================================
+        // 🔍 BÚSQUEDA Y FILTRADO
+        // ============================================
+
+        // Búsqueda en tiempo real
+        document.getElementById('search_medidas').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.trim().toUpperCase();
+            
+            if (searchTerm.length < 3) return; // Mínimo 3 caracteres
+
+            const coincidencias = CATALOGO_TROQUELES.filter(t => 
+                t.medidas.includes(searchTerm)
+            );
+
+            if (coincidencias.length > 0) {
+                // Llenar select con coincidencias
+                const select = document.getElementById('medidas_cascada');
+                select.innerHTML = '<option value="">Selecciona una coincidencia</option>';
+                
+                coincidencias.forEach(t => {
+                    const option = document.createElement('option');
+                    option.value = JSON.stringify(t);
+                    option.textContent = `${t.medidas} (${t.codigo}) - ${t.tipo}`;
+                    select.appendChild(option);
+                });
+
+                select.disabled = false;
+                document.getElementById('medidasCascadaField').style.display = 'block';
+            }
+        });
+
+        // Cambio de tipo de producto (CASCADA)
+        document.getElementById('tipo_producto').addEventListener('change', function() {
+            const tipo = this.value;
+            const select = document.getElementById('medidas_cascada');
+            
+            if (!tipo) {
+                select.disabled = true;
+                select.innerHTML = '<option value="">2️⃣ Selecciona primero el tipo de producto</option>';
+                document.getElementById('medidasCascadaField').style.display = 'none';
+                return;
+            }
+
+            // Filtrar troqueles por tipo
+            const troquelesFiltrados = CATALOGO_TROQUELES.filter(t => t.tipo === tipo);
+            
+            // Organizar por popularidad y tamaño
+            const populares = troquelesFiltrados.filter(t => t.popular);
+            const normales = troquelesFiltrados.filter(t => !t.popular);
+
+            // Llenar select
+            select.innerHTML = '<option value="">Selecciona medidas</option>';
+
+            if (populares.length > 0) {
+                const optgroupPopular = document.createElement('optgroup');
+                optgroupPopular.label = '⭐ Más Populares';
+                populares.forEach(t => {
+                    const option = document.createElement('option');
+                    option.value = JSON.stringify(t);
+                    option.textContent = `${t.medidas} (${t.codigo})`;
+                    optgroupPopular.appendChild(option);
+                });
+                select.appendChild(optgroupPopular);
+            }
+
+            if (normales.length > 0) {
+                const optgroupNormal = document.createElement('optgroup');
+                optgroupNormal.label = '📏 Todas las Medidas';
+                normales.forEach(t => {
+                    const option = document.createElement('option');
+                    option.value = JSON.stringify(t);
+                    option.textContent = `${t.medidas} (${t.codigo})`;
+                    optgroupNormal.appendChild(option);
+                });
+                select.appendChild(optgroupNormal);
+            }
+
+            // Agregar opción personalizada
+            const optionCustom = document.createElement('option');
+            optionCustom.value = 'custom';
+            optionCustom.textContent = '✏️ Medida Personalizada (No está en catálogo)';
+            select.appendChild(optionCustom);
+
+            select.disabled = false;
+            document.getElementById('medidasCascadaField').style.display = 'block';
+        });
+
+        // Selección de medidas
+        document.getElementById('medidas_cascada').addEventListener('change', function() {
+            if (this.value === 'custom') {
+                document.getElementById('medidasCustomField').style.display = 'block';
+                document.getElementById('troquelInfo').style.display = 'none';
+                document.getElementById('medidas_custom').setAttribute('required', 'required');
+                troquelSeleccionado = null;
+            } else if (this.value) {
+                troquelSeleccionado = JSON.parse(this.value);
+                document.getElementById('medidasCustomField').style.display = 'none';
+                document.getElementById('medidas_custom').removeAttribute('required');
+                
+                // Mostrar info del troquel
+                document.getElementById('info_codigo').textContent = troquelSeleccionado.codigo;
+                document.getElementById('info_tipo').textContent = troquelSeleccionado.tipo;
+                document.getElementById('info_cabida').textContent = troquelSeleccionado.cabida + ' unidades';
+                document.getElementById('troquelInfo').style.display = 'block';
+            }
+        });
+
+        // ============================================
+        // 📊 CONTROL DE PROGRESO
+        // ============================================
+
+        const sections = document.querySelectorAll('.section');
+        const totalSections = sections.length;
+
         function updateProgress() {
-            let completed = 0;
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field && field.value) completed++;
+            let filledSections = 0;
+            sections.forEach(section => {
+                const inputs = section.querySelectorAll('input[required], select[required]');
+                let sectionComplete = true;
+                inputs.forEach(input => {
+                    if (!input.value) sectionComplete = false;
+                });
+                if (sectionComplete) filledSections++;
             });
-            
-            const percentage = Math.round((completed / requiredFields.length) * 100);
-            progressBar.style.width = percentage + '%';
-            progressText.textContent = `Progreso: ${percentage}%`;
-            
-            // Marcar secciones completas
-            document.querySelectorAll('.section').forEach(section => {
-                const inputs = section.querySelectorAll('select[required], input[required]');
-                const allFilled = Array.from(inputs).every(input => input.value);
-                if (allFilled) {
-                    section.classList.add('complete');
-                } else {
-                    section.classList.remove('complete');
-                }
-            });
-            
-            // Mostrar resumen si está 100%
-            if (percentage === 100) {
-                updateSummary();
-                summaryBox.style.display = 'block';
-            } else {
-                summaryBox.style.display = 'none';
-            }
+
+            const progress = (filledSections / totalSections) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `Paso ${Math.min(filledSections + 1, totalSections)} de ${totalSections}: ${getSectionName(filledSections)}`;
         }
 
-        // Actualizar resumen
-        function updateSummary() {
-            const cliente = document.getElementById('cliente').selectedOptions[0]?.text || '-';
-            const producto = document.getElementById('tipoProducto').selectedOptions[0]?.text || '-';
-            const medidas = document.getElementById('medidas').selectedOptions[0]?.text || '-';
-            const cantidad = document.getElementById('cantidad').value === 'OTRA' 
-                ? document.getElementById('cantidadOtra').value 
-                : document.getElementById('cantidad').value;
-            const material = document.getElementById('material').selectedOptions[0]?.text || '-';
-            const entrega = document.getElementById('tiempoEntrega').selectedOptions[0]?.text || '-';
-
-            document.getElementById('sumCliente').textContent = cliente;
-            document.getElementById('sumProducto').textContent = `${producto} - ${medidas}`;
-            document.getElementById('sumCantidad').textContent = cantidad + ' unidades';
-            document.getElementById('sumMaterial').textContent = material;
-            document.getElementById('sumEntrega').textContent = entrega;
-            document.getElementById('sumPrecio').textContent = 'Cotización en proceso...';
+        function getSectionName(index) {
+            const names = [
+                'Información del vendedor',
+                'Especificaciones del producto',
+                'Cantidad y material',
+                'Impresión y acabados',
+                'Forma de pago'
+            ];
+            return names[index] || 'Completado';
         }
 
-        // Cliente nuevo
-        clienteSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'NUEVO') {
-                nuevoClienteGroup.classList.remove('hidden');
+        form.addEventListener('input', updateProgress);
+        form.addEventListener('change', updateProgress);
+
+        // ============================================
+        // 🎛️ CAMPOS CONDICIONALES
+        // ============================================
+
+        // Cliente tipo
+        document.getElementById('cliente_tipo').addEventListener('change', function() {
+            const frecuenteField = document.getElementById('clienteFrecuenteField');
+            const nuevoField = document.getElementById('clienteNuevoField');
+            
+            if (this.value === 'frecuente') {
+                frecuenteField.style.display = 'block';
+                nuevoField.style.display = 'none';
+                document.getElementById('cliente_nuevo').removeAttribute('required');
+                document.getElementById('cliente_frecuente').setAttribute('required', 'required');
+            } else if (this.value === 'nuevo') {
+                frecuenteField.style.display = 'none';
+                nuevoField.style.display = 'block';
+                document.getElementById('cliente_frecuente').removeAttribute('required');
+                document.getElementById('cliente_nuevo').setAttribute('required', 'required');
             } else {
-                nuevoClienteGroup.classList.add('hidden');
+                frecuenteField.style.display = 'none';
+                nuevoField.style.display = 'none';
             }
-            updateProgress();
         });
 
-        // Cantidad otra
-        cantidadSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'OTRA') {
-                cantidadOtraGroup.classList.remove('hidden');
-                document.getElementById('cantidadOtra').required = true;
+        // Cantidad personalizada
+        document.getElementById('cantidad_predefinida').addEventListener('change', function() {
+            const customField = document.getElementById('cantidadCustomField');
+            if (this.value === 'custom') {
+                customField.style.display = 'block';
+                document.getElementById('cantidad_custom').setAttribute('required', 'required');
             } else {
-                cantidadOtraGroup.classList.add('hidden');
-                document.getElementById('cantidadOtra').required = false;
-            }
-            updateProgress();
-        });
-
-        // Warning de urgencia
-        tiempoEntregaSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'URGENTE') {
-                urgenciaWarning.textContent = '⚠️ Recargo del 50% aplicado';
-                urgenciaWarning.classList.remove('hidden');
-            } else if (e.target.value === 'EXPRESS') {
-                urgenciaWarning.textContent = '⚠️ Recargo del 100% aplicado';
-                urgenciaWarning.classList.remove('hidden');
-            } else {
-                urgenciaWarning.classList.add('hidden');
-            }
-            updateProgress();
-        });
-
-        // Info de pago
-        formaPagoSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'CONTADO') {
-                pagoInfo.textContent = '✅ Descuento adicional del 2% aplicado';
-                pagoInfo.classList.remove('hidden');
-            } else if (e.target.value === 'CREDITO_30') {
-                pagoInfo.textContent = '⚠️ Requiere aprobación de crédito';
-                pagoInfo.classList.remove('hidden');
-                pagoInfo.style.background = '#fef5e7';
-                pagoInfo.style.color = '#d68910';
-            } else {
-                pagoInfo.classList.add('hidden');
-            }
-            updateProgress();
-        });
-
-        // Info de material
-        materialSelect.addEventListener('change', (e) => {
-            const option = e.target.selectedOptions[0];
-            if (option && option.text.includes('Premium')) {
-                materialInfo.textContent = '⭐ Material Premium - Mayor calidad';
-                materialInfo.classList.remove('hidden');
-            } else if (option && option.text.includes('Ecológico')) {
-                materialInfo.textContent = '🌿 Material Ecológico';
-                materialInfo.classList.remove('hidden');
-            } else {
-                materialInfo.classList.add('hidden');
-            }
-            updateProgress();
-        });
-
-        // Listeners de progreso en todos los campos requeridos
-        requiredFields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.addEventListener('change', updateProgress);
+                customField.style.display = 'none';
+                document.getElementById('cantidad_custom').removeAttribute('required');
             }
         });
 
-        // Submit
+        // ============================================
+        // 📤 ENVÍO DEL FORMULARIO
+        // ============================================
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            submitBtn.disabled = true;
-            loading.style.display = 'block';
             successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
+            errorBanner.style.display = 'none';
 
-            const formData = new FormData(form);
-            
             // Determinar cliente
-            let nombreCliente = formData.get('cliente');
-            if (nombreCliente === 'NUEVO') {
-                nombreCliente = formData.get('nuevoCliente') || 'Cliente Nuevo';
+            const clienteTipo = document.getElementById('cliente_tipo').value;
+            let cliente;
+            if (clienteTipo === 'frecuente') {
+                cliente = document.getElementById('cliente_frecuente').value;
+            } else {
+                cliente = document.getElementById('cliente_nuevo').value;
             }
-            
+
+            // Determinar medidas
+            let medidas;
+            if (troquelSeleccionado) {
+                medidas = troquelSeleccionado.medidas;
+            } else {
+                medidas = document.getElementById('medidas_custom').value;
+            }
+
             // Determinar cantidad
-            let cantidad = formData.get('cantidad');
-            if (cantidad === 'OTRA') {
-                cantidad = formData.get('cantidadOtra');
+            const cantidadPredefinida = document.getElementById('cantidad_predefinida').value;
+            let cantidad;
+            if (cantidadPredefinida === 'custom') {
+                cantidad = parseInt(document.getElementById('cantidad_custom').value);
+            } else {
+                cantidad = parseInt(cantidadPredefinida);
             }
-            
-            const data = {
-                vendedor: formData.get('vendedor'),
-                cliente: nombreCliente,
-                cliente_tipo: formData.get('cliente') === 'NUEVO' ? 'nuevo' : 'frecuente',
-                tipo_producto: formData.get('tipoProducto'),
-                medidas: formData.get('medidas'),
-                cantidad: parseInt(cantidad),
-                material: formData.get('material'),
-                num_tintas: parseInt(formData.get('tintas')),
-                acabados: formData.getAll('acabados'),
-                tiempo_entrega: formData.get('tiempoEntrega'),
-                forma_pago: formData.get('formaPago'),
-                observaciones: formData.get('observaciones') || '',
-                fecha_solicitud: new Date().toISOString()
+
+            // Obtener acabados
+            const acabadosCheckboxes = document.querySelectorAll('input[name="acabados"]:checked');
+            const acabados = Array.from(acabadosCheckboxes).map(cb => cb.value);
+
+            // Preparar datos
+            const formData = {
+                vendedor: document.getElementById('vendedor').value,
+                cliente: cliente,
+                medidas: medidas,
+                tipo_producto: document.getElementById('tipo_producto').value,
+                cantidad: cantidad,
+                material: document.getElementById('material').value,
+                num_tintas: parseInt(document.getElementById('num_tintas').value),
+                urgencia: document.getElementById('urgencia').value,
+                forma_pago: document.getElementById('forma_pago').value,
+                acabados: acabados,
+                observaciones: document.getElementById('observaciones').value || 'Ninguna',
+                troquel: troquelSeleccionado // Info completa del troquel
             };
 
-            console.log('📤 Datos a enviar:', data);
+            console.log('Enviando datos:', formData);
+
+            form.style.display = 'none';
+            loading.style.display = 'block';
+            submitBtn.disabled = true;
 
             try {
-                const webhookURL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
-                
-                const response = await fetch(webhookURL, {
+                const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(formData)
                 });
 
                 if (!response.ok) {
-                    throw new Error('Error en el servidor');
+                    throw new Error('Error en la respuesta del servidor: ' + response.status);
                 }
 
                 const result = await response.json();
 
-                loading.style.display = 'none';
                 successMessage.style.display = 'block';
-                submitBtn.disabled = false;
+                form.reset();
+                progressFill.style.width = '0%';
+                progressText.textContent = 'Paso 1 de 5: Información del vendedor';
+                troquelSeleccionado = null;
+                document.getElementById('troquelInfo').style.display = 'none';
 
-                if (result.pdf_url) {
-                    window.open(result.pdf_url, '_blank');
-                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                setTimeout(() => {
-                    form.reset();
-                    successMessage.style.display = 'none';
-                    summaryBox.style.display = 'none';
-                    updateProgress();
-                }, 3000);
+                console.log('Cotización generada:', result);
 
             } catch (error) {
-                console.error('❌ Error:', error);
+                console.error('Error completo:', error);
+                errorBanner.style.display = 'block';
+                errorBanner.textContent = '❌ Error: ' + error.message + '. Por favor verifica tu conexión e intenta nuevamente.';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } finally {
                 loading.style.display = 'none';
-                errorMessage.style.display = 'block';
+                form.style.display = 'block';
                 submitBtn.disabled = false;
-
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
             }
         });
 
-        // Inicializar
         updateProgress();
     </script>
 </body>
