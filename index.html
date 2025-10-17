@@ -5,69 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización - Litografía FULLEMPAQUES</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 850px;
-            width: 100%;
             margin: 0 auto;
             padding: 40px;
         }
-
         .header {
             text-align: center;
             margin-bottom: 30px;
         }
-
         .header h1 {
             color: #2d3748;
             font-size: 32px;
             margin-bottom: 8px;
         }
-
         .header p {
             color: #718096;
             font-size: 15px;
         }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            margin: 25px 0;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            text-align: center;
-            color: #667eea;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-
         .section {
             margin-bottom: 35px;
             padding: 25px;
@@ -75,7 +40,6 @@
             border-radius: 12px;
             border-left: 4px solid #667eea;
         }
-
         .section-title {
             font-size: 18px;
             font-weight: 700;
@@ -84,16 +48,13 @@
             display: flex;
             align-items: center;
         }
-
         .section-icon {
             margin-right: 10px;
             font-size: 22px;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         label {
             display: block;
             color: #2d3748;
@@ -101,7 +62,6 @@
             margin-bottom: 8px;
             font-size: 14px;
         }
-
         input, select, textarea {
             width: 100%;
             padding: 12px 16px;
@@ -112,24 +72,20 @@
             font-family: inherit;
             background: white;
         }
-
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-
         textarea {
             resize: vertical;
             min-height: 80px;
         }
-
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
         .submit-btn {
             width: 100%;
             padding: 18px;
@@ -144,63 +100,31 @@
             margin-top: 10px;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
-
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
-
-        .submit-btn:active {
-            transform: translateY(0);
+        .success-message, .error-banner {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
         }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .success-message {
             background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-            animation: slideIn 0.3s ease;
-            text-align: center;
-            font-weight: 600;
         }
-
         .error-banner {
             background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-            animation: slideIn 0.3s ease;
-            text-align: center;
-            font-weight: 600;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .loading {
             display: none;
             text-align: center;
             padding: 40px;
         }
-
         .spinner {
             border: 5px solid #f3f4f6;
             border-top: 5px solid #667eea;
@@ -210,36 +134,19 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .loading-text {
             color: #667eea;
             font-weight: 700;
             font-size: 18px;
         }
-
-        @media (max-width: 700px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 24px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
+        .custom-field {
+            display: none;
+            margin-top: 12px;
         }
-
-        .required {
-            color: #e53e3e;
-        }
-
         .info-box {
             background: #edf2f7;
             padding: 12px;
@@ -249,40 +156,34 @@
             margin-top: 8px;
             border-left: 3px solid #667eea;
         }
-
-        .price-badge {
-            display: inline-block;
-            background: #fef5e7;
-            color: #f59e0b;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-left: 8px;
+        .warning-box {
+            background: #fff5f5;
+            border-left: 3px solid #fc8181;
+            color: #c53030;
         }
-
-        .discount-badge {
-            background: #d1fae5;
-            color: #059669;
-        }
-
-        .warning-badge {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        .custom-field {
+        .troquel-info {
+            background: #e6fffa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #38b2ac;
             display: none;
-            margin-top: 12px;
         }
-
+        .troquel-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        .required {
+            color: #e53e3e;
+        }
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 12px;
             margin-top: 10px;
         }
-
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -293,63 +194,23 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .checkbox-item:hover {
             border-color: #667eea;
             background: #f7fafc;
         }
-
         .checkbox-item input {
             width: auto;
             margin-right: 8px;
         }
-
         .checkbox-item label {
             margin: 0;
             cursor: pointer;
             font-weight: 500;
         }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .search-box input {
-            padding-left: 40px;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: #718096;
-        }
-
-        .troquel-info {
-            background: #e6fffa;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border-left: 3px solid #38b2ac;
-            display: none;
-        }
-
-        .troquel-info-item {
-            display: flex;
-            justify-content: space-between;
-            margin: 5px 0;
-            font-size: 13px;
-        }
-
-        .troquel-info-item strong {
-            color: #2d3748;
-        }
-
-        .troquel-info-item span {
-            color: #4a5568;
+        @media (max-width: 700px) {
+            .form-row { grid-template-columns: 1fr; }
+            .container { padding: 24px; }
+            .header h1 { font-size: 24px; }
         }
     </style>
 </head>
@@ -360,30 +221,25 @@
             <p>FULLEMPAQUES S.A.S - Litografía Profesional</p>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="progress-text" id="progressText">Paso 1 de 5: Información del vendedor</div>
-
         <div class="success-message" id="successMessage">
             ✅ ¡Cotización generada exitosamente!<br>
-            El PDF ha sido enviado por Telegram en menos de 10 segundos.
+            El PDF ha sido enviado por Telegram.
         </div>
 
         <div class="error-banner" id="errorBanner"></div>
 
         <form id="cotizacionForm">
             <!-- SECCIÓN 1: VENDEDOR Y CLIENTE -->
-            <div class="section" data-step="1">
+            <div class="section">
                 <div class="section-title">
                     <span class="section-icon">👤</span>
-                    Información del Vendedor y Cliente
+                    Vendedor y Cliente
                 </div>
 
                 <div class="form-group">
                     <label for="vendedor">Vendedor <span class="required">*</span></label>
-                    <select id="vendedor" name="vendedor" required>
-                        <option value="">Selecciona tu nombre</option>
+                    <select id="vendedor" required>
+                        <option value="">Selecciona vendedor</option>
                         <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
                         <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
                         <option value="JOSE MORENO">JOSE MORENO</option>
@@ -399,22 +255,21 @@
 
                 <div class="form-group">
                     <label for="cliente_tipo">Cliente <span class="required">*</span></label>
-                    <select id="cliente_tipo" name="cliente_tipo" required>
-                        <option value="">¿Cliente frecuente o nuevo?</option>
+                    <select id="cliente_tipo" required>
+                        <option value="">¿Frecuente o nuevo?</option>
                         <option value="frecuente">Cliente Frecuente</option>
                         <option value="nuevo">Cliente Nuevo</option>
                     </select>
                 </div>
 
                 <div class="form-group custom-field" id="clienteFrecuenteField">
-                    <label for="cliente_frecuente">Selecciona el cliente</label>
-                    <select id="cliente_frecuente" name="cliente_frecuente">
-                        <option value="">Selecciona...</option>
-                        <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - CHAMPIONS PIZZA (Descuento 5%)</option>
+                    <select id="cliente_frecuente">
+                        <option value="">Selecciona cliente</option>
+                        <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - CHAMPIONS PIZZA (Desc. 5%)</option>
                         <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN KEN CHICKEN</option>
-                        <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO LABORATORIO (Descuento 10%)</option>
-                        <option value="WALLACE BITES SAS">WALLACE BITES SAS (Descuento 5%)</option>
-                        <option value="GRUPO FADEL">GRUPO FADEL (Descuento 15%)</option>
+                        <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO LABORATORIO (Desc. 10%)</option>
+                        <option value="WALLACE BITES SAS">WALLACE BITES SAS (Desc. 5%)</option>
+                        <option value="GRUPO FADEL">GRUPO FADEL (Desc. 15%)</option>
                         <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
                         <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
                         <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
@@ -422,59 +277,48 @@
                 </div>
 
                 <div class="form-group custom-field" id="clienteNuevoField">
-                    <label for="cliente_nuevo">Nombre del cliente nuevo</label>
-                    <input type="text" id="cliente_nuevo" name="cliente_nuevo" placeholder="Ej: JUAN PEREZ - RESTAURANTE XYZ">
+                    <input type="text" id="cliente_nuevo" placeholder="Nombre del cliente nuevo">
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: PRODUCTO CON CASCADA INTELIGENTE -->
-            <div class="section" data-step="2">
+            <!-- SECCIÓN 2: PRODUCTO -->
+            <div class="section">
                 <div class="section-title">
                     <span class="section-icon">📦</span>
-                    Especificaciones del Producto
+                    Tipo de Producto
                 </div>
 
-                <!-- BÚSQUEDA RÁPIDA -->
                 <div class="form-group">
-                    <label>🔍 Búsqueda Rápida por Medidas (opcional)</label>
-                    <div class="search-box">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="search_medidas" placeholder="Escribe las medidas: 22 X 12 X 33">
-                    </div>
-                    <div class="info-box">
-                        💡 Escribe las medidas y te mostraremos coincidencias automáticamente
+                    <label for="tipo_producto">Tipo <span class="required">*</span></label>
+                    <select id="tipo_producto" required>
+                        <option value="">Selecciona tipo de producto</option>
+                        <option value="BOLSA">🛍️ BOLSA (con cinta) - 13 opciones</option>
+                        <option value="CAJA_SIN_PEGA">📦 CAJA (sin pegado) - 133 opciones</option>
+                        <option value="CAJA_CON_PEGAS">🔢 CAJA CON PEGAS - 49 opciones</option>
+                        <option value="STICKER">🏷️ STICKER / ETIQUETA - 3 opciones</option>
+                    </select>
+                    <div class="info-box" style="margin-top: 10px; display: none;" id="tipoPegasInfo">
+                        ℹ️ El sistema detecta automáticamente cuántas pegas tiene cada caja
                     </div>
                 </div>
 
-                <!-- SELECCIÓN POR TIPO (CASCADA) -->
-                <div class="form-group">
-                    <label for="tipo_producto">Tipo de Producto <span class="required">*</span></label>
-                    <select id="tipo_producto" name="tipo_producto" required>
-                        <option value="">1️⃣ Primero elige el tipo</option>
-                        <option value="BOLSA">🛍️ BOLSA (con cinta)</option>
-                        <option value="CAJA">📦 CAJA (sin pegado)</option>
-                        <option value="PORTAPERRO">🌭 PORTAPERRO</option>
-                        <option value="PORTAHAMB">🍔 PORTAHAMBURGUESA</option>
+                <!-- Medidas (cascada) -->
+                <div class="form-group custom-field" id="medidasField">
+                    <label for="medidas">Medidas <span class="required">*</span></label>
+                    <select id="medidas" disabled>
+                        <option value="">Selecciona primero el tipo</option>
                     </select>
                 </div>
 
-                <!-- SELECT DE MEDIDAS (SE LLENA DINÁMICAMENTE) -->
-                <div class="form-group custom-field" id="medidasCascadaField">
-                    <label for="medidas_cascada">Medidas Disponibles <span class="required">*</span></label>
-                    <select id="medidas_cascada" name="medidas_cascada" required disabled>
-                        <option value="">2️⃣ Selecciona primero el tipo de producto</option>
-                    </select>
-                </div>
-
-                <!-- INFO DEL TROQUEL SELECCIONADO -->
-                <div class="troquel-info" id="troquelInfo">
+                <!-- Info del producto -->
+                <div class="troquel-info" id="productoInfo">
                     <div class="troquel-info-item">
                         <strong>Código:</strong>
                         <span id="info_codigo">-</span>
                     </div>
-                    <div class="troquel-info-item">
-                        <strong>Tipo:</strong>
-                        <span id="info_tipo">-</span>
+                    <div class="troquel-info-item" id="infoPegasRow" style="display: none;">
+                        <strong>Cantidad de Pegas:</strong>
+                        <span id="info_pegas">-</span>
                     </div>
                     <div class="troquel-info-item">
                         <strong>Cabida por pliego:</strong>
@@ -482,18 +326,18 @@
                     </div>
                 </div>
 
-                <!-- CAMPO PERSONALIZADO (si no encuentra) -->
+                <!-- Medida personalizada -->
                 <div class="form-group custom-field" id="medidasCustomField">
-                    <label for="medidas_custom">✏️ Medida Personalizada (No está en catálogo)</label>
-                    <input type="text" id="medidas_custom" name="medidas_custom" placeholder="Ej: 25 X 15 X 30">
-                    <div class="info-box">
-                        ⚠️ Las medidas personalizadas requieren crear troquel nuevo (+$150.000)
+                    <label for="medidas_custom">✏️ Medida Personalizada</label>
+                    <input type="text" id="medidas_custom" placeholder="Ej: 25 X 15 X 30">
+                    <div class="info-box warning-box">
+                        ⚠️ Requiere troquel nuevo (+$150.000)
                     </div>
                 </div>
             </div>
 
             <!-- SECCIÓN 3: CANTIDAD Y MATERIAL -->
-            <div class="section" data-step="3">
+            <div class="section">
                 <div class="section-title">
                     <span class="section-icon">🔢</span>
                     Cantidad y Material
@@ -502,30 +346,30 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cantidad_predefinida">Cantidad <span class="required">*</span></label>
-                        <select id="cantidad_predefinida" name="cantidad_predefinida" required>
+                        <select id="cantidad_predefinida" required>
                             <option value="">Selecciona cantidad</option>
                             <option value="100">100 unidades (Mínimo)</option>
-                            <option value="500">500 unidades (Óptimo) ⭐</option>
+                            <option value="500">500 unidades ⭐</option>
                             <option value="1000">1,000 unidades</option>
                             <option value="2000">2,000 unidades</option>
-                            <option value="5000">5,000 unidades <span class="price-badge discount-badge">-5%</span></option>
-                            <option value="10000">10,000 unidades <span class="price-badge discount-badge">-10%</span></option>
-                            <option value="50000">50,000 unidades <span class="price-badge discount-badge">-15%</span></option>
+                            <option value="5000">5,000 unidades (-5%)</option>
+                            <option value="10000">10,000 unidades (-10%)</option>
+                            <option value="50000">50,000 unidades (-15%)</option>
                             <option value="custom">✏️ Otra cantidad</option>
                         </select>
                     </div>
 
                     <div class="form-group custom-field" id="cantidadCustomField">
                         <label for="cantidad_custom">Cantidad personalizada</label>
-                        <input type="number" id="cantidad_custom" name="cantidad_custom" min="100" placeholder="Ej: 750">
+                        <input type="number" id="cantidad_custom" min="100" placeholder="750">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="material">Material <span class="required">*</span></label>
-                    <select id="material" name="material" required>
+                    <select id="material" required>
                         <option value="">Selecciona material</option>
-                        <optgroup label="Cartones (Más usados)">
+                        <optgroup label="Cartones Más Usados">
                             <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr)</option>
                             <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr)</option>
                             <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr)</option>
@@ -546,8 +390,8 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 4: IMPRESIÓN Y ACABADOS -->
-            <div class="section" data-step="4">
+            <!-- SECCIÓN 4: IMPRESIÓN -->
+            <div class="section">
                 <div class="section-title">
                     <span class="section-icon">🎨</span>
                     Impresión y Acabados
@@ -556,8 +400,8 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="num_tintas">Número de Tintas <span class="required">*</span></label>
-                        <select id="num_tintas" name="num_tintas" required>
-                            <option value="1">1 tinta (más económico)</option>
+                        <select id="num_tintas" required>
+                            <option value="1">1 tinta</option>
                             <option value="2">2 tintas</option>
                             <option value="3">3 tintas</option>
                             <option value="4">4 tintas (full color)</option>
@@ -566,10 +410,10 @@
 
                     <div class="form-group">
                         <label for="urgencia">Tiempo de Entrega <span class="required">*</span></label>
-                        <select id="urgencia" name="urgencia" required>
-                            <option value="normal">Normal - 15 días hábiles</option>
-                            <option value="urgente">Urgente - 7 días <span class="price-badge warning-badge">+50%</span></option>
-                            <option value="express">Express - 3 días <span class="price-badge warning-badge">+100%</span></option>
+                        <select id="urgencia" required>
+                            <option value="normal">Normal - 15 días</option>
+                            <option value="urgente">Urgente - 7 días (+50%)</option>
+                            <option value="express">Express - 3 días (+100%)</option>
                         </select>
                     </div>
                 </div>
@@ -597,7 +441,7 @@
                             <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
                             <label for="ventanilla">Ventanilla</label>
                         </div>
-                        <div class="checkbox-item">
+                        <div class="checkbox-item" id="pegadoCheckbox" style="display: none;">
                             <input type="checkbox" id="pegado_caja" name="acabados" value="PEGADO_CAJA">
                             <label for="pegado_caja">Pegado de Caja</label>
                         </div>
@@ -605,30 +449,29 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 5: PAGO Y OBSERVACIONES -->
-            <div class="section" data-step="5">
+            <!-- SECCIÓN 5: PAGO -->
+            <div class="section">
                 <div class="section-title">
                     <span class="section-icon">💳</span>
-                    Forma de Pago y Observaciones
+                    Pago y Observaciones
                 </div>
 
                 <div class="form-group">
                     <label for="forma_pago">Forma de Pago <span class="required">*</span></label>
-                    <select id="forma_pago" name="forma_pago" required>
-                        <option value="contado">Contado <span class="price-badge discount-badge">-2% descuento</span></option>
-                        <option value="credito_15">Crédito 15 días (Anticipo 50%)</option>
-                        <option value="credito_30">Crédito 30 días (Anticipo 50%)</option>
+                    <select id="forma_pago" required>
+                        <option value="contado">Contado (-2% descuento)</option>
+                        <option value="credito_15">Crédito 15 días (50% anticipo)</option>
+                        <option value="credito_30">Crédito 30 días (50% anticipo)</option>
                         <option value="cheque">Cheque (100% anticipado)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="observaciones">Observaciones (opcional)</label>
-                    <textarea id="observaciones" name="observaciones" placeholder="Información adicional del cliente, especificaciones especiales, etc..."></textarea>
+                    <label for="observaciones">Observaciones</label>
+                    <textarea id="observaciones" placeholder="Información adicional..."></textarea>
                 </div>
             </div>
 
-            <!-- BOTÓN -->
             <button type="submit" class="submit-btn" id="submitBtn">
                 🚀 Generar Cotización Oficial
             </button>
@@ -636,407 +479,338 @@
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p class="loading-text">Generando cotización profesional...</p>
-            <p style="color: #718096; margin-top: 10px;">Esto tomará solo 5-10 segundos</p>
+            <p class="loading-text">Generando cotización...</p>
         </div>
     </div>
 
     <script>
-        // ============================================
-        // 🗂️ CATÁLOGO DE TROQUELES COMPLETO
-        // ============================================
-        // IMPORTANTE: Aquí van los 206 troqueles
-        // Actualmente hay 8 de ejemplo
-        // TODO: Agregar los 198 troqueles restantes del Excel
-
-        // ============================================
-        // 🗂️ CATÁLOGO COMPLETO - 198 TROQUELES
-        // Extraído de: FORMATO DE PRODUCCION LITOGRAFIA prueba 3.xlsm
-        // ============================================
-        const CATALOGO_TROQUELES = [
-            {codigo: "TB0001", medidas: "22 X 12 X 33", tipo: "BOLSA", largo: 70, ancho: 44, cabida: 2, popular: true},
-            {codigo: "TB0002", medidas: "40 X 15 X 30", tipo: "BOLSA", largo: 84, ancho: 57, cabida: 1, popular: true},
-            {codigo: "TB0003", medidas: "15 X 10 X 40", tipo: "BOLSA", largo: 52, ancho: 50, cabida: 2, popular: true},
-            {codigo: "TB0004", medidas: "20 X 12 X 25", tipo: "BOLSA", largo: 66, ancho: 36, cabida: 2, popular: true},
-            {codigo: "TB0005", medidas: "22 X 11 X 16", tipo: "BOLSA", largo: 67.5, ancho: 26, cabida: 3, popular: false},
-            {codigo: "TB0006", medidas: "16 X 8 X 24", tipo: "BOLSA", largo: 49.5, ancho: 32.5, cabida: 4, popular: false},
-            {codigo: "TB0007", medidas: "13 X 13 X 8", tipo: "CAJA", largo: 45.5, ancho: 29, cabida: 4, popular: true},
-            {codigo: "TB0008", medidas: "20 X 13 X 7", tipo: "CAJA", largo: 43, ancho: 35, cabida: 4, popular: true},
-            {codigo: "TB0009", medidas: "15,5 X 10 X 21", tipo: "CAJA", largo: 52.4, ancho: 28, cabida: 3, popular: true},
-            {codigo: "TB0010", medidas: "20 X 12 X 12", tipo: "CAJA", largo: 66, ancho: 30, cabida: 3, popular: true},
-            {codigo: "TB0011", medidas: "30 X 22 X 8", tipo: "CAJA", largo: 64, ancho: 47, cabida: 2, popular: false},
-            {codigo: "TB0012", medidas: "23 X 15 X 9", tipo: "CAJA", largo: 50.2, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0013", medidas: "22 X 16 X 4", tipo: "CAJA", largo: 42.6, ancho: 30, cabida: 4, popular: false},
-            {codigo: "TB0014", medidas: "24 x 24 x 6", tipo: "CAJA", largo: 66.4, ancho: 48.4, cabida: 2, popular: false},
-            {codigo: "TB0015", medidas: "24 x 8 x 7", tipo: "CAJA", largo: 38, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0016", medidas: "20 x 16 x 7", tipo: "CAJA", largo: 48, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0017", medidas: "20 x 12,5 x 11", tipo: "CAJA", largo: 49, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0018", medidas: "22 x 14 x 9", tipo: "CAJA", largo: 48.5, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0019", medidas: "21 x 8 x 7", tipo: "CAJA", largo: 35, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0020", medidas: "21 x 7 x 5", tipo: "CAJA", largo: 31, ancho: 26, cabida: 4, popular: false},
-            {codigo: "TB0021", medidas: "20 X 8 X 6", tipo: "CAJA", largo: 32, ancho: 30, cabida: 4, popular: false},
-            {codigo: "TB0022", medidas: "17 x 17 x 6", tipo: "CAJA", largo: 38, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0023", medidas: "23 x 12 x 7", tipo: "CAJA", largo: 40, ancho: 36, cabida: 4, popular: false},
-            {codigo: "TB0024", medidas: "26 x 17 x 7", tipo: "CAJA", largo: 51, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0025", medidas: "32 x 18 x 9", tipo: "CAJA", largo: 64, ancho: 46, cabida: 2, popular: false},
-            {codigo: "TB0026", medidas: "18,5 x 18,5 x 9", tipo: "CAJA", largo: 56.5, ancho: 36.7, cabida: 2, popular: false},
-            {codigo: "TB0027", medidas: "17 x 10 x 5", tipo: "CAJA", largo: 31, ancho: 27, cabida: 4, popular: false},
-            {codigo: "TB0028", medidas: "24 x 16 x 9", tipo: "CAJA", largo: 55, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0029", medidas: "21 x 13 x 9", tipo: "CAJA", largo: 49, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0030", medidas: "20 X 11 X 8", tipo: "CAJA", largo: 41.5, ancho: 34.5, cabida: 4, popular: false},
-            {codigo: "TB0031", medidas: "17 x 8 x 8", tipo: "CAJA", largo: 38, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0032", medidas: "20 X 12 X 7", tipo: "CAJA", largo: 40, ancho: 35, cabida: 4, popular: false},
-            {codigo: "TB0033", medidas: "26 X 26 X 8", tipo: "CAJA", largo: 75, ancho: 46, cabida: 2, popular: false},
-            {codigo: "TB0034", medidas: "23 X 12 X 6", tipo: "CAJA", largo: 43, ancho: 30, cabida: 4, popular: false},
-            {codigo: "TB0035", medidas: "18 x 12 x 9", tipo: "CAJA", largo: 47, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0036", medidas: "21 x 14 x 11", tipo: "CAJA", largo: 54, ancho: 36, cabida: 4, popular: false},
-            {codigo: "TB0037", medidas: "30 x 7 x 3", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0038", medidas: "21 x 18 x 8", tipo: "CAJA", largo: 57, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0039", medidas: "33,5 x 15,5 x 8,5", tipo: "CAJA", largo: 62, ancho: 49, cabida: 2, popular: false},
-            {codigo: "TB0040", medidas: "19 x 12 x 5", tipo: "CAJA", largo: 29, ancho: 22, cabida: 6, popular: true},
-            {codigo: "TB0041", medidas: "23 x 23 x 8,5", tipo: "CAJA", largo: 68, ancho: 45, cabida: 2, popular: false},
-            {codigo: "TB0042", medidas: "22 x 22 x 10", tipo: "CAJA", largo: 69, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0043", medidas: "18 x 13 x 8", tipo: "CAJA", largo: 48, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0044", medidas: "23 x 16 x 6", tipo: "CAJA", largo: 48, ancho: 38, cabida: 2, popular: false},
-            {codigo: "TB0045", medidas: "20 x 15 x 8", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0046", medidas: "21 x 15 x 9", tipo: "CAJA", largo: 53, ancho: 35, cabida: 4, popular: false},
-            {codigo: "TB0047", medidas: "22 x 11 x 4,5", tipo: "CAJA", largo: 36, ancho: 31.5, cabida: 4, popular: false},
-            {codigo: "TB0048", medidas: "17 x 9 x 7", tipo: "CAJA", largo: 38, ancho: 28, cabida: 6, popular: false},
-            {codigo: "TB0049", medidas: "23 x 18 x 6", tipo: "CAJA", largo: 61, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0050", medidas: "19 x 11 x 12", tipo: "CAJA", largo: 50, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0051", medidas: "26 x 11 x 7", tipo: "CAJA", largo: 43, ancho: 36, cabida: 4, popular: false},
-            {codigo: "TB0052", medidas: "13 x 13 x 5", tipo: "CAJA", largo: 26, ancho: 20, cabida: 4, popular: false},
-            {codigo: "TB0053", medidas: "18 x 8 x 6", tipo: "CAJA", largo: 31, ancho: 27, cabida: 4, popular: false},
-            {codigo: "TB0054", medidas: "17 x 12 x 5", tipo: "CAJA", largo: 36, ancho: 28, cabida: 4, popular: false},
-            {codigo: "TB0055", medidas: "16 x 16 x 7", tipo: "CAJA", largo: 46, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0056", medidas: "35 x 21 x 10", tipo: "CAJA", largo: 79, ancho: 47, cabida: 1, popular: false},
-            {codigo: "TB0057", medidas: "21,5 x 16 x 9", tipo: "CAJA", largo: 54, ancho: 37.5, cabida: 2, popular: false},
-            {codigo: "TB0058", medidas: "22 x 18 x 7", tipo: "CAJA", largo: 60, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0059", medidas: "20 x 14 x 9", tipo: "CAJA", largo: 50, ancho: 35, cabida: 4, popular: false},
-            {codigo: "TB0060", medidas: "14 x 14 x 5", tipo: "CAJA", largo: 35, ancho: 27, cabida: 4, popular: false},
-            {codigo: "TB0061", medidas: "18 x 12 x 7", tipo: "CAJA", largo: 42, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0062", medidas: "20 x 7 x 5", tipo: "CAJA", largo: 30, ancho: 27, cabida: 4, popular: false},
-            {codigo: "TB0063", medidas: "20 x 10 x 8", tipo: "CAJA", largo: 41.5, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0064", medidas: "17 x 13,5 x 9", tipo: "CAJA", largo: 49, ancho: 32.5, cabida: 4, popular: false},
-            {codigo: "TB0065", medidas: "18 x 12 x 5", tipo: "CAJA", largo: 35.5, ancho: 28, cabida: 4, popular: false},
-            {codigo: "TB0066", medidas: "14,5 x 14,5 x 6,5", tipo: "CAJA", largo: 43.5, ancho: 29, cabida: 4, popular: false},
-            {codigo: "TB0067", medidas: "14,5 x 12 x 11", tipo: "CAJA", largo: 48, ancho: 28, cabida: 6, popular: false},
-            {codigo: "TB0068", medidas: "26 x 9 x 5", tipo: "CAJA", largo: 42, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0069", medidas: "22 x 14 x 6,5", tipo: "CAJA", largo: 47, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0070", medidas: "22 x 15 x 11", tipo: "CAJA", largo: 59, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0071", medidas: "12 x 11 x 7", tipo: "CAJA", largo: 35, ancho: 24, cabida: 6, popular: false},
-            {codigo: "TB0072", medidas: "22 x 14 x 15", tipo: "CAJA", largo: 66, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0073", medidas: "20 x 15 x 6", tipo: "CAJA", largo: 43, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0074", medidas: "21 x 21 x 6", tipo: "CAJA", largo: 60, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0075", medidas: "13 x 9 x 8", tipo: "CAJA", largo: 37, ancho: 23, cabida: 6, popular: false},
-            {codigo: "TB0076", medidas: "18 x 14 x 8", tipo: "CAJA", largo: 50.5, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0077", medidas: "20 x 14 x 6,5", tipo: "CAJA", largo: 46, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0078", medidas: "14 x 11 x 6", tipo: "CAJA", largo: 36, ancho: 27, cabida: 6, popular: false},
-            {codigo: "TB0079", medidas: "18 x 11 x 12", tipo: "CAJA", largo: 49.5, ancho: 32.5, cabida: 4, popular: false},
-            {codigo: "TB0080", medidas: "30 x 11 x 4", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0081", medidas: "17 x 10,5 x 16", tipo: "CAJA", largo: 55.5, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0082", medidas: "22 x 22 x 8", tipo: "CAJA", largo: 62, ancho: 44, cabida: 2, popular: false},
-            {codigo: "TB0083", medidas: "20 x 14 x 11", tipo: "CAJA", largo: 53, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0084", medidas: "27 x 18 x 13", tipo: "CAJA", largo: 72, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0085", medidas: "22 x 21 x 11", tipo: "CAJA", largo: 67, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0086", medidas: "9 x 22 x 14", tipo: "CAJA", largo: 49, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0087", medidas: "17 x 15 x 9", tipo: "CAJA", largo: 50, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0088", medidas: "22 x 12 x 11", tipo: "CAJA", largo: 52, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0089", medidas: "20 x 16 x 9", tipo: "CAJA", largo: 54, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0090", medidas: "31 x 21 x 11", tipo: "CAJA", largo: 77, ancho: 43, cabida: 1, popular: false},
-            {codigo: "TB0091", medidas: "23 x 11 x 6", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0092", medidas: "25 x 21 x 7", tipo: "CAJA", largo: 66, ancho: 43, cabida: 2, popular: false},
-            {codigo: "TB0093", medidas: "16,5 x 16,5 x 9", tipo: "CAJA", largo: 52, ancho: 34, cabida: 2, popular: false},
-            {codigo: "TB0094", medidas: "26 x 15 x 7", tipo: "CAJA", largo: 50, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0095", medidas: "20 x 18 x 8", tipo: "CAJA", largo: 60, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0096", medidas: "19 x 15 x 8", tipo: "CAJA", largo: 51, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0097", medidas: "20 x 13 x 8", tipo: "CAJA", largo: 46, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0098", medidas: "21 x 17 x 7", tipo: "CAJA", largo: 55, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0099", medidas: "27 x 15 x 6,5", tipo: "CAJA", largo: 53, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0100", medidas: "24 x 17 x 14", tipo: "CAJA", largo: 67, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0101", medidas: "26 x 21 x 12", tipo: "CAJA", largo: 75, ancho: 43, cabida: 1, popular: false},
-            {codigo: "TB0102", medidas: "20 x 10 x 6", tipo: "CAJA", largo: 37, ancho: 30, cabida: 4, popular: false},
-            {codigo: "TB0103", medidas: "26 x 17 x 11", tipo: "CAJA", largo: 60, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0104", medidas: "25 x 19 x 12", tipo: "CAJA", largo: 67, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0105", medidas: "30 x 18 x 11", tipo: "CAJA", largo: 72, ancho: 43, cabida: 1, popular: false},
-            {codigo: "TB0106", medidas: "28 x 15 x 10", tipo: "CAJA", largo: 62, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0107", medidas: "21 x 13 x 10", tipo: "CAJA", largo: 51, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0108", medidas: "16 x 16 x 6", tipo: "CAJA", largo: 42.5, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0109", medidas: "23 x 15 x 7,5", tipo: "CAJA", largo: 51, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0110", medidas: "16 X 12 X 9", tipo: "CAJA", largo: 44, ancho: 29, cabida: 6, popular: false},
-            {codigo: "TB0111", medidas: "24 x 12 x 5", tipo: "CAJA", largo: 43, ancho: 31, cabida: 4, popular: false},
-            {codigo: "TB0112", medidas: "22 x 15 x 5", tipo: "CAJA", largo: 45, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0113", medidas: "23 x 14 x 6", tipo: "CAJA", largo: 46, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0114", medidas: "25 x 12 x 5", tipo: "CAJA", largo: 43, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0115", medidas: "25 x 19 x 10", tipo: "CAJA", largo: 67, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0116", medidas: "26,5 x 14 x 7", tipo: "CAJA", largo: 51.5, ancho: 36.5, cabida: 2, popular: false},
-            {codigo: "TB0117", medidas: "20 x 17 x 9", tipo: "CAJA", largo: 58, ancho: 34, cabida: 2, popular: false},
-            {codigo: "TB0118", medidas: "22 x 17 x 9", tipo: "CAJA", largo: 60, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0119", medidas: "23 x 19 x 10", tipo: "CAJA", largo: 63, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0120", medidas: "16 x 12 x 5", tipo: "CAJA", largo: 34, ancho: 27, cabida: 6, popular: false},
-            {codigo: "TB0121", medidas: "21 x 14 x 5", tipo: "CAJA", largo: 40, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0122", medidas: "23 x 23 x 7", tipo: "CAJA", largo: 66, ancho: 43, cabida: 2, popular: false},
-            {codigo: "TB0123", medidas: "26 x 18 x 10", tipo: "CAJA", largo: 63, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0124", medidas: "27 x 18 x 8", tipo: "CAJA", largo: 60, ancho: 43, cabida: 2, popular: false},
-            {codigo: "TB0125", medidas: "20 x 20 x 8", tipo: "CAJA", largo: 60, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0126", medidas: "16 x 14 x 12", tipo: "CAJA", largo: 53, ancho: 30, cabida: 4, popular: false},
-            {codigo: "TB0127", medidas: "23 x 21 x 12", tipo: "CAJA", largo: 71, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0128", medidas: "21 x 16 x 7", tipo: "CAJA", largo: 50, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0129", medidas: "24 x 14 x 7,5", tipo: "CAJA", largo: 51.5, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0130", medidas: "23 x 17 x 7,5", tipo: "CAJA", largo: 56, ancho: 37, cabida: 2, popular: false},
-            {codigo: "TB0131", medidas: "23 x 17 x 9", tipo: "CAJA", largo: 59, ancho: 37, cabida: 2, popular: false},
-            {codigo: "TB0132", medidas: "21 x 21 x 11", tipo: "CAJA", largo: 69, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0133", medidas: "20 x 12 x 6", tipo: "CAJA", largo: 38, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0134", medidas: "22 x 13 x 5", tipo: "CAJA", largo: 40, ancho: 32, cabida: 4, popular: false},
-            {codigo: "TB0135", medidas: "15 X 10 X 8", tipo: "CAJA", largo: 45, ancho: 30, cabida: 3, popular: false},
-            {codigo: "TB0136", medidas: "19,5 x 12,5 x 15", tipo: "CAJA", largo: 58, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0137", medidas: "24 x 24 x 9", tipo: "CAJA", largo: 74, ancho: 46, cabida: 2, popular: false},
-            {codigo: "TB0138", medidas: "20 x 11 x 7", tipo: "CAJA", largo: 40, ancho: 33, cabida: 4, popular: false},
-            {codigo: "TB0139", medidas: "29 x 24 x 7", tipo: "CAJA", largo: 75, ancho: 47, cabida: 1, popular: false},
-            {codigo: "TB0140", medidas: "22 x 17 x 15", tipo: "CAJA", largo: 68, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0141", medidas: "16 x 12 x 8", tipo: "CAJA", largo: 45, ancho: 28, cabida: 6, popular: false},
-            {codigo: "TB0142", medidas: "29 x 11 x 4", tipo: "CAJA", largo: 48, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0143", medidas: "23 x 18 x 11", tipo: "CAJA", largo: 66, ancho: 38, cabida: 2, popular: false},
-            {codigo: "TB0144", medidas: "28 x 14 x 9", tipo: "CAJA", largo: 59, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0145", medidas: "22 x 16 x 6", tipo: "CAJA", largo: 48, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0146", medidas: "19 x 18 x 9", tipo: "CAJA", largo: 60, ancho: 34, cabida: 2, popular: false},
-            {codigo: "TB0147", medidas: "29 x 20 x 6", tipo: "CAJA", largo: 63, ancho: 46, cabida: 2, popular: false},
-            {codigo: "TB0148", medidas: "24 x 19 x 8", tipo: "CAJA", largo: 64, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0149", medidas: "31 x 21 x 14", tipo: "CAJA", largo: 85, ancho: 45, cabida: 1, popular: false},
-            {codigo: "TB0150", medidas: "33 x 23 x 12", tipo: "CAJA", largo: 87, ancho: 47, cabida: 1, popular: false},
-            {codigo: "TB0151", medidas: "39 x 23 x 7", tipo: "CAJA", largo: 81, ancho: 54, cabida: 1, popular: false},
-            {codigo: "TB0152", medidas: "23 x 17 x 7", tipo: "CAJA", largo: 54, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0153", medidas: "13 x 10 x 4", tipo: "CAJA", largo: 22, ancho: 17, cabida: 9, popular: false},
-            {codigo: "TB0154", medidas: "25 x 20 x 7", tipo: "CAJA", largo: 64, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0155", medidas: "24 x 18 x 9", tipo: "CAJA", largo: 63, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0156", medidas: "21 x 15 x 6", tipo: "CAJA", largo: 45, ancho: 34, cabida: 4, popular: false},
-            {codigo: "TB0157", medidas: "15 X 10 X 10", tipo: "CAJA", largo: 38, ancho: 26, cabida: 6, popular: false},
-            {codigo: "TB0158", medidas: "36 X 11 X 6", tipo: "CAJA", largo: 54, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0159", medidas: "22 X 13 X 12", tipo: "CAJA", largo: 56.5, ancho: 33.5, cabida: 4, popular: false},
-            {codigo: "TB0160", medidas: "10 X 6 X 25", tipo: "CAJA", largo: 69, ancho: 34, cabida: 2, popular: false},
-            {codigo: "TB0161", medidas: "24 X 20 X 9", tipo: "CAJA", largo: 66, ancho: 41, cabida: 2, popular: false},
-            {codigo: "TB0162", medidas: "24 X 13 X 8", tipo: "CAJA", largo: 52, ancho: 37, cabida: 2, popular: false},
-            {codigo: "TB0163", medidas: "34 X 24 X 11", tipo: "CAJA", largo: 91, ancho: 48, cabida: 1, popular: false},
-            {codigo: "TB0164", medidas: "17,5 X 17,5 X 10", tipo: "CAJA", largo: 58, ancho: 34, cabida: 2, popular: false},
-            {codigo: "TB0165", medidas: "23 X 13 X 7,5", tipo: "CAJA", largo: 49, ancho: 34.5, cabida: 4, popular: false},
-            {codigo: "TB0166", medidas: "25 X 19 X 8", tipo: "CAJA", largo: 64, ancho: 42, cabida: 2, popular: false},
-            {codigo: "TB0167", medidas: "21 X 17 X 9", tipo: "CAJA", largo: 59, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0168", medidas: "30 X 20 X 15", tipo: "CAJA", largo: 78, ancho: 46, cabida: 1, popular: false},
-            {codigo: "TB0169", medidas: "32 X 20 X 8", tipo: "CAJA", largo: 70, ancho: 47, cabida: 1, popular: false},
-            {codigo: "TB0170", medidas: "21,5 X 20 X 9", tipo: "CAJA", largo: 64, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0171", medidas: "18 X 18 X 7", tipo: "CAJA", largo: 54, ancho: 35, cabida: 2, popular: false},
-            {codigo: "TB0172", medidas: "29 X 19 X 7", tipo: "CAJA", largo: 64, ancho: 44, cabida: 2, popular: false},
-            {codigo: "TB0173", medidas: "32 X 23 X 14", tipo: "CAJA", largo: 88, ancho: 48, cabida: 1, popular: false},
-            {codigo: "TB0174", medidas: "35 X 21 X 6", tipo: "CAJA", largo: 69, ancho: 52, cabida: 1, popular: false},
-            {codigo: "TB0175", medidas: "26 X 19 X 7,5", tipo: "CAJA", largo: 61, ancho: 43, cabida: 2, popular: false},
-            {codigo: "TB0176", medidas: "20 X 17 X 6", tipo: "CAJA", largo: 48, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0177", medidas: "34 X 14 X 8", tipo: "CAJA", largo: 63, ancho: 45, cabida: 2, popular: false},
-            {codigo: "TB0178", medidas: "28 X 12 X 8", tipo: "CAJA", largo: 52, ancho: 40, cabida: 2, popular: false},
-            {codigo: "TB0179", medidas: "21,5 X 20 X 10", tipo: "CAJA", largo: 66, ancho: 39, cabida: 2, popular: false},
-            {codigo: "TB0180", medidas: "27 X 27 X 12", tipo: "CAJA", largo: 102, ancho: 43, cabida: 1, popular: false},
-            {codigo: "TB0181", medidas: "24 X 24 X 8", tipo: "CAJA", largo: 100, ancho: 66.7, cabida: 1, popular: false},
-            {codigo: "TB0182", medidas: "50 X 15 X 10", tipo: "CAJA", largo: 132, ancho: 38, cabida: 1, popular: false},
-            {codigo: "TB0183", medidas: "14,5  X 14,5 X 9,5", tipo: "CAJA", largo: 50, ancho: 33.5, cabida: 2, popular: false},
-            {codigo: "TB0184", medidas: "19 X 9,5 X 4", tipo: "CAJA", largo: 40.5, ancho: 36.2, cabida: 3, popular: false},
-            {codigo: "TB0185", medidas: "23 X 20 X 9", tipo: "CAJA", largo: 63, ancho: 43, cabida: 2, popular: false},
-            {codigo: "TB0186", medidas: "18 X 13 X 10", tipo: "CAJA", largo: 46, ancho: 13, cabida: 8, popular: false},
-            {codigo: "TB0187", medidas: "23 X 10 X 18", tipo: "CAJA", largo: 46, ancho: 23, cabida: 6, popular: false},
-            {codigo: "TB0188", medidas: "17 X 17 X 4", tipo: "CAJA", largo: 45, ancho: 25, cabida: 4, popular: false},
-            {codigo: "TB0189", medidas: "28 X 25 X 13", tipo: "BOLSA", largo: 86, ancho: 36.5, cabida: 1, popular: false},
-            {codigo: "TB0190", medidas: "25 X 13 X 5", tipo: "CAJA", largo: 25, ancho: 23, cabida: 9, popular: false},
-            {codigo: "TB0191", medidas: "23 X 20 X 9", tipo: "CAJA", largo: 81, ancho: 43, cabida: 1, popular: false},
-            {codigo: "TB0192", medidas: "26 X 20", tipo: "CAJA", largo: 33, ancho: 24, cabida: 9, popular: false},
-            {codigo: "TB0193", medidas: "24 X 14", tipo: "CAJA", largo: 33, ancho: 24, cabida: 9, popular: false},
-            {codigo: "TB0194", medidas: "20 X 14 X 5", tipo: "CAJA", largo: 23, ancho: 15, cabida: 18, popular: false},
-            {codigo: "TB0195", medidas: "38 X 18 X 15", tipo: "BOLSA", largo: 68, ancho: 49.25, cabida: 2, popular: false},
-            {codigo: "TB0196", medidas: "9,5 X 9,5 X 5", tipo: "CAJA", largo: 24, ancho: 13, cabida: 20, popular: true},
-            {codigo: "TB0197", medidas: "10 X 10 X 6", tipo: "CAJA", largo: 64.5, ancho: 36, cabida: 2, popular: false},
-            {codigo: "TB0198", medidas: "17 X 13 X 7", tipo: "CAJA", largo: 54, ancho: 31, cabida: 4, popular: false}
-        ];
-
-        // ============================================
-        // 🎯 LÓGICA DEL FORMULARIO
-        // ============================================
-
-        const form = document.getElementById('cotizacionForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const loading = document.getElementById('loading');
-        const successMessage = document.getElementById('successMessage');
-        const errorBanner = document.getElementById('errorBanner');
-        const progressFill = document.getElementById('progressFill');
-        const progressText = document.getElementById('progressText');
+        // CATÁLOGO COMPLETO - 198 PRODUCTOS DEL EXCEL
+        const CATALOGO_PRODUCTOS = [
+    {codigo:"TB0001",medidas:"22 X 12 X 33",tipo:"BOLSA",largo:70,ancho:44,cabida:2,popular:true},
+    {codigo:"TB0002",medidas:"40 X 15 X 30",tipo:"BOLSA",largo:84,ancho:57,cabida:1,popular:true},
+    {codigo:"TB0003",medidas:"15 X 10 X 40",tipo:"BOLSA",largo:52,ancho:50,cabida:2,popular:true},
+    {codigo:"TB0004",medidas:"20 X 12 X 25",tipo:"BOLSA",largo:66,ancho:36,cabida:2,popular:true},
+    {codigo:"TB0005",medidas:"22 X 11 X 16",tipo:"BOLSA",largo:67.5,ancho:26,cabida:3,popular:false},
+    {codigo:"TB0006",medidas:"16 X 8 X 24",tipo:"BOLSA",largo:49.5,ancho:32.5,cabida:4,popular:false},
+    {codigo:"TB0007",medidas:"13 X 13 X 8",tipo:"CAJA_SIN_PEGA",largo:45.5,ancho:29,cabida:4,popular:true},
+    {codigo:"TB0008",medidas:"20 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:43,ancho:35,cabida:4,popular:true},
+    {codigo:"TB0009",medidas:"15,5 X 10 X 21",tipo:"CAJA_CON_PEGAS",largo:52.4,ancho:28,cabida:3,pegas:3,popular:true},
+    {codigo:"TB0010",medidas:"20 X 12 X 12",tipo:"CAJA_CON_PEGAS",largo:66,ancho:30,cabida:3,pegas:3,popular:true},
+    {codigo:"TB0011",medidas:"30 X 22 X 8",tipo:"CAJA_SIN_PEGA",largo:64,ancho:47,cabida:2,popular:false},
+    {codigo:"TB0012",medidas:"23 X 15 X 9",tipo:"CAJA_SIN_PEGA",largo:50.2,ancho:42,cabida:2,popular:false},
+    {codigo:"TB0013",medidas:"22 X 16 X 4",tipo:"CAJA_SIN_PEGA",largo:42.6,ancho:30,cabida:4,popular:false},
+    {codigo:"TB0014",medidas:"24 x 24 x 6",tipo:"CAJA_SIN_PEGA",largo:66.4,ancho:48.4,cabida:2,popular:false},
+    {codigo:"TB0015",medidas:"24 x 8 x 7",tipo:"CAJA_SIN_PEGA",largo:38,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0016",medidas:"20 x 16 x 7",tipo:"CAJA_SIN_PEGA",largo:48,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0017",medidas:"20 x 12,5 x 11",tipo:"CAJA_SIN_PEGA",largo:49,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0018",medidas:"22 x 14 x 9",tipo:"CAJA_SIN_PEGA",largo:48.5,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0019",medidas:"21 x 8 x 7",tipo:"CAJA_SIN_PEGA",largo:35,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0020",medidas:"21 x 7 x 5",tipo:"CAJA_SIN_PEGA",largo:31,ancho:26,cabida:4,popular:false},
+    {codigo:"TB0021",medidas:"14,5 x 14 x 8",tipo:"CAJA_SIN_PEGA",largo:46.5,ancho:30.5,cabida:4,popular:false},
+    {codigo:"TB0022",medidas:"25 x 25 x 10",tipo:"CAJA_SIN_PEGA",largo:72,ancho:75,cabida:2,popular:false},
+    {codigo:"TB0023",medidas:"22 x 12 x 6,5",tipo:"CAJA_SIN_PEGA",largo:46,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0024",medidas:"31 x 31 x 12",tipo:"CAJA_CON_PEGAS",largo:110,ancho:50,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0025",medidas:"27 X 27 X 12,5",tipo:"CAJA_CON_PEGAS",largo:104,ancho:44,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0026",medidas:"17 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:43,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0027",medidas:"20 X 16 X 7",tipo:"CAJA_SIN_PEGA",largo:49,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0028",medidas:"25 X 20 X 9",tipo:"CAJA_SIN_PEGA",largo:62,ancho:43,cabida:2,popular:false},
+    {codigo:"TB0029",medidas:"14 X 14 X 8",tipo:"CAJA_SIN_PEGA",largo:48,ancho:30,cabida:4,popular:false},
+    {codigo:"TB0030",medidas:"11 X 11 X 10",tipo:"CAJA_SIN_PEGA",largo:46,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0031",medidas:"14 X 14 X 14",tipo:"CAJA_SIN_PEGA",largo:60,ancho:42,cabida:2,popular:false},
+    {codigo:"TB0032",medidas:"20 X 13 X 6",tipo:"CAJA_SIN_PEGA",largo:42,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0033",medidas:"17,5 X 8,5 X 5",tipo:"CAJA_SIN_PEGA",largo:38,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0034",medidas:"19 X 9 X 6",tipo:"CAJA_SIN_PEGA",largo:52,ancho:43,cabida:2,popular:false},
+    {codigo:"TB0035",medidas:"11 X 11 X 4",tipo:"CAJA_SIN_PEGA",largo:34,ancho:37,cabida:6,popular:false},
+    {codigo:"TB0036",medidas:"14 X 9 X 9",tipo:"CAJA_SIN_PEGA",largo:38,ancho:32,cabida:4,popular:false},
+    {codigo:"TB0037",medidas:"10 X 10",tipo:"CAJA_SIN_PEGA",largo:11,ancho:11,cabida:48,popular:false},
+    {codigo:"TB0038",medidas:"18 X 11 X 5",tipo:"CAJA_SIN_PEGA",largo:32,ancho:24,cabida:8,popular:false},
+    {codigo:"TB0039",medidas:"20 X 14 X 5",tipo:"CAJA_SIN_PEGA",largo:30,ancho:24,cabida:9,popular:false},
+    {codigo:"TB0040",medidas:"19 X 12 X 5",tipo:"CAJA_SIN_PEGA",largo:29,ancho:22,cabida:9,popular:true},
+    {codigo:"TB0041",medidas:"14 X 13 X 5",tipo:"CAJA_SIN_PEGA",largo:24,ancho:23,cabida:12,popular:false},
+    {codigo:"TB0042",medidas:"11 X 7,5 X 4",tipo:"CAJA_SIN_PEGA",largo:20,ancho:16.5,cabida:8,popular:false},
+    {codigo:"TB0043",medidas:"34,7 X 23 X 12",tipo:"CAJA_CON_PEGAS",largo:97,ancho:69,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0044",medidas:"18 X 18 X 7",tipo:"CAJA_SIN_PEGA",largo:32,ancho:32,cabida:6,popular:false},
+    {codigo:"TB0045",medidas:"15 X 10 x 5",tipo:"CAJA_SIN_PEGA",largo:25.3,ancho:20,cabida:9,popular:false},
+    {codigo:"TB0046",medidas:"12 x 11 x 5,5",tipo:"CAJA_SIN_PEGA",largo:35.5,ancho:23,cabida:8,popular:false},
+    {codigo:"TB0047",medidas:"10 x 12 x 3",tipo:"CAJA_CON_PEGAS",largo:25,ancho:17,cabida:16,pegas:2,popular:false},
+    {codigo:"TB0048",medidas:"21,7 x 20 x 1",tipo:"CAJA_SIN_PEGA",largo:25,ancho:14,cabida:20,popular:false},
+    {codigo:"TB0049",medidas:"10 X 8 X 4",tipo:"CAJA_SIN_PEGA",largo:50,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0050",medidas:"26 X 8",tipo:"CAJA_SIN_PEGA",largo:21,ancho:19,cabida:9,popular:false},
+    {codigo:"TB0051",medidas:"28 X 16",tipo:"CAJA_CON_PEGAS",largo:23.3,ancho:32,cabida:9,pegas:2,popular:false},
+    {codigo:"TB0052",medidas:"19 X 10 X 5,5",tipo:"CAJA_SIN_PEGA",largo:44,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0053",medidas:"25 x 8,5 x 5",tipo:"CAJA_CON_PEGAS",largo:48,ancho:44,cabida:2,pegas:1,popular:false},
+    {codigo:"TB0054",medidas:"12,5 X 8,5 X 5",tipo:"CAJA_CON_PEGAS",largo:48,ancho:32,cabida:4,pegas:1,popular:false},
+    {codigo:"TB0055",medidas:"15 X 9 X 15",tipo:"CAJA_SIN_PEGA",largo:53,ancho:15,cabida:6,popular:false},
+    {codigo:"TB0056",medidas:"23,5 X 15,5 X 9",tipo:"CAJA_SIN_PEGA",largo:53.7,ancho:41.5,cabida:2,popular:false},
+    {codigo:"TB0057",medidas:"17,5 X 17,5 X 11,5",tipo:"CAJA_SIN_PEGA",largo:61.5,ancho:41.5,cabida:2,popular:false},
+    {codigo:"TB0058",medidas:"29 X 22 X 10",tipo:"CAJA_SIN_PEGA",largo:69,ancho:48,cabida:2,popular:false},
+    {codigo:"TB0059",medidas:"16 X 8 X 9",tipo:"CAJA_SIN_PEGA",largo:37,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0060",medidas:"46 X 8,5 X 5",tipo:"CAJA_SIN_PEGA",largo:56,ancho:32,cabida:2,popular:false},
+    {codigo:"TB0061",medidas:"10,5 X 8 X 4",tipo:"CAJA_SIN_PEGA",largo:18,ancho:16,cabida:9,popular:false},
+    {codigo:"TB0062",medidas:"14 X 8,5 X 38",tipo:"BOLSA",largo:47,ancho:46,cabida:2,popular:false},
+    {codigo:"TB0063",medidas:"12 X 4 X 20",tipo:"BOLSA",largo:35.5,ancho:26.5,cabida:2,popular:false},
+    {codigo:"TB0064",medidas:"14 X 8,5 X 38",tipo:"CAJA_SIN_PEGA",largo:47,ancho:46,cabida:4,popular:false},
+    {codigo:"TB0065",medidas:"22 X 12 X 7,5",tipo:"CAJA_SIN_PEGA",largo:42,ancho:37,cabida:4,popular:false},
+    {codigo:"TB0066",medidas:"15,5 x 9 x 3",tipo:"CAJA_SIN_PEGA",largo:27.7,ancho:27,cabida:8,popular:false},
+    {codigo:"TB0067",medidas:"22 x 12 x 8,5",tipo:"CAJA_SIN_PEGA",largo:43.5,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0068",medidas:"18 x 10 x 2",tipo:"CAJA_SIN_PEGA",largo:26,ancho:26,cabida:6,popular:false},
+    {codigo:"TB0069",medidas:"13 X 13 X 8",tipo:"CAJA_SIN_PEGA",largo:45.8,ancho:29,cabida:4,popular:false},
+    {codigo:"TB0070",medidas:"20 X 11 X 6,5",tipo:"CAJA_SIN_PEGA",largo:42,ancho:33,cabida:4,popular:false},
+    {codigo:"TB0071",medidas:"16 X 15 X 6,5",tipo:"CAJA_SIN_PEGA",largo:45.5,ancho:28,cabida:8,popular:false},
+    {codigo:"TB0072",medidas:"12 X 10 X 7,5",tipo:"CAJA_SIN_PEGA",largo:37,ancho:30,cabida:2,popular:false},
+    {codigo:"TB0073",medidas:"11,5 X 10 X 5,5",tipo:"CAJA_SIN_PEGA",largo:33,ancho:22.5,cabida:4,popular:false},
+    {codigo:"TB0074",medidas:"28 X 15 X 7",tipo:"CAJA_CON_PEGAS",largo:47,ancho:41,cabida:3,pegas:1,popular:false},
+    {codigo:"TB0075",medidas:"12,5 X 12,5 X 5,5",tipo:"CAJA_CON_PEGAS",largo:51,ancho:24.5,cabida:4,pegas:1,popular:false},
+    {codigo:"TB0076",medidas:"12,5 X 12,5 X 10",tipo:"CAJA_CON_PEGAS",largo:52,ancho:29,cabida:2,pegas:1,popular:false},
+    {codigo:"TB0077",medidas:"11 X 9 X 3,5",tipo:"CAJA_CON_PEGAS",largo:35,ancho:50,cabida:4,pegas:2,popular:false},
+    {codigo:"TB0078",medidas:"30 X 15 X 7",tipo:"CAJA_SIN_PEGA",largo:60,ancho:48,cabida:2,popular:false},
+    {codigo:"TB0079",medidas:"28,8 X 8,5 X 5",tipo:"CAJA_SIN_PEGA",largo:35,ancho:29,cabida:4,popular:false},
+    {codigo:"TB0080",medidas:"23 X 15 X 7,5",tipo:"CAJA_SIN_PEGA",largo:48,ancho:38,cabida:2,popular:false},
+    {codigo:"TB0081",medidas:"25 X 21,5 X 7",tipo:"CAJA_SIN_PEGA",largo:62,ancho:39,cabida:2,popular:false},
+    {codigo:"TB0082",medidas:"15 X 11 X 4",tipo:"CAJA_SIN_PEGA",largo:35,ancho:25,cabida:8,popular:false},
+    {codigo:"TB0083",medidas:"15 X 5,5 X 5",tipo:"CAJA_SIN_PEGA",largo:25,ancho:22,cabida:8,popular:false},
+    {codigo:"TB0084",medidas:"17 X 14 X 7,5",tipo:"CAJA_SIN_PEGA",largo:64,ancho:32,cabida:2,popular:false},
+    {codigo:"TB0085",medidas:"11,5 X 7 X 2,5",tipo:"CAJA_CON_PEGAS",largo:20.5,ancho:19.5,cabida:9,pegas:1,popular:false},
+    {codigo:"TB0086",medidas:"22 X 14 X 9",tipo:"CAJA_SIN_PEGA",largo:49,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0087",medidas:"24 X 24 X 8",tipo:"CAJA_SIN_PEGA",largo:68,ancho:40,cabida:2,popular:false},
+    {codigo:"TB0088",medidas:"32 X 14 X 8,5",tipo:"CAJA_SIN_PEGA",largo:49,ancho:49,cabida:2,popular:false},
+    {codigo:"TB0089",medidas:"19 X 19 X 7",tipo:"CAJA_SIN_PEGA",largo:34,ancho:33,cabida:2,popular:false},
+    {codigo:"TB0090",medidas:"30 X 22 X 8",tipo:"CAJA_SIN_PEGA",largo:67,ancho:46,cabida:2,popular:false},
+    {codigo:"TB0091",medidas:"17,5 X 17,5 X 11,5",tipo:"CAJA_SIN_PEGA",largo:60,ancho:40,cabida:2,popular:false},
+    {codigo:"TB0092",medidas:"23 X 15 X 9",tipo:"CAJA_SIN_PEGA",largo:49,ancho:41,cabida:2,popular:false},
+    {codigo:"TB0093",medidas:"10 X 5 X 3",tipo:"CAJA_CON_PEGAS",largo:16.8,ancho:16.9,cabida:8,pegas:1,popular:false},
+    {codigo:"TB0094",medidas:"19,5 X 12,5 X 7",tipo:"CAJA_SIN_PEGA",largo:33.7,ancho:26.5,cabida:4,popular:false},
+    {codigo:"TB0095",medidas:"12 X 12 X 2",tipo:"CAJA_CON_PEGAS",largo:20,ancho:10,cabida:15,pegas:1,popular:false},
+    {codigo:"TB0096",medidas:"13 X 13 X 7,5",tipo:"CAJA_SIN_PEGA",largo:44,ancho:28,cabida:4,popular:false},
+    {codigo:"TB0097",medidas:"5 X 5 X 2,7",tipo:"CAJA_CON_PEGAS",largo:16.6,ancho:12.5,cabida:16,pegas:1,popular:false},
+    {codigo:"TB0098",medidas:"25 X 25 X 12,5",tipo:"CAJA_CON_PEGAS",largo:112,ancho:45,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0099",medidas:"15 X 7,5 X 1",tipo:"CAJA_SIN_PEGA",largo:25,ancho:24.5,cabida:8,popular:false},
+    {codigo:"TB0100",medidas:"19 X 9 X 5,5",tipo:"CAJA_CON_PEGAS",largo:33,ancho:30,cabida:6,pegas:1,popular:false},
+    {codigo:"TB0101",medidas:"14,5 X 14,5",tipo:"CAJA_SIN_PEGA",largo:14.5,ancho:14.5,cabida:30,popular:false},
+    {codigo:"TB0102",medidas:"32 X 32 X 20",tipo:"CAJA_CON_PEGAS",largo:111,ancho:72,cabida:1,pegas:2,popular:false},
+    {codigo:"TB0103",medidas:"20 X 15 X 2,5",tipo:"CAJA_SIN_PEGA",largo:52,ancho:24,cabida:4,popular:false},
+    {codigo:"TB0104",medidas:"12 X 12 X 10",tipo:"CAJA_CON_PEGAS",largo:49.5,ancho:32.5,cabida:4,pegas:1,popular:false},
+    {codigo:"TB0105",medidas:"8 X 11",tipo:"CAJA_CON_PEGAS",largo:13.5,ancho:11,cabida:48,pegas:1,popular:false},
+    {codigo:"TB0106",medidas:"22 X 17 X 6",tipo:"CAJA_CON_PEGAS",largo:58,ancho:31,cabida:2,pegas:1,popular:false},
+    {codigo:"TB0107",medidas:"24 X 24 X 9",tipo:"CAJA_SIN_PEGA",largo:69,ancho:42,cabida:2,popular:false},
+    {codigo:"TB0108",medidas:"28 X 28 X 16",tipo:"CAJA_CON_PEGAS",largo:120,ancho:50,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0109",medidas:"19,5 X 12,5 X 5,5",tipo:"CAJA_SIN_PEGA",largo:38,ancho:28.5,cabida:4,popular:false},
+    {codigo:"TB0110",medidas:"20 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:44,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0111",medidas:"9 X 8 X 4",tipo:"CAJA_SIN_PEGA",largo:24.2,ancho:17.5,cabida:16,popular:false},
+    {codigo:"TB0112",medidas:"19,5 X 14 X 7,5",tipo:"CAJA_SIN_PEGA",largo:46,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0113",medidas:"22 X 22 X 12",tipo:"CAJA_SIN_PEGA",largo:70,ancho:46,cabida:2,popular:false},
+    {codigo:"TB0114",medidas:"20 X 20 X 10",tipo:"CAJA_SIN_PEGA",largo:63.5,ancho:40,cabida:2,popular:false},
+    {codigo:"TB0115",medidas:"17 X 17 X 10",tipo:"CAJA_SIN_PEGA",largo:57,ancho:37,cabida:2,popular:false},
+    {codigo:"TB0116",medidas:"22 X 22 X 10",tipo:"CAJA_SIN_PEGA",largo:67,ancho:42,cabida:2,popular:false},
+    {codigo:"TB0117",medidas:"24 X 16",tipo:"CAJA_SIN_PEGA",largo:24,ancho:16,cabida:16,popular:false},
+    {codigo:"TB0118",medidas:"18,5 X 18,5 X 9",tipo:"CAJA_SIN_PEGA",largo:59,ancho:36.5,cabida:2,popular:false},
+    {codigo:"TB0119",medidas:"13 X 13 X 8",tipo:"CAJA_SIN_PEGA",largo:44.5,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0120",medidas:"30 X 30 X 15",tipo:"CAJA_CON_PEGAS",largo:120,ancho:50,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0121",medidas:"17,5 X 9 X 2,8",tipo:"CAJA_SIN_PEGA",largo:25,ancho:30,cabida:8,popular:false},
+    {codigo:"TB0122",medidas:"20 X 15 X 6",tipo:"BOLSA",largo:43,ancho:27,cabida:4,popular:false},
+    {codigo:"TB0123",medidas:"17 X 8 X 8 X ( 13 )",tipo:"CAJA_CON_PEGAS",largo:52.5,ancho:27,cabida:3,pegas:4,popular:false},
+    {codigo:"TB0124",medidas:"32 X 32 X 16,5",tipo:"CAJA_CON_PEGAS",largo:115,ancho:65,cabida:1,pegas:2,popular:false},
+    {codigo:"TB0125",medidas:"15 X 9 X 2,3",tipo:"CAJA_SIN_PEGA",largo:25,ancho:25,cabida:8,popular:false},
+    {codigo:"TB0126",medidas:"32 X 32 X 20",tipo:"CAJA_CON_PEGAS",largo:110,ancho:72,cabida:1,pegas:2,popular:false},
+    {codigo:"TB0127",medidas:"16 X 16",tipo:"CAJA_SIN_PEGA",largo:16,ancho:16,cabida:48,popular:false},
+    {codigo:"TB0128",medidas:"22 X 16 X 6",tipo:"CAJA_SIN_PEGA",largo:48,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0129",medidas:"25 X 8 X 6",tipo:"CAJA_CON_PEGAS",largo:70,ancho:30,cabida:3,pegas:1,popular:false},
+    {codigo:"TB0130",medidas:"19 X 12 X 8",tipo:"CAJA_SIN_PEGA",largo:35,ancho:28.5,cabida:6,popular:false},
+    {codigo:"TB0131",medidas:"14 X 12 X 10",tipo:"CAJA_CON_PEGAS",largo:49.5,ancho:31,cabida:4,pegas:3,popular:false},
+    {codigo:"TB0132",medidas:"22 X 12 X 12",tipo:"CAJA_CON_PEGAS",largo:69.5,ancho:32,cabida:3,pegas:3,popular:false},
+    {codigo:"TB0133",medidas:"21,5 X 20 X 12",tipo:"CAJA_CON_PEGAS",largo:69.5,ancho:43,cabida:2,pegas:3,popular:false},
+    {codigo:"TB0134",medidas:"17 X 13 X 12",tipo:"CAJA_CON_PEGAS",largo:60,ancho:31,cabida:3,pegas:3,popular:false},
+    {codigo:"TB0135",medidas:"17,3 X 5,5 X 3,8",tipo:"CAJA_SIN_PEGA",largo:21.7,ancho:13,cabida:20,popular:false},
+    {codigo:"TB0136",medidas:"14,9 x 11,5 x 4,8",tipo:"CAJA_SIN_PEGA",largo:35,ancho:25,cabida:8,popular:false},
+    {codigo:"TB0137",medidas:"30 x 10 x 7",tipo:"CAJA_SIN_PEGA",largo:58.6,ancho:41,cabida:2,popular:false},
+    {codigo:"TB0138",medidas:"21 X 12,5 X 11",tipo:"CAJA_SIN_PEGA",largo:49,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0139",medidas:"13 X 13 X 10",tipo:"CAJA_SIN_PEGA",largo:33,ancho:25.7,cabida:6,popular:false},
+    {codigo:"TB0140",medidas:"12 X 12 X 4",tipo:"CAJA_SIN_PEGA",largo:49,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0141",medidas:"12 X 12 X 4",tipo:"BOLSA",largo:34,ancho:18,cabida:12,popular:false},
+    {codigo:"TB0142",medidas:"50 X 16,5",tipo:"CAJA_SIN_PEGA",largo:50,ancho:16.5,cabida:8,popular:false},
+    {codigo:"TB0143",medidas:"63 X 15",tipo:"CAJA_SIN_PEGA",largo:63,ancho:15,cabida:6,popular:false},
+    {codigo:"TB0144",medidas:"18 X 18 X 7",tipo:"CAJA_SIN_PEGA",largo:53.5,ancho:33,cabida:2,popular:false},
+    {codigo:"TB0145",medidas:"16 X 11 X 10",tipo:"CAJA_SIN_PEGA",largo:45,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0146",medidas:"24 X 24 X 6",tipo:"CAJA_SIN_PEGA",largo:67,ancho:49,cabida:2,popular:false},
+    {codigo:"TB0147",medidas:"17 X 14 X 7",tipo:"CAJA_SIN_PEGA",largo:44.5,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0148",medidas:"14 X 12 X 6",tipo:"CAJA_SIN_PEGA",largo:39,ancho:26,cabida:4,popular:false},
+    {codigo:"TB0149",medidas:"19,5 x 14,5",tipo:"CAJA_CON_PEGAS",largo:31,ancho:25,cabida:8,pegas:3,popular:false},
+    {codigo:"TB0150",medidas:"18 X 13",tipo:"CAJA_CON_PEGAS",largo:28,ancho:24,cabida:8,pegas:3,popular:false},
+    {codigo:"TB0151",medidas:"15,5 X 9,5 X 2,5",tipo:"CAJA_SIN_PEGA",largo:26.5,ancho:25.5,cabida:6,popular:false},
+    {codigo:"TB0152",medidas:"35 X 13",tipo:"CAJA_SIN_PEGA",largo:35,ancho:13,cabida:4,popular:false},
+    {codigo:"TB0153",medidas:"23 X 16 X 7",tipo:"CAJA_SIN_PEGA",largo:49,ancho:37,cabida:2,popular:false},
+    {codigo:"TB0154",medidas:"17,5 X 13 X 8",tipo:"CAJA_SIN_PEGA",largo:45,ancho:33.5,cabida:4,popular:false},
+    {codigo:"TB0155",medidas:"20 X 13 X 11 ,7",tipo:"CAJA_SIN_PEGA",largo:34.6,ancho:31,cabida:6,popular:false},
+    {codigo:"TB0156",medidas:"20 X 14 X 5",tipo:"CAJA_SIN_PEGA",largo:41,ancho:31,cabida:4,popular:false},
+    {codigo:"TB0157",medidas:"22 X 17 X 5",tipo:"CAJA_SIN_PEGA",largo:46.5,ancho:32,cabida:4,popular:false},
+    {codigo:"TB0158",medidas:"33 X 33 X 17",tipo:"BOLSA",largo:104,ancho:47,cabida:1,popular:false},
+    {codigo:"TB0159",medidas:"25 X 10 X 3,5",tipo:"CAJA_CON_PEGAS",largo:62,ancho:27,cabida:3,pegas:1,popular:false},
+    {codigo:"TB0160",medidas:"25 X 10 X 6",tipo:"CAJA_CON_PEGAS",largo:69,ancho:34,cabida:3,pegas:1,popular:false},
+    {codigo:"TB0161",medidas:"28 X 24 X 9",tipo:"CAJA_CON_PEGAS",largo:118,ancho:63,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0162",medidas:"8 X 8 X 4",tipo:"CAJA_SIN_PEGA",largo:28,ancho:24.5,cabida:8,popular:false},
+    {codigo:"TB0163",medidas:"30 X 30 X 10",tipo:"CAJA_CON_PEGAS",largo:100,ancho:43,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0164",medidas:"8 X 8",tipo:"STICKER",largo:8,ancho:8,cabida:94,popular:false},
+    {codigo:"TB0165",medidas:"5 X 5",tipo:"STICKER",largo:5,ancho:5,cabida:192,popular:false},
+    {codigo:"TB0166",medidas:"3 X 3",tipo:"STICKER",largo:3,ancho:3,cabida:560,popular:false},
+    {codigo:"TB0167",medidas:"22 X 22 X 14",tipo:"CAJA_CON_PEGAS",largo:100,ancho:39,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0168",medidas:"27 X 27 X 15",tipo:"CAJA_CON_PEGAS",largo:114,ancho:45,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0169",medidas:"14 X 14 X 8",tipo:"CAJA_SIN_PEGA",largo:48,ancho:30,cabida:4,popular:false},
+    {codigo:"TB0170",medidas:"20 X 10 X 5",tipo:"CAJA_CON_PEGAS",largo:34,ancho:31.5,cabida:6,pegas:1,popular:false},
+    {codigo:"TB0171",medidas:"35 X 26 X 8",tipo:"CAJA_SIN_PEGA",largo:152,ancho:70,cabida:1,popular:false},
+    {codigo:"TB0172",medidas:"23 X 18 X 6",tipo:"CAJA_SIN_PEGA",largo:85,ancho:64,cabida:1,popular:false},
+    {codigo:"TB0173",medidas:"22 X 22 X 10",tipo:"CAJA_SIN_PEGA",largo:67,ancho:42,cabida:2,popular:false},
+    {codigo:"TB0174",medidas:"30 X 25,5 X 8",tipo:"CAJA_SIN_PEGA",largo:111.5,ancho:45,cabida:1,popular:false},
+    {codigo:"TB0175",medidas:"35 X 35 X 12",tipo:"CAJA_CON_PEGAS",largo:118,ancho:51,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0176",medidas:"13 X 13 X 8",tipo:"CAJA_SIN_PEGA",largo:44,ancho:30,cabida:4,popular:false},
+    {codigo:"TB0177",medidas:"23 X 15 X 6",tipo:"CAJA_SIN_PEGA",largo:45,ancho:35,cabida:4,popular:false},
+    {codigo:"TB0178",medidas:"20 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:42,ancho:34,cabida:4,popular:false},
+    {codigo:"TB0179",medidas:"25 X 25 X 10",tipo:"CAJA_SIN_PEGA",largo:72,ancho:45,cabida:2,popular:false},
+    {codigo:"TB0180",medidas:"27 X 27 X 12",tipo:"CAJA_CON_PEGAS",largo:102,ancho:43,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0181",medidas:"24 X 24 X 8",tipo:"CAJA_CON_PEGAS",largo:100,ancho:66.7,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0182",medidas:"50 X 15 X 10",tipo:"CAJA_CON_PEGAS",largo:132,ancho:38,cabida:1,pegas:3,popular:false},
+    {codigo:"TB0183",medidas:"14,5  X 14,5 X 9,5",tipo:"CAJA_SIN_PEGA",largo:50,ancho:33.5,cabida:2,popular:false},
+    {codigo:"TB0184",medidas:"19 X 9,5 X 4",tipo:"CAJA_SIN_PEGA",largo:40.5,ancho:36.2,cabida:3,popular:false},
+    {codigo:"TB0185",medidas:"23 X 20 X 9",tipo:"CAJA_SIN_PEGA",largo:63,ancho:43,cabida:2,popular:false},
+    {codigo:"TB0186",medidas:"18 X 13 X 10",tipo:"CAJA_SIN_PEGA",largo:46,ancho:13,cabida:8,popular:false},
+    {codigo:"TB0187",medidas:"23 X 10 X 18",tipo:"CAJA_SIN_PEGA",largo:46,ancho:23,cabida:6,popular:false},
+    {codigo:"TB0188",medidas:"17 X 17 X 4",tipo:"CAJA_SIN_PEGA",largo:45,ancho:25,cabida:4,popular:false},
+    {codigo:"TB0189",medidas:"28 X 25 X 13",tipo:"BOLSA",largo:86,ancho:36.5,cabida:1,popular:false},
+    {codigo:"TB0190",medidas:"25 X 13 X 5",tipo:"CAJA_SIN_PEGA",largo:25,ancho:23,cabida:9,popular:false},
+    {codigo:"TB0191",medidas:"23 X 20 X 9",tipo:"CAJA_CON_PEGAS",largo:81,ancho:43,cabida:1,pegas:1,popular:false},
+    {codigo:"TB0192",medidas:"26 X 20",tipo:"CAJA_CON_PEGAS",largo:33,ancho:24,cabida:9,pegas:2,popular:false},
+    {codigo:"TB0193",medidas:"24 X 14",tipo:"CAJA_CON_PEGAS",largo:33,ancho:24,cabida:9,pegas:2,popular:false},
+    {codigo:"TB0194",medidas:"20 X 14 X 5",tipo:"CAJA_SIN_PEGA",largo:23,ancho:15,cabida:18,popular:false},
+    {codigo:"TB0195",medidas:"38 X 18 X 15",tipo:"BOLSA",largo:68,ancho:49.25,cabida:2,popular:false},
+    {codigo:"TB0196",medidas:"9,5 X 9,5 X 5",tipo:"CAJA_SIN_PEGA",largo:24,ancho:13,cabida:20,popular:false},
+    {codigo:"TB0197",medidas:"10 X 10 X 6",tipo:"CAJA_SIN_PEGA",largo:64.5,ancho:36,cabida:2,popular:false},
+    {codigo:"TB0198",medidas:"17 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:54,ancho:31,cabida:4,popular:false}
+];
 
         const WEBHOOK_URL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
 
-        // Variables globales
-        let troquelSeleccionado = null;
+        let productoSeleccionado = null;
 
-        // ============================================
-        // 🔍 BÚSQUEDA Y FILTRADO
-        // ============================================
-
-        // Búsqueda en tiempo real
-        document.getElementById('search_medidas').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.trim().toUpperCase();
+        // Manejo de cliente tipo
+        document.getElementById('cliente_tipo').addEventListener('change', function() {
+            const frecuente = document.getElementById('clienteFrecuenteField');
+            const nuevo = document.getElementById('clienteNuevoField');
             
-            if (searchTerm.length < 3) return; // Mínimo 3 caracteres
-
-            const coincidencias = CATALOGO_TROQUELES.filter(t => 
-                t.medidas.includes(searchTerm)
-            );
-
-            if (coincidencias.length > 0) {
-                // Llenar select con coincidencias
-                const select = document.getElementById('medidas_cascada');
-                select.innerHTML = '<option value="">Selecciona una coincidencia</option>';
-                
-                coincidencias.forEach(t => {
-                    const option = document.createElement('option');
-                    option.value = JSON.stringify(t);
-                    option.textContent = `${t.medidas} (${t.codigo}) - ${t.tipo}`;
-                    select.appendChild(option);
-                });
-
-                select.disabled = false;
-                document.getElementById('medidasCascadaField').style.display = 'block';
+            if (this.value === 'frecuente') {
+                frecuente.style.display = 'block';
+                nuevo.style.display = 'none';
+                document.getElementById('cliente_frecuente').required = true;
+                document.getElementById('cliente_nuevo').required = false;
+            } else if (this.value === 'nuevo') {
+                frecuente.style.display = 'none';
+                nuevo.style.display = 'block';
+                document.getElementById('cliente_frecuente').required = false;
+                document.getElementById('cliente_nuevo').required = true;
             }
         });
 
-        // Cambio de tipo de producto (CASCADA)
+        // Manejo de tipo de producto (CASCADA)
         document.getElementById('tipo_producto').addEventListener('change', function() {
             const tipo = this.value;
-            const select = document.getElementById('medidas_cascada');
+            const medidasField = document.getElementById('medidasField');
+            const medidasSelect = document.getElementById('medidas');
+            const pegadoCheckbox = document.getElementById('pegadoCheckbox');
+            const tipoPegasInfo = document.getElementById('tipoPegasInfo');
+            
+            // Mostrar/ocultar info de pegas automáticas
+            if (tipo === 'CAJA_CON_PEGAS') {
+                tipoPegasInfo.style.display = 'block';
+            } else {
+                tipoPegasInfo.style.display = 'none';
+            }
+
+            // Mostrar/ocultar checkbox de pegado (solo para cajas SIN pega)
+            if (tipo === 'CAJA_SIN_PEGA') {
+                pegadoCheckbox.style.display = 'flex';
+            } else {
+                pegadoCheckbox.style.display = 'none';
+                document.getElementById('pegado_caja').checked = false;
+            }
             
             if (!tipo) {
-                select.disabled = true;
-                select.innerHTML = '<option value="">2️⃣ Selecciona primero el tipo de producto</option>';
-                document.getElementById('medidasCascadaField').style.display = 'none';
+                medidasField.style.display = 'none';
                 return;
             }
 
-            // Filtrar troqueles por tipo
-            const troquelesFiltrados = CATALOGO_TROQUELES.filter(t => t.tipo === tipo);
+            // Filtrar productos por tipo
+            const productosFiltrados = CATALOGO_PRODUCTOS.filter(p => p.tipo === tipo);
             
-            // Organizar por popularidad y tamaño
-            const populares = troquelesFiltrados.filter(t => t.popular);
-            const normales = troquelesFiltrados.filter(t => !t.popular);
-
             // Llenar select
-            select.innerHTML = '<option value="">Selecciona medidas</option>';
-
+            medidasSelect.innerHTML = '<option value="">Selecciona medidas</option>';
+            
+            // Populares primero
+            const populares = productosFiltrados.filter(p => p.popular);
             if (populares.length > 0) {
-                const optgroupPopular = document.createElement('optgroup');
-                optgroupPopular.label = '⭐ Más Populares';
-                populares.forEach(t => {
-                    const option = document.createElement('option');
-                    option.value = JSON.stringify(t);
-                    option.textContent = `${t.medidas} (${t.codigo})`;
-                    optgroupPopular.appendChild(option);
+                const optgroupPop = document.createElement('optgroup');
+                optgroupPop.label = '⭐ Más Populares';
+                populares.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = JSON.stringify(p);
+                    const pegasText = p.pegas ? ` (${p.pegas} pegas)` : '';
+                    opt.textContent = `${p.medidas} (${p.codigo})${pegasText}`;
+                    optgroupPop.appendChild(opt);
                 });
-                select.appendChild(optgroupPopular);
+                medidasSelect.appendChild(optgroupPop);
             }
-
+            
+            // Resto
+            const normales = productosFiltrados.filter(p => !p.popular);
             if (normales.length > 0) {
-                const optgroupNormal = document.createElement('optgroup');
-                optgroupNormal.label = '📏 Todas las Medidas';
-                normales.forEach(t => {
-                    const option = document.createElement('option');
-                    option.value = JSON.stringify(t);
-                    option.textContent = `${t.medidas} (${t.codigo})`;
-                    optgroupNormal.appendChild(option);
+                const optgroupNorm = document.createElement('optgroup');
+                optgroupNorm.label = `📏 Todas las Medidas (${normales.length})`;
+                normales.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = JSON.stringify(p);
+                    const pegasText = p.pegas ? ` (${p.pegas} pegas)` : '';
+                    opt.textContent = `${p.medidas} (${p.codigo})${pegasText}`;
+                    optgroupNorm.appendChild(opt);
                 });
-                select.appendChild(optgroupNormal);
+                medidasSelect.appendChild(optgroupNorm);
             }
-
-            // Agregar opción personalizada
-            const optionCustom = document.createElement('option');
-            optionCustom.value = 'custom';
-            optionCustom.textContent = '✏️ Medida Personalizada (No está en catálogo)';
-            select.appendChild(optionCustom);
-
-            select.disabled = false;
-            document.getElementById('medidasCascadaField').style.display = 'block';
+            
+            // Personalizada
+            const optCustom = document.createElement('option');
+            optCustom.value = 'custom';
+            optCustom.textContent = '✏️ Medida Personalizada';
+            medidasSelect.appendChild(optCustom);
+            
+            medidasSelect.disabled = false;
+            medidasField.style.display = 'block';
         });
 
         // Selección de medidas
-        document.getElementById('medidas_cascada').addEventListener('change', function() {
-            if (this.value === 'custom') {
-                document.getElementById('medidasCustomField').style.display = 'block';
-                document.getElementById('troquelInfo').style.display = 'none';
-                document.getElementById('medidas_custom').setAttribute('required', 'required');
-                troquelSeleccionado = null;
-            } else if (this.value) {
-                troquelSeleccionado = JSON.parse(this.value);
-                document.getElementById('medidasCustomField').style.display = 'none';
-                document.getElementById('medidas_custom').removeAttribute('required');
-                
-                // Mostrar info del troquel
-                document.getElementById('info_codigo').textContent = troquelSeleccionado.codigo;
-                document.getElementById('info_tipo').textContent = troquelSeleccionado.tipo;
-                document.getElementById('info_cabida').textContent = troquelSeleccionado.cabida + ' unidades';
-                document.getElementById('troquelInfo').style.display = 'block';
-            }
-        });
-
-        // ============================================
-        // 📊 CONTROL DE PROGRESO
-        // ============================================
-
-        const sections = document.querySelectorAll('.section');
-        const totalSections = sections.length;
-
-        function updateProgress() {
-            let filledSections = 0;
-            sections.forEach(section => {
-                const inputs = section.querySelectorAll('input[required], select[required]');
-                let sectionComplete = true;
-                inputs.forEach(input => {
-                    if (!input.value) sectionComplete = false;
-                });
-                if (sectionComplete) filledSections++;
-            });
-
-            const progress = (filledSections / totalSections) * 100;
-            progressFill.style.width = progress + '%';
-            progressText.textContent = `Paso ${Math.min(filledSections + 1, totalSections)} de ${totalSections}: ${getSectionName(filledSections)}`;
-        }
-
-        function getSectionName(index) {
-            const names = [
-                'Información del vendedor',
-                'Especificaciones del producto',
-                'Cantidad y material',
-                'Impresión y acabados',
-                'Forma de pago'
-            ];
-            return names[index] || 'Completado';
-        }
-
-        form.addEventListener('input', updateProgress);
-        form.addEventListener('change', updateProgress);
-
-        // ============================================
-        // 🎛️ CAMPOS CONDICIONALES
-        // ============================================
-
-        // Cliente tipo
-        document.getElementById('cliente_tipo').addEventListener('change', function() {
-            const frecuenteField = document.getElementById('clienteFrecuenteField');
-            const nuevoField = document.getElementById('clienteNuevoField');
+        document.getElementById('medidas').addEventListener('change', function() {
+            const infoDiv = document.getElementById('productoInfo');
+            const customField = document.getElementById('medidasCustomField');
+            const infoPegasRow = document.getElementById('infoPegasRow');
             
-            if (this.value === 'frecuente') {
-                frecuenteField.style.display = 'block';
-                nuevoField.style.display = 'none';
-                document.getElementById('cliente_nuevo').removeAttribute('required');
-                document.getElementById('cliente_frecuente').setAttribute('required', 'required');
-            } else if (this.value === 'nuevo') {
-                frecuenteField.style.display = 'none';
-                nuevoField.style.display = 'block';
-                document.getElementById('cliente_frecuente').removeAttribute('required');
-                document.getElementById('cliente_nuevo').setAttribute('required', 'required');
-            } else {
-                frecuenteField.style.display = 'none';
-                nuevoField.style.display = 'none';
+            if (this.value === 'custom') {
+                customField.style.display = 'block';
+                document.getElementById('medidas_custom').required = true;
+                infoDiv.style.display = 'none';
+                productoSeleccionado = null;
+            } else if (this.value) {
+                productoSeleccionado = JSON.parse(this.value);
+                customField.style.display = 'none';
+                document.getElementById('medidas_custom').required = false;
+                
+                // Mostrar info
+                document.getElementById('info_codigo').textContent = productoSeleccionado.codigo;
+                document.getElementById('info_cabida').textContent = productoSeleccionado.cabida + ' unidades';
+                
+                // Mostrar pegas si las tiene
+                if (productoSeleccionado.pegas && productoSeleccionado.pegas > 0) {
+                    document.getElementById('info_pegas').textContent = productoSeleccionado.pegas + ' pegas';
+                    infoPegasRow.style.display = 'flex';
+                } else {
+                    infoPegasRow.style.display = 'none';
+                }
+                
+                infoDiv.style.display = 'block';
             }
         });
 
@@ -1045,59 +819,51 @@
             const customField = document.getElementById('cantidadCustomField');
             if (this.value === 'custom') {
                 customField.style.display = 'block';
-                document.getElementById('cantidad_custom').setAttribute('required', 'required');
+                document.getElementById('cantidad_custom').required = true;
             } else {
                 customField.style.display = 'none';
-                document.getElementById('cantidad_custom').removeAttribute('required');
+                document.getElementById('cantidad_custom').required = false;
             }
         });
 
-        // ============================================
-        // 📤 ENVÍO DEL FORMULARIO
-        // ============================================
-
-        form.addEventListener('submit', async (e) => {
+        // Envío del formulario
+        document.getElementById('cotizacionForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-
-            successMessage.style.display = 'none';
-            errorBanner.style.display = 'none';
-
-            // Determinar cliente
+            
+            const form = document.getElementById('cotizacionForm');
+            const loading = document.getElementById('loading');
+            const success = document.getElementById('successMessage');
+            const error = document.getElementById('errorBanner');
+            
+            success.style.display = 'none';
+            error.style.display = 'none';
+            
+            // Recopilar datos
             const clienteTipo = document.getElementById('cliente_tipo').value;
-            let cliente;
-            if (clienteTipo === 'frecuente') {
-                cliente = document.getElementById('cliente_frecuente').value;
-            } else {
-                cliente = document.getElementById('cliente_nuevo').value;
-            }
-
-            // Determinar medidas
+            const cliente = clienteTipo === 'frecuente' 
+                ? document.getElementById('cliente_frecuente').value 
+                : document.getElementById('cliente_nuevo').value;
+            
+            const cantidadPred = document.getElementById('cantidad_predefinida').value;
+            const cantidad = cantidadPred === 'custom' 
+                ? parseInt(document.getElementById('cantidad_custom').value) 
+                : parseInt(cantidadPred);
+            
             let medidas;
-            if (troquelSeleccionado) {
-                medidas = troquelSeleccionado.medidas;
+            if (productoSeleccionado) {
+                medidas = productoSeleccionado.medidas;
             } else {
                 medidas = document.getElementById('medidas_custom').value;
             }
-
-            // Determinar cantidad
-            const cantidadPredefinida = document.getElementById('cantidad_predefinida').value;
-            let cantidad;
-            if (cantidadPredefinida === 'custom') {
-                cantidad = parseInt(document.getElementById('cantidad_custom').value);
-            } else {
-                cantidad = parseInt(cantidadPredefinida);
-            }
-
-            // Obtener acabados
-            const acabadosCheckboxes = document.querySelectorAll('input[name="acabados"]:checked');
-            const acabados = Array.from(acabadosCheckboxes).map(cb => cb.value);
-
-            // Preparar datos
+            
+            const acabados = Array.from(document.querySelectorAll('input[name="acabados"]:checked'))
+                .map(cb => cb.value);
+            
             const formData = {
                 vendedor: document.getElementById('vendedor').value,
                 cliente: cliente,
-                medidas: medidas,
                 tipo_producto: document.getElementById('tipo_producto').value,
+                medidas: medidas,
                 cantidad: cantidad,
                 material: document.getElementById('material').value,
                 num_tintas: parseInt(document.getElementById('num_tintas').value),
@@ -1105,54 +871,35 @@
                 forma_pago: document.getElementById('forma_pago').value,
                 acabados: acabados,
                 observaciones: document.getElementById('observaciones').value || 'Ninguna',
-                troquel: troquelSeleccionado // Info completa del troquel
+                producto: productoSeleccionado
             };
-
-            console.log('Enviando datos:', formData);
-
+            
             form.style.display = 'none';
             loading.style.display = 'block';
-            submitBtn.disabled = true;
-
+            
             try {
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
-
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor: ' + response.status);
-                }
-
-                const result = await response.json();
-
-                successMessage.style.display = 'block';
+                
+                if (!response.ok) throw new Error('Error del servidor');
+                
+                success.style.display = 'block';
                 form.reset();
-                progressFill.style.width = '0%';
-                progressText.textContent = 'Paso 1 de 5: Información del vendedor';
-                troquelSeleccionado = null;
-                document.getElementById('troquelInfo').style.display = 'none';
-
+                productoSeleccionado = null;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                console.log('Cotización generada:', result);
-
-            } catch (error) {
-                console.error('Error completo:', error);
-                errorBanner.style.display = 'block';
-                errorBanner.textContent = '❌ Error: ' + error.message + '. Por favor verifica tu conexión e intenta nuevamente.';
+                
+            } catch (err) {
+                error.textContent = '❌ Error: ' + err.message;
+                error.style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } finally {
                 loading.style.display = 'none';
                 form.style.display = 'block';
-                submitBtn.disabled = false;
             }
         });
-
-        updateProgress();
     </script>
 </body>
 </html>
