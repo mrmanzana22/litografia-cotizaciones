@@ -15,9 +15,6 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
@@ -25,8 +22,9 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
+            margin: 0 auto;
             padding: 40px;
         }
 
@@ -46,8 +44,59 @@
             font-size: 14px;
         }
 
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #718096;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .section.complete {
+            border-color: #68d391;
+            background: #f0fff4;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .icon {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -62,10 +111,17 @@
             color: #e53e3e;
         }
 
-        input[type="text"],
-        input[type="number"],
-        select,
-        textarea {
+        .recommended {
+            background: #fef5e7;
+            color: #d68910;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        select, input[type="number"] {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e2e8f0;
@@ -73,24 +129,16 @@
             font-size: 15px;
             transition: all 0.3s ease;
             font-family: inherit;
+            background: white;
         }
 
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus,
-        textarea:focus {
+        select:focus, input[type="number"]:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        input:invalid:not(:placeholder-shown),
-        select:invalid:not(:placeholder-shown) {
-            border-color: #fc8181;
-        }
-
-        input:valid:not(:placeholder-shown),
-        select:valid:not(:placeholder-shown) {
+        select:valid, input[type="number"]:valid {
             border-color: #68d391;
         }
 
@@ -100,29 +148,84 @@
             margin-top: 4px;
         }
 
+        .info-badge {
+            display: inline-block;
+            background: #bee3f8;
+            color: #2c5282;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .warning-badge {
+            display: inline-block;
+            background: #fef5e7;
+            color: #d68910;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
         .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 12px;
         }
 
         .checkbox-item {
             display: flex;
             align-items: center;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: #667eea;
+            background: #f7fafc;
         }
 
         .checkbox-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
             cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            accent-color: #667eea;
         }
 
         .checkbox-item label {
             margin: 0;
-            font-weight: 400;
+            font-weight: 500;
             cursor: pointer;
             font-size: 14px;
+            flex: 1;
+        }
+
+        .checkbox-item .price {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 600;
         }
 
         .row {
@@ -131,21 +234,50 @@
             gap: 16px;
         }
 
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .summary-box h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-item:last-child {
+            border: none;
+            margin-top: 8px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
         .btn {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
         }
 
-        .btn:hover {
+        .btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
@@ -160,9 +292,7 @@
             transform: none;
         }
 
-        .success-message {
-            background: #c6f6d5;
-            color: #22543d;
+        .success-message, .error-message {
             padding: 16px;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -171,15 +301,14 @@
             font-weight: 600;
         }
 
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
         .error-message {
             background: #fed7d7;
             color: #742a2a;
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-            text-align: center;
-            font-weight: 600;
         }
 
         .loading {
@@ -203,25 +332,52 @@
             100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 600px) {
+        .hidden {
+            display: none !important;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            margin-left: 4px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #2d3748;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
             .container {
                 padding: 24px;
-            }
-
-            .header h1 {
-                font-size: 24px;
             }
 
             .row {
                 grid-template-columns: 1fr;
             }
-        }
 
-        .form-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #718096;
-            font-size: 12px;
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -229,8 +385,14 @@
     <div class="container">
         <div class="header">
             <h1>📦 Cotización Litografía</h1>
-            <p>Completa el formulario para generar tu cotización en segundos</p>
+            <p>Formulario rápido y preciso - Sin errores posibles</p>
         </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Progreso: 0%</div>
 
         <div class="success-message" id="successMessage">
             ✅ Cotización generada exitosamente
@@ -241,184 +403,538 @@
         </div>
 
         <form id="cotizacionForm">
-            <!-- Cliente -->
-            <div class="form-group">
-                <label for="cliente">Cliente <span class="required">*</span></label>
-                <input 
-                    type="text" 
-                    id="cliente" 
-                    name="cliente" 
-                    placeholder="Nombre del cliente"
-                    required
-                    minlength="3"
-                >
-                <div class="input-hint">Nombre completo o empresa</div>
-            </div>
-
-            <!-- Vendedor -->
-            <div class="form-group">
-                <label for="vendedor">Vendedor <span class="required">*</span></label>
-                <select id="vendedor" name="vendedor" required>
-                    <option value="">Selecciona un vendedor</option>
-                    <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
-                    <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
-                    <option value="JOSE MORENO">JOSE MORENO</option>
-                    <option value="JEISSON TOVAR">JEISSON TOVAR</option>
-                    <option value="DANIEL ACEVEDO">DANIEL ACEVEDO</option>
-                    <option value="CESAR BLANCO">CESAR BLANCO</option>
-                    <option value="ELKIN GARCIA">ELKIN GARCIA</option>
-                    <option value="RONALD WATEXIKE">RONALD WATEXIKE</option>
-                    <option value="LUIS ESPINOSA">LUIS ESPINOSA</option>
-                    <option value="ANAITYS HENAO">ANAITYS HENAO</option>
-                </select>
-            </div>
-
-            <!-- Medidas del producto -->
-            <div class="form-group">
-                <label for="medidas">Medidas del Producto <span class="required">*</span></label>
-                <input 
-                    type="text" 
-                    id="medidas" 
-                    name="medidas" 
-                    placeholder="Ej: 22 X 12 X 33"
-                    required
-                    pattern="^\d+\s*[Xx]\s*\d+\s*[Xx]\s*\d+$"
-                >
-                <div class="input-hint">Formato: Ancho X Fondo X Alto (ej: 22 X 12 X 33)</div>
-            </div>
-
-            <!-- Cantidad y Material -->
-            <div class="row">
-                <div class="form-group">
-                    <label for="cantidad">Cantidad <span class="required">*</span></label>
-                    <input 
-                        type="number" 
-                        id="cantidad" 
-                        name="cantidad" 
-                        placeholder="500"
-                        required
-                        min="100"
-                        step="1"
-                    >
-                    <div class="input-hint">Mínimo 100 unidades</div>
+            
+            <!-- SECCIÓN 1: INFORMACIÓN BÁSICA -->
+            <div class="section" data-section="basica">
+                <div class="section-title">
+                    <span class="icon">👤</span>
+                    Información Básica
                 </div>
 
                 <div class="form-group">
-                    <label for="material">Material <span class="required">*</span></label>
+                    <label for="vendedor">Vendedor <span class="required">*</span></label>
+                    <select id="vendedor" name="vendedor" required>
+                        <option value="">Selecciona tu nombre</option>
+                        <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
+                        <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
+                        <option value="JOSE MORENO">JOSE MORENO</option>
+                        <option value="JEISSON TOVAR">JEISSON TOVAR</option>
+                        <option value="DANIEL ACEVEDO">DANIEL ACEVEDO</option>
+                        <option value="CESAR BLANCO">CESAR BLANCO</option>
+                        <option value="ELKIN GARCIA">ELKIN GARCIA</option>
+                        <option value="RONALD WATEXIKE">RONALD WATEXIKE</option>
+                        <option value="LUIS ESPINOSA">LUIS ESPINOSA</option>
+                        <option value="ANAITYS HENAO">ANAITYS HENAO</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cliente">Cliente <span class="required">*</span></label>
+                    <select id="cliente" name="cliente" required>
+                        <option value="">Selecciona el cliente</option>
+                        <optgroup label="⭐ Clientes Frecuentes">
+                            <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - Champions Pizza (Desc. 5%)</option>
+                            <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN - Ken Chicken</option>
+                            <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO - Laboratorio (Desc. 10%)</option>
+                            <option value="WALLACE BITES SAS">WALLACE BITES SAS (Desc. 5%)</option>
+                            <option value="GRUPO FADEL">GRUPO FADEL (Desc. 15% + Crédito)</option>
+                            <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
+                            <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
+                            <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
+                        </optgroup>
+                        <optgroup label="➕ Nuevo Cliente">
+                            <option value="NUEVO">Cliente Nuevo (escribir nombre)</option>
+                        </optgroup>
+                    </select>
+                    <div class="input-hint">Clientes frecuentes tienen descuentos automáticos</div>
+                </div>
+
+                <div class="form-group hidden" id="nuevoClienteGroup">
+                    <label for="nuevoCliente">Nombre del Cliente Nuevo <span class="required">*</span></label>
+                    <select id="nuevoCliente" name="nuevoCliente">
+                        <option value="">Escribe el nombre (campo libre próximamente)</option>
+                        <option value="OTRO">Otro cliente...</option>
+                    </select>
+                    <div class="input-hint">Se guardará como cliente nuevo en el sistema</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: PRODUCTO -->
+            <div class="section" data-section="producto">
+                <div class="section-title">
+                    <span class="icon">📦</span>
+                    Especificaciones del Producto
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoProducto">
+                        Tipo de Producto <span class="required">*</span>
+                    </label>
+                    <select id="tipoProducto" name="tipoProducto" required>
+                        <option value="">Selecciona el tipo</option>
+                        <option value="BOLSA">🛍️ BOLSA (con cinta)</option>
+                        <option value="CAJA">📦 CAJA (sin pegado)</option>
+                        <option value="CAJA_PEGADA">📦 CAJA (con pegado)</option>
+                        <option value="PORTAPERRO">🌭 PORTA HOT DOG</option>
+                        <option value="PORTAHAMB">🍔 PORTA HAMBURGUESA</option>
+                        <option value="OTRO">🔧 Otro producto especial</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="medidas">
+                        Medidas del Producto <span class="required">*</span>
+                        <span class="recommended">MÁS VENDIDAS</span>
+                    </label>
+                    <select id="medidas" name="medidas" required>
+                        <option value="">Selecciona las medidas</option>
+                        <optgroup label="🔥 Medidas Más Vendidas - BOLSAS">
+                            <option value="22 X 12 X 33">22 X 12 X 33 cm - Bolsa Mediana (TB0001)</option>
+                            <option value="40 X 15 X 30">40 X 15 X 30 cm - Bolsa Grande (TB0002)</option>
+                            <option value="15 X 10 X 40">15 X 10 X 40 cm - Bolsa Alta (TB0003)</option>
+                            <option value="20 X 12 X 25">20 X 12 X 25 cm - Bolsa Estándar (TB0004)</option>
+                            <option value="22 X 11 X 16">22 X 11 X 16 cm - Bolsa Pequeña (TB0005)</option>
+                            <option value="16 X 8 X 24">16 X 8 X 24 cm - Bolsa Mini (TB0006)</option>
+                        </optgroup>
+                        <optgroup label="📦 Medidas Más Vendidas - CAJAS">
+                            <option value="20 X 13 X 7">20 X 13 X 7 cm - Caja Pizza Personal (TB0008)</option>
+                            <option value="13 X 13 X 8">13 X 13 X 8 cm - Caja Cuadrada (TB0007)</option>
+                            <option value="18 X 18 X 8">18 X 18 X 8 cm - Caja Mediana (TB0009)</option>
+                            <option value="21 X 21 X 6">21 X 21 X 6 cm - Caja Pizza Pequeña (TB0010)</option>
+                            <option value="19 X 12 X 5">19 X 12 X 5 cm - Caja Rectangular (TB0040)</option>
+                        </optgroup>
+                        <optgroup label="🌭 Medidas - PORTA COMIDA">
+                            <option value="15 X 10 X 8">15 X 10 X 8 cm - Porta Hot Dog (TB0135)</option>
+                            <option value="12 X 14 X 5">12 X 14 X 5 cm - Porta Hamburguesa (TB0196)</option>
+                            <option value="14 X 14 X 7">14 X 14 X 7 cm - Porta Comida Grande (TB0198)</option>
+                        </optgroup>
+                        <optgroup label="🔧 Otras Medidas">
+                            <option value="14 X 22 X 9">14 X 22 X 9 cm (TB0018)</option>
+                            <option value="9 X 22 X 14">9 X 22 X 14 cm (TB0086)</option>
+                            <option value="10 X 6 X 25">10 X 6 X 25 cm (TB0160)</option>
+                            <option value="PERSONALIZADA">📐 Medida Personalizada (consultar)</option>
+                        </optgroup>
+                    </select>
+                    <div class="input-hint">Medidas más solicitadas por tipo de producto</div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="cantidad">
+                            Cantidad <span class="required">*</span>
+                        </label>
+                        <select id="cantidad" name="cantidad" required>
+                            <option value="">Selecciona cantidad</option>
+                            <option value="100">100 unidades (Mínimo)</option>
+                            <option value="250">250 unidades</option>
+                            <option value="500">500 unidades ⭐ (Óptimo)</option>
+                            <option value="1000">1,000 unidades</option>
+                            <option value="2500">2,500 unidades</option>
+                            <option value="5000">5,000 unidades (Desc. 5%)</option>
+                            <option value="10000">10,000 unidades (Desc. 10%)</option>
+                            <option value="OTRA">Otra cantidad</option>
+                        </select>
+                        <div class="input-hint">500 unidades = precio óptimo</div>
+                    </div>
+
+                    <div class="form-group hidden" id="cantidadOtraGroup">
+                        <label for="cantidadOtra">Cantidad Específica</label>
+                        <input type="number" id="cantidadOtra" name="cantidadOtra" min="100" step="1" placeholder="Ej: 1500">
+                        <div class="input-hint">Mínimo: 100 unidades</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: MATERIAL E IMPRESIÓN -->
+            <div class="section" data-section="material">
+                <div class="section-title">
+                    <span class="icon">🎨</span>
+                    Material e Impresión
+                </div>
+
+                <div class="form-group">
+                    <label for="material">
+                        Material <span class="required">*</span>
+                        <span class="tooltip">ℹ️
+                            <span class="tooltiptext">El calibre determina el grosor del material</span>
+                        </span>
+                    </label>
                     <select id="material" name="material" required>
-                        <option value="">Selecciona</option>
-                        <option value="CART_BLANCO_16">Cart. Blanco Cal 16</option>
-                        <option value="CART_BLANCO_22">Cart. Blanco Cal 22</option>
-                        <option value="CART_KRAFT_16">Cart. Kraft Cal 16</option>
-                        <option value="ZENITH_16">ZENITH Cal.16</option>
-                        <option value="ZENITH_20_320">ZENITH Cal.20 320gr</option>
-                        <option value="KRAFT_NAT_90">Papel Kraft Natural</option>
-                        <option value="KRAFT_BLANCO">Papel Kraft Blanco</option>
-                        <option value="PARAFINADO">Papel Parafinado</option>
+                        <option value="">Selecciona el material</option>
+                        <optgroup label="🌟 Cartones Más Usados">
+                            <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr) - Resistente ⭐</option>
+                            <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr) - Estándar</option>
+                            <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr) - Extra Fuerte</option>
+                        </optgroup>
+                        <optgroup label="⭐ Cartones Premium">
+                            <option value="ZENITH_16">ZENITH Cal.16 (270gr) - Alta Calidad</option>
+                            <option value="ZENITH_20_320">ZENITH Cal.20 (320gr) - Premium</option>
+                            <option value="ZENITH_20_350">ZENITH Cal.20 (350gr) - Premium Plus</option>
+                        </optgroup>
+                        <optgroup label="🌿 Ecológicos">
+                            <option value="EARTH_PACK">EARTH PACK Natural (315gr) - Ecológico</option>
+                            <option value="PROPALCOTE_340">PROPALCOTE C2S (340gr) - Brillo Natural</option>
+                        </optgroup>
+                        <optgroup label="📄 Papeles (Bobinas)">
+                            <option value="KRAFT_NAT_90">Papel Kraft Natural (90gr)</option>
+                            <option value="KRAFT_BLANCO">Papel Kraft Blanco (90gr)</option>
+                            <option value="PARAFINADO">Papel Parafinado (40gr) - Alimentos</option>
+                        </optgroup>
+                    </select>
+                    <div id="materialInfo" class="info-badge hidden"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tintas">
+                        Número de Tintas (Colores) <span class="required">*</span>
+                    </label>
+                    <select id="tintas" name="tintas" required>
+                        <option value="">Selecciona tintas</option>
+                        <option value="1">1 Tinta (Monocromo) - Negro o 1 color</option>
+                        <option value="2">2 Tintas - Bicolor</option>
+                        <option value="3">3 Tintas - Tricolor</option>
+                        <option value="4">4 Tintas ⭐ (Full Color CMYK) - Recomendado</option>
+                    </select>
+                    <div class="input-hint">4 tintas = impresión a todo color (recomendado)</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: ACABADOS -->
+            <div class="section" data-section="acabados">
+                <div class="section-title">
+                    <span class="icon">✨</span>
+                    Acabados Especiales (Opcional)
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="plastificado" name="acabados" value="PLAST_BRILL_EXT">
+                        <label for="plastificado">
+                            Plastificado Brillante
+                            <div class="price">+$95/pliego</div>
+                        </label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="plastmate" name="acabados" value="PLAST_MATE_EXT">
+                        <label for="plastmate">
+                            Plastificado Mate
+                            <div class="price">+$95/pliego</div>
+                        </label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="estampado" name="acabados" value="ESTAMPADO_FOIL">
+                        <label for="estampado">
+                            Estampado Foil
+                            <div class="price">+$250/pliego</div>
+                        </label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="uv" name="acabados" value="UV_SELECTIVO">
+                        <label for="uv">
+                            UV Selectivo
+                            <div class="price">+$180/pliego</div>
+                        </label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
+                        <label for="ventanilla">
+                            Ventanilla
+                            <div class="price">+$150/pliego</div>
+                        </label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pegado" name="acabados" value="PEGADO_CAJA">
+                        <label for="pegado">
+                            Pegado de Caja
+                            <div class="price">+$30/millar</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-hint">Deja sin marcar si no necesitas acabados especiales</div>
+            </div>
+
+            <!-- SECCIÓN 5: ENTREGA Y PAGO -->
+            <div class="section" data-section="entrega">
+                <div class="section-title">
+                    <span class="icon">🚚</span>
+                    Entrega y Forma de Pago
+                </div>
+
+                <div class="form-group">
+                    <label for="tiempoEntrega">
+                        Tiempo de Entrega <span class="required">*</span>
+                    </label>
+                    <select id="tiempoEntrega" name="tiempoEntrega" required>
+                        <option value="">Selecciona tiempo</option>
+                        <option value="NORMAL">Normal - 15 días hábiles (Sin recargo) ⭐</option>
+                        <option value="URGENTE">Urgente - 7 días hábiles (+50% recargo)</option>
+                        <option value="EXPRESS">Express - 3 días hábiles (+100% recargo)</option>
+                    </select>
+                    <div class="warning-badge hidden" id="urgenciaWarning"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="formaPago">
+                        Forma de Pago <span class="required">*</span>
+                    </label>
+                    <select id="formaPago" name="formaPago" required>
+                        <option value="">Selecciona forma de pago</option>
+                        <option value="CONTADO">Contado 💰 (Descuento adicional 2%)</option>
+                        <option value="CREDITO_15">Crédito 15 días (Anticipo 50%)</option>
+                        <option value="CREDITO_30">Crédito 30 días (Anticipo 50% - Requiere aprobación)</option>
+                        <option value="CHEQUE">Cheque (100% anticipado)</option>
+                    </select>
+                    <div class="success-badge hidden" id="pagoInfo"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observaciones">Observaciones o Notas Especiales</label>
+                    <select id="observaciones" name="observaciones">
+                        <option value="">Sin observaciones especiales</option>
+                        <option value="LOGO_CLIENTE">Incluir logo del cliente</option>
+                        <option value="DISEÑO_PERSONALIZADO">Diseño personalizado</option>
+                        <option value="MUESTRAS">Requiere muestras previas</option>
+                        <option value="URGENTE_PRODUCCION">Prioridad en producción</option>
+                        <option value="ENTREGA_ESPECIAL">Entrega en horario especial</option>
+                        <option value="OTRO">Otra observación (especificar luego)</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Número de tintas -->
-            <div class="form-group">
-                <label for="tintas">Número de Tintas <span class="required">*</span></label>
-                <select id="tintas" name="tintas" required>
-                    <option value="">Selecciona</option>
-                    <option value="1">1 Tinta (Monocromo)</option>
-                    <option value="2">2 Tintas</option>
-                    <option value="3">3 Tintas</option>
-                    <option value="4">4 Tintas (Full Color)</option>
-                </select>
-            </div>
-
-            <!-- Acabados -->
-            <div class="form-group">
-                <label>Acabados Adicionales</label>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="plastificado" name="acabados" value="PLAST_BRILL_EXT">
-                        <label for="plastificado">Plastificado</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="estampado" name="acabados" value="ESTAMPADO_FOIL">
-                        <label for="estampado">Estampado Foil</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="uv" name="acabados" value="UV_SELECTIVO">
-                        <label for="uv">UV Selectivo</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
-                        <label for="ventanilla">Ventanilla</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="pegado" name="acabados" value="PEGADO_CAJA">
-                        <label for="pegado">Pegado</label>
-                    </div>
+            <!-- RESUMEN DE COTIZACIÓN -->
+            <div class="summary-box" id="summaryBox" style="display: none;">
+                <h3>📊 Resumen de Cotización</h3>
+                <div class="summary-item">
+                    <span>Cliente:</span>
+                    <span id="sumCliente">-</span>
                 </div>
-            </div>
-
-            <!-- Observaciones -->
-            <div class="form-group">
-                <label for="observaciones">Observaciones</label>
-                <textarea 
-                    id="observaciones" 
-                    name="observaciones" 
-                    rows="3"
-                    placeholder="Notas adicionales sobre el pedido (opcional)"
-                ></textarea>
+                <div class="summary-item">
+                    <span>Producto:</span>
+                    <span id="sumProducto">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Cantidad:</span>
+                    <span id="sumCantidad">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Material:</span>
+                    <span id="sumMaterial">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>Entrega:</span>
+                    <span id="sumEntrega">-</span>
+                </div>
+                <div class="summary-item">
+                    <span>💰 PRECIO ESTIMADO:</span>
+                    <span id="sumPrecio">Calculando...</span>
+                </div>
             </div>
 
             <!-- Botón de envío -->
             <button type="submit" class="btn" id="submitBtn">
-                🚀 Generar Cotización
+                🚀 GENERAR COTIZACIÓN OFICIAL
             </button>
 
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p style="margin-top: 10px; color: #718096;">Procesando cotización...</p>
+                <p style="margin-top: 10px; color: #718096;">Generando cotización...</p>
             </div>
         </form>
-
-        <div class="form-footer">
-            ⏱️ Tiempo estimado: ~30 segundos
-        </div>
     </div>
 
     <script>
+        // Referencias
         const form = document.getElementById('cotizacionForm');
         const submitBtn = document.getElementById('submitBtn');
         const loading = document.getElementById('loading');
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const summaryBox = document.getElementById('summaryBox');
 
+        // Campos
+        const clienteSelect = document.getElementById('cliente');
+        const nuevoClienteGroup = document.getElementById('nuevoClienteGroup');
+        const cantidadSelect = document.getElementById('cantidad');
+        const cantidadOtraGroup = document.getElementById('cantidadOtraGroup');
+        const tiempoEntregaSelect = document.getElementById('tiempoEntrega');
+        const urgenciaWarning = document.getElementById('urgenciaWarning');
+        const formaPagoSelect = document.getElementById('formaPago');
+        const pagoInfo = document.getElementById('pagoInfo');
+        const materialSelect = document.getElementById('material');
+        const materialInfo = document.getElementById('materialInfo');
+
+        // Tracking de progreso
+        const requiredFields = ['vendedor', 'cliente', 'tipoProducto', 'medidas', 'cantidad', 'material', 'tintas', 'tiempoEntrega', 'formaPago'];
+        
+        function updateProgress() {
+            let completed = 0;
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field && field.value) completed++;
+            });
+            
+            const percentage = Math.round((completed / requiredFields.length) * 100);
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = `Progreso: ${percentage}%`;
+            
+            // Marcar secciones completas
+            document.querySelectorAll('.section').forEach(section => {
+                const inputs = section.querySelectorAll('select[required], input[required]');
+                const allFilled = Array.from(inputs).every(input => input.value);
+                if (allFilled) {
+                    section.classList.add('complete');
+                } else {
+                    section.classList.remove('complete');
+                }
+            });
+            
+            // Mostrar resumen si está 100%
+            if (percentage === 100) {
+                updateSummary();
+                summaryBox.style.display = 'block';
+            } else {
+                summaryBox.style.display = 'none';
+            }
+        }
+
+        // Actualizar resumen
+        function updateSummary() {
+            const cliente = document.getElementById('cliente').selectedOptions[0]?.text || '-';
+            const producto = document.getElementById('tipoProducto').selectedOptions[0]?.text || '-';
+            const medidas = document.getElementById('medidas').selectedOptions[0]?.text || '-';
+            const cantidad = document.getElementById('cantidad').value === 'OTRA' 
+                ? document.getElementById('cantidadOtra').value 
+                : document.getElementById('cantidad').value;
+            const material = document.getElementById('material').selectedOptions[0]?.text || '-';
+            const entrega = document.getElementById('tiempoEntrega').selectedOptions[0]?.text || '-';
+
+            document.getElementById('sumCliente').textContent = cliente;
+            document.getElementById('sumProducto').textContent = `${producto} - ${medidas}`;
+            document.getElementById('sumCantidad').textContent = cantidad + ' unidades';
+            document.getElementById('sumMaterial').textContent = material;
+            document.getElementById('sumEntrega').textContent = entrega;
+            document.getElementById('sumPrecio').textContent = 'Cotización en proceso...';
+        }
+
+        // Cliente nuevo
+        clienteSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'NUEVO') {
+                nuevoClienteGroup.classList.remove('hidden');
+            } else {
+                nuevoClienteGroup.classList.add('hidden');
+            }
+            updateProgress();
+        });
+
+        // Cantidad otra
+        cantidadSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'OTRA') {
+                cantidadOtraGroup.classList.remove('hidden');
+                document.getElementById('cantidadOtra').required = true;
+            } else {
+                cantidadOtraGroup.classList.add('hidden');
+                document.getElementById('cantidadOtra').required = false;
+            }
+            updateProgress();
+        });
+
+        // Warning de urgencia
+        tiempoEntregaSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'URGENTE') {
+                urgenciaWarning.textContent = '⚠️ Recargo del 50% aplicado';
+                urgenciaWarning.classList.remove('hidden');
+            } else if (e.target.value === 'EXPRESS') {
+                urgenciaWarning.textContent = '⚠️ Recargo del 100% aplicado';
+                urgenciaWarning.classList.remove('hidden');
+            } else {
+                urgenciaWarning.classList.add('hidden');
+            }
+            updateProgress();
+        });
+
+        // Info de pago
+        formaPagoSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'CONTADO') {
+                pagoInfo.textContent = '✅ Descuento adicional del 2% aplicado';
+                pagoInfo.classList.remove('hidden');
+            } else if (e.target.value === 'CREDITO_30') {
+                pagoInfo.textContent = '⚠️ Requiere aprobación de crédito';
+                pagoInfo.classList.remove('hidden');
+                pagoInfo.style.background = '#fef5e7';
+                pagoInfo.style.color = '#d68910';
+            } else {
+                pagoInfo.classList.add('hidden');
+            }
+            updateProgress();
+        });
+
+        // Info de material
+        materialSelect.addEventListener('change', (e) => {
+            const option = e.target.selectedOptions[0];
+            if (option && option.text.includes('Premium')) {
+                materialInfo.textContent = '⭐ Material Premium - Mayor calidad';
+                materialInfo.classList.remove('hidden');
+            } else if (option && option.text.includes('Ecológico')) {
+                materialInfo.textContent = '🌿 Material Ecológico';
+                materialInfo.classList.remove('hidden');
+            } else {
+                materialInfo.classList.add('hidden');
+            }
+            updateProgress();
+        });
+
+        // Listeners de progreso en todos los campos requeridos
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('change', updateProgress);
+            }
+        });
+
+        // Submit
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Mostrar loading
             submitBtn.disabled = true;
             loading.style.display = 'block';
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
 
-            // Recopilar datos del formulario
             const formData = new FormData(form);
+            
+            // Determinar cliente
+            let nombreCliente = formData.get('cliente');
+            if (nombreCliente === 'NUEVO') {
+                nombreCliente = formData.get('nuevoCliente') || 'Cliente Nuevo';
+            }
+            
+            // Determinar cantidad
+            let cantidad = formData.get('cantidad');
+            if (cantidad === 'OTRA') {
+                cantidad = formData.get('cantidadOtra');
+            }
+            
             const data = {
-                cliente: formData.get('cliente'),
                 vendedor: formData.get('vendedor'),
+                cliente: nombreCliente,
+                cliente_tipo: formData.get('cliente') === 'NUEVO' ? 'nuevo' : 'frecuente',
+                tipo_producto: formData.get('tipoProducto'),
                 medidas: formData.get('medidas'),
-                cantidad: parseInt(formData.get('cantidad')),
+                cantidad: parseInt(cantidad),
                 material: formData.get('material'),
                 num_tintas: parseInt(formData.get('tintas')),
                 acabados: formData.getAll('acabados'),
+                tiempo_entrega: formData.get('tiempoEntrega'),
+                forma_pago: formData.get('formaPago'),
                 observaciones: formData.get('observaciones') || '',
                 fecha_solicitud: new Date().toISOString()
             };
 
-            console.log('Datos a enviar:', data);
+            console.log('📤 Datos a enviar:', data);
 
             try {
-                // WEBHOOK DE N8N - Reemplazar con la URL real
                 const webhookURL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
                 
                 const response = await fetch(webhookURL, {
@@ -435,48 +951,35 @@
 
                 const result = await response.json();
 
-                // Mostrar éxito
                 loading.style.display = 'none';
                 successMessage.style.display = 'block';
                 submitBtn.disabled = false;
 
-                // Si hay un PDF en la respuesta, descargarlo
                 if (result.pdf_url) {
                     window.open(result.pdf_url, '_blank');
                 }
 
-                // Resetear formulario después de 3 segundos
                 setTimeout(() => {
                     form.reset();
                     successMessage.style.display = 'none';
+                    summaryBox.style.display = 'none';
+                    updateProgress();
                 }, 3000);
 
             } catch (error) {
-                // Mostrar error
-                console.error('Error:', error);
+                console.error('❌ Error:', error);
                 loading.style.display = 'none';
                 errorMessage.style.display = 'block';
                 submitBtn.disabled = false;
 
-                // Ocultar error después de 5 segundos
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
                 }, 5000);
             }
         });
 
-        // Validación en tiempo real para medidas
-        const medidasInput = document.getElementById('medidas');
-        medidasInput.addEventListener('input', (e) => {
-            const value = e.target.value;
-            const pattern = /^\d+\s*[Xx]\s*\d+\s*[Xx]\s*\d+$/;
-            
-            if (value && !pattern.test(value)) {
-                e.target.style.borderColor = '#fc8181';
-            } else if (value) {
-                e.target.style.borderColor = '#68d391';
-            }
-        });
+        // Inicializar
+        updateProgress();
     </script>
 </body>
 </html>
