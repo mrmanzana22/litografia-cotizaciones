@@ -12,14 +12,117 @@
             min-height: 100vh;
             padding: 20px;
         }
+        
+        /* LAYOUT DE 2 COLUMNAS */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 500px;
+            gap: 30px;
+        }
+        
         .container {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 850px;
-            margin: 0 auto;
             padding: 40px;
         }
+        
+        /* VISTA PREVIA */
+        .preview-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            color: white;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .preview-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-row {
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .preview-row:last-of-type {
+            border-bottom: none;
+        }
+        
+        .preview-label {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .preview-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .price-section {
+            margin-top: 25px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .price-label {
+            font-size: 16px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .price-value {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .breakdown {
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+        }
+        
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .preview-container {
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        /* RESTO DEL CSS ORIGINAL */
         .header {
             text-align: center;
             margin-bottom: 30px;
@@ -215,276 +318,332 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📦 Sistema de Cotizaciones</h1>
-            <p>FULLEMPAQUES S.A.S - Litografía Profesional</p>
+    <div class="main-container">
+        <!-- FORMULARIO PRINCIPAL -->
+        <div class="container">
+            <div class="header">
+                <h1>📦 Sistema de Cotizaciones</h1>
+                <p>FULLEMPAQUES S.A.S - Litografía Profesional</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✅ ¡Cotización generada exitosamente!<br>
+                El PDF ha sido enviado por Telegram.
+            </div>
+
+            <div class="error-banner" id="errorBanner"></div>
+
+            <form id="cotizacionForm">
+                <!-- SECCIÓN 1: VENDEDOR Y CLIENTE -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-icon">👤</span>
+                        Vendedor y Cliente
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vendedor">Vendedor <span class="required">*</span></label>
+                        <select id="vendedor" required>
+                            <option value="">Selecciona vendedor</option>
+                            <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
+                            <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
+                            <option value="JOSE MORENO">JOSE MORENO</option>
+                            <option value="JEISSON TOVAR">JEISSON TOVAR</option>
+                            <option value="DANIEL ACEVEDO">DANIEL ACEVEDO</option>
+                            <option value="CESAR BLANCO">CESAR BLANCO</option>
+                            <option value="ELKIN GARCIA">ELKIN GARCIA</option>
+                            <option value="RONALD WATEXIKE">RONALD WATEXIKE</option>
+                            <option value="LUIS ESPINOSA">LUIS ESPINOSA</option>
+                            <option value="ANAITYS HENAO">ANAITYS HENAO</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cliente_tipo">Cliente <span class="required">*</span></label>
+                        <select id="cliente_tipo" required>
+                            <option value="">¿Frecuente o nuevo?</option>
+                            <option value="frecuente">Cliente Frecuente</option>
+                            <option value="nuevo">Cliente Nuevo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group custom-field" id="clienteFrecuenteField">
+                        <select id="cliente_frecuente">
+                            <option value="">Selecciona cliente</option>
+                            <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - CHAMPIONS PIZZA (Desc. 5%)</option>
+                            <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN KEN CHICKEN</option>
+                            <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO LABORATORIO (Desc. 10%)</option>
+                            <option value="WALLACE BITES SAS">WALLACE BITES SAS (Desc. 5%)</option>
+                            <option value="GRUPO FADEL">GRUPO FADEL (Desc. 15%)</option>
+                            <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
+                            <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
+                            <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group custom-field" id="clienteNuevoField">
+                        <input type="text" id="cliente_nuevo" placeholder="Nombre del cliente nuevo">
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: PRODUCTO -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-icon">📦</span>
+                        Tipo de Producto
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_producto">Tipo <span class="required">*</span></label>
+                        <select id="tipo_producto" required>
+                            <option value="">Selecciona tipo de producto</option>
+                            <option value="BOLSA">🛍️ BOLSA (con cinta) - 13 opciones</option>
+                            <option value="CAJA_SIN_PEGA">📦 CAJA (sin pegado) - 133 opciones</option>
+                            <option value="CAJA_CON_PEGAS">🔢 CAJA CON PEGAS - 49 opciones</option>
+                            <option value="STICKER">🏷️ STICKER / ETIQUETA - 3 opciones</option>
+                        </select>
+                        <div class="info-box" style="margin-top: 10px; display: none;" id="tipoPegasInfo">
+                            ℹ️ El sistema detecta automáticamente cuántas pegas tiene cada caja
+                        </div>
+                    </div>
+
+                    <div class="form-group custom-field" id="medidasField">
+                        <label for="medidas">Medidas <span class="required">*</span></label>
+                        <select id="medidas" disabled>
+                            <option value="">Selecciona primero el tipo</option>
+                        </select>
+                    </div>
+
+                    <div class="troquel-info" id="productoInfo">
+                        <div class="troquel-info-item">
+                            <strong>Código:</strong>
+                            <span id="info_codigo">-</span>
+                        </div>
+                        <div class="troquel-info-item" id="infoPegasRow" style="display: none;">
+                            <strong>Cantidad de Pegas:</strong>
+                            <span id="info_pegas">-</span>
+                        </div>
+                        <div class="troquel-info-item">
+                            <strong>Cabida por pliego:</strong>
+                            <span id="info_cabida">-</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group custom-field" id="medidasCustomField">
+                        <label for="medidas_custom">✏️ Medida Personalizada</label>
+                        <input type="text" id="medidas_custom" placeholder="Ej: 25 X 15 X 30">
+                        <div class="info-box warning-box">
+                            ⚠️ Requiere troquel nuevo (+$150.000)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 3: CANTIDAD Y MATERIAL -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-icon">🔢</span>
+                        Cantidad y Material
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cantidad_predefinida">Cantidad <span class="required">*</span></label>
+                            <select id="cantidad_predefinida" required>
+                                <option value="">Selecciona cantidad</option>
+                                <option value="100">100 unidades (Mínimo)</option>
+                                <option value="500">500 unidades ⭐</option>
+                                <option value="1000">1,000 unidades</option>
+                                <option value="2000">2,000 unidades</option>
+                                <option value="5000">5,000 unidades (-5%)</option>
+                                <option value="10000">10,000 unidades (-10%)</option>
+                                <option value="50000">50,000 unidades (-15%)</option>
+                                <option value="custom">✏️ Otra cantidad</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group custom-field" id="cantidadCustomField">
+                            <label for="cantidad_custom">Cantidad personalizada</label>
+                            <input type="number" id="cantidad_custom" min="100" placeholder="750">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="material">Material <span class="required">*</span></label>
+                        <select id="material" required>
+                            <option value="">Selecciona material</option>
+                            <optgroup label="Cartones Más Usados">
+                                <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr)</option>
+                                <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr)</option>
+                                <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr)</option>
+                            </optgroup>
+                            <optgroup label="Cartones Premium">
+                                <option value="ZENITH_16">ZENITH Cal.16 (270gr)</option>
+                                <option value="ZENITH_20_320">ZENITH Cal.20 (320gr)</option>
+                                <option value="ZENITH_20_350">ZENITH Cal.20 (350gr)</option>
+                                <option value="EARTH_PACK">EARTH PACK NATURAL (315gr)</option>
+                                <option value="PROPALCOTE_340">PROPALCOTE C2S (340gr)</option>
+                            </optgroup>
+                            <optgroup label="Papeles (Bobinas)">
+                                <option value="KRAFT_NAT_90">Kraft Natural 90gr</option>
+                                <option value="KRAFT_BLANCO">Kraft Blanco 90gr</option>
+                                <option value="PARAFINADO">Papel Parafinado 40gr</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 4: IMPRESIÓN -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-icon">🎨</span>
+                        Impresión y Acabados
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="num_tintas">Número de Tintas <span class="required">*</span></label>
+                            <select id="num_tintas" required>
+                                <option value="1">1 tinta</option>
+                                <option value="2">2 tintas</option>
+                                <option value="3">3 tintas</option>
+                                <option value="4">4 tintas (full color)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgencia">Tiempo de Entrega <span class="required">*</span></label>
+                            <select id="urgencia" required>
+                                <option value="normal">Normal - 15 días</option>
+                                <option value="urgente">Urgente - 7 días (+50%)</option>
+                                <option value="express">Express - 3 días (+100%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Acabados Adicionales (opcionales)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="plastificado_brillante" name="acabados" value="PLAST_BRILL_EXT">
+                                <label for="plastificado_brillante">Plastificado Brillante</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="plastificado_mate" name="acabados" value="PLAST_MATE_EXT">
+                                <label for="plastificado_mate">Plastificado Mate</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="estampado_foil" name="acabados" value="ESTAMPADO_FOIL">
+                                <label for="estampado_foil">Estampado Foil</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="uv_selectivo" name="acabados" value="UV_SELECTIVO">
+                                <label for="uv_selectivo">UV Selectivo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
+                                <label for="ventanilla">Ventanilla</label>
+                            </div>
+                            <div class="checkbox-item" id="pegadoCheckbox" style="display: none;">
+                                <input type="checkbox" id="pegado_caja" name="acabados" value="PEGADO_CAJA">
+                                <label for="pegado_caja">Pegado de Caja</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 5: PAGO -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-icon">💳</span>
+                        Pago y Observaciones
+                    </div>
+
+                    <div class="form-group">
+                        <label for="forma_pago">Forma de Pago <span class="required">*</span></label>
+                        <select id="forma_pago" required>
+                            <option value="contado">Contado (-2% descuento)</option>
+                            <option value="credito_15">Crédito 15 días (50% anticipo)</option>
+                            <option value="credito_30">Crédito 30 días (50% anticipo)</option>
+                            <option value="cheque">Cheque (100% anticipado)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <textarea id="observaciones" placeholder="Información adicional..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    🚀 Generar Cotización Oficial
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p class="loading-text">Generando cotización...</p>
+            </div>
         </div>
 
-        <div class="success-message" id="successMessage">
-            ✅ ¡Cotización generada exitosamente!<br>
-            El PDF ha sido enviado por Telegram.
-        </div>
-
-        <div class="error-banner" id="errorBanner"></div>
-
-        <form id="cotizacionForm">
-            <!-- SECCIÓN 1: VENDEDOR Y CLIENTE -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">👤</span>
-                    Vendedor y Cliente
-                </div>
-
-                <div class="form-group">
-                    <label for="vendedor">Vendedor <span class="required">*</span></label>
-                    <select id="vendedor" required>
-                        <option value="">Selecciona vendedor</option>
-                        <option value="JOHANNA QUINTERO">JOHANNA QUINTERO</option>
-                        <option value="KATHERINE GOMEZ">KATHERINE GOMEZ</option>
-                        <option value="JOSE MORENO">JOSE MORENO</option>
-                        <option value="JEISSON TOVAR">JEISSON TOVAR</option>
-                        <option value="DANIEL ACEVEDO">DANIEL ACEVEDO</option>
-                        <option value="CESAR BLANCO">CESAR BLANCO</option>
-                        <option value="ELKIN GARCIA">ELKIN GARCIA</option>
-                        <option value="RONALD WATEXIKE">RONALD WATEXIKE</option>
-                        <option value="LUIS ESPINOSA">LUIS ESPINOSA</option>
-                        <option value="ANAITYS HENAO">ANAITYS HENAO</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="cliente_tipo">Cliente <span class="required">*</span></label>
-                    <select id="cliente_tipo" required>
-                        <option value="">¿Frecuente o nuevo?</option>
-                        <option value="frecuente">Cliente Frecuente</option>
-                        <option value="nuevo">Cliente Nuevo</option>
-                    </select>
-                </div>
-
-                <div class="form-group custom-field" id="clienteFrecuenteField">
-                    <select id="cliente_frecuente">
-                        <option value="">Selecciona cliente</option>
-                        <option value="LUIS RANGEL - CHAMPIONS PIZZA">LUIS RANGEL - CHAMPIONS PIZZA (Desc. 5%)</option>
-                        <option value="ANDRES BELTRAN KEN CHICKEN">ANDRES BELTRAN KEN CHICKEN</option>
-                        <option value="JESUS NAVARRO LABORATORIO">JESUS NAVARRO LABORATORIO (Desc. 10%)</option>
-                        <option value="WALLACE BITES SAS">WALLACE BITES SAS (Desc. 5%)</option>
-                        <option value="GRUPO FADEL">GRUPO FADEL (Desc. 15%)</option>
-                        <option value="RAQUEL HERRERA PAEZ">RAQUEL HERRERA PAEZ</option>
-                        <option value="BRIAN ALEXANDER SALAZAR">BRIAN ALEXANDER SALAZAR</option>
-                        <option value="LUZ ELENA JULIO FIGUEROA">LUZ ELENA JULIO FIGUEROA</option>
-                    </select>
-                </div>
-
-                <div class="form-group custom-field" id="clienteNuevoField">
-                    <input type="text" id="cliente_nuevo" placeholder="Nombre del cliente nuevo">
-                </div>
+        <!-- VISTA PREVIA EN VIVO -->
+        <div class="preview-container">
+            <div class="preview-title">
+                📊 Resumen de Cotización
             </div>
 
-            <!-- SECCIÓN 2: PRODUCTO -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">📦</span>
-                    Tipo de Producto
-                </div>
+            <div class="preview-row">
+                <div class="preview-label">Cliente:</div>
+                <div class="preview-value" id="prev-cliente">-</div>
+            </div>
 
-                <div class="form-group">
-                    <label for="tipo_producto">Tipo <span class="required">*</span></label>
-                    <select id="tipo_producto" required>
-                        <option value="">Selecciona tipo de producto</option>
-                        <option value="BOLSA">🛍️ BOLSA (con cinta) - 13 opciones</option>
-                        <option value="CAJA_SIN_PEGA">📦 CAJA (sin pegado) - 133 opciones</option>
-                        <option value="CAJA_CON_PEGAS">🔢 CAJA CON PEGAS - 49 opciones</option>
-                        <option value="STICKER">🏷️ STICKER / ETIQUETA - 3 opciones</option>
-                    </select>
-                    <div class="info-box" style="margin-top: 10px; display: none;" id="tipoPegasInfo">
-                        ℹ️ El sistema detecta automáticamente cuántas pegas tiene cada caja
-                    </div>
-                </div>
+            <div class="preview-row">
+                <div class="preview-label">Producto:</div>
+                <div class="preview-value" id="prev-producto">📦 Selecciona un producto</div>
+            </div>
 
-                <!-- Medidas (cascada) -->
-                <div class="form-group custom-field" id="medidasField">
-                    <label for="medidas">Medidas <span class="required">*</span></label>
-                    <select id="medidas" disabled>
-                        <option value="">Selecciona primero el tipo</option>
-                    </select>
-                </div>
+            <div class="preview-row">
+                <div class="preview-label">Cantidad:</div>
+                <div class="preview-value" id="prev-cantidad">- unidades</div>
+            </div>
 
-                <!-- Info del producto -->
-                <div class="troquel-info" id="productoInfo">
-                    <div class="troquel-info-item">
-                        <strong>Código:</strong>
-                        <span id="info_codigo">-</span>
-                    </div>
-                    <div class="troquel-info-item" id="infoPegasRow" style="display: none;">
-                        <strong>Cantidad de Pegas:</strong>
-                        <span id="info_pegas">-</span>
-                    </div>
-                    <div class="troquel-info-item">
-                        <strong>Cabida por pliego:</strong>
-                        <span id="info_cabida">-</span>
-                    </div>
-                </div>
+            <div class="preview-row">
+                <div class="preview-label">Material:</div>
+                <div class="preview-value" id="prev-material">-</div>
+            </div>
 
-                <!-- Medida personalizada -->
-                <div class="form-group custom-field" id="medidasCustomField">
-                    <label for="medidas_custom">✏️ Medida Personalizada</label>
-                    <input type="text" id="medidas_custom" placeholder="Ej: 25 X 15 X 30">
-                    <div class="info-box warning-box">
-                        ⚠️ Requiere troquel nuevo (+$150.000)
+            <div class="preview-row">
+                <div class="preview-label">Entrega:</div>
+                <div class="preview-value" id="prev-entrega">Normal - 15 días hábiles ⭐</div>
+            </div>
+
+            <div class="price-section">
+                <div class="price-label">💰 PRECIO ESTIMADO:</div>
+                <div class="price-value" id="prev-precio">Cotización en proceso...</div>
+                
+                <div class="breakdown">
+                    <div class="breakdown-row">
+                        <span>Subtotal:</span>
+                        <span id="prev-subtotal">$0</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>IVA (19%):</span>
+                        <span id="prev-iva">$0</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Precio unitario:</span>
+                        <span id="prev-unitario">$0</span>
                     </div>
                 </div>
             </div>
 
-            <!-- SECCIÓN 3: CANTIDAD Y MATERIAL -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">🔢</span>
-                    Cantidad y Material
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cantidad_predefinida">Cantidad <span class="required">*</span></label>
-                        <select id="cantidad_predefinida" required>
-                            <option value="">Selecciona cantidad</option>
-                            <option value="100">100 unidades (Mínimo)</option>
-                            <option value="500">500 unidades ⭐</option>
-                            <option value="1000">1,000 unidades</option>
-                            <option value="2000">2,000 unidades</option>
-                            <option value="5000">5,000 unidades (-5%)</option>
-                            <option value="10000">10,000 unidades (-10%)</option>
-                            <option value="50000">50,000 unidades (-15%)</option>
-                            <option value="custom">✏️ Otra cantidad</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group custom-field" id="cantidadCustomField">
-                        <label for="cantidad_custom">Cantidad personalizada</label>
-                        <input type="number" id="cantidad_custom" min="100" placeholder="750">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="material">Material <span class="required">*</span></label>
-                    <select id="material" required>
-                        <option value="">Selecciona material</option>
-                        <optgroup label="Cartones Más Usados">
-                            <option value="CART_BLANCO_16">Cartón Blanco Cal.16 (270gr)</option>
-                            <option value="CART_BLANCO_22">Cartón Blanco Cal.22 (355gr)</option>
-                            <option value="CART_KRAFT_16">Cartón Kraft Cal.16 (285gr)</option>
-                        </optgroup>
-                        <optgroup label="Cartones Premium">
-                            <option value="ZENITH_16">ZENITH Cal.16 (270gr)</option>
-                            <option value="ZENITH_20_320">ZENITH Cal.20 (320gr)</option>
-                            <option value="ZENITH_20_350">ZENITH Cal.20 (350gr)</option>
-                            <option value="EARTH_PACK">EARTH PACK NATURAL (315gr)</option>
-                            <option value="PROPALCOTE_340">PROPALCOTE C2S (340gr)</option>
-                        </optgroup>
-                        <optgroup label="Papeles (Bobinas)">
-                            <option value="KRAFT_NAT_90">Kraft Natural 90gr</option>
-                            <option value="KRAFT_BLANCO">Kraft Blanco 90gr</option>
-                            <option value="PARAFINADO">Papel Parafinado 40gr</option>
-                        </optgroup>
-                    </select>
-                </div>
+            <div class="status">
+                ✨ Vista previa en tiempo real
             </div>
-
-            <!-- SECCIÓN 4: IMPRESIÓN -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">🎨</span>
-                    Impresión y Acabados
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="num_tintas">Número de Tintas <span class="required">*</span></label>
-                        <select id="num_tintas" required>
-                            <option value="1">1 tinta</option>
-                            <option value="2">2 tintas</option>
-                            <option value="3">3 tintas</option>
-                            <option value="4">4 tintas (full color)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="urgencia">Tiempo de Entrega <span class="required">*</span></label>
-                        <select id="urgencia" required>
-                            <option value="normal">Normal - 15 días</option>
-                            <option value="urgente">Urgente - 7 días (+50%)</option>
-                            <option value="express">Express - 3 días (+100%)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Acabados Adicionales (opcionales)</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="plastificado_brillante" name="acabados" value="PLAST_BRILL_EXT">
-                            <label for="plastificado_brillante">Plastificado Brillante</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="plastificado_mate" name="acabados" value="PLAST_MATE_EXT">
-                            <label for="plastificado_mate">Plastificado Mate</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="estampado_foil" name="acabados" value="ESTAMPADO_FOIL">
-                            <label for="estampado_foil">Estampado Foil</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="uv_selectivo" name="acabados" value="UV_SELECTIVO">
-                            <label for="uv_selectivo">UV Selectivo</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="ventanilla" name="acabados" value="VENTANILLA">
-                            <label for="ventanilla">Ventanilla</label>
-                        </div>
-                        <div class="checkbox-item" id="pegadoCheckbox" style="display: none;">
-                            <input type="checkbox" id="pegado_caja" name="acabados" value="PEGADO_CAJA">
-                            <label for="pegado_caja">Pegado de Caja</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECCIÓN 5: PAGO -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">💳</span>
-                    Pago y Observaciones
-                </div>
-
-                <div class="form-group">
-                    <label for="forma_pago">Forma de Pago <span class="required">*</span></label>
-                    <select id="forma_pago" required>
-                        <option value="contado">Contado (-2% descuento)</option>
-                        <option value="credito_15">Crédito 15 días (50% anticipo)</option>
-                        <option value="credito_30">Crédito 30 días (50% anticipo)</option>
-                        <option value="cheque">Cheque (100% anticipado)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="observaciones">Observaciones</label>
-                    <textarea id="observaciones" placeholder="Información adicional..."></textarea>
-                </div>
-            </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">
-                🚀 Generar Cotización Oficial
-            </button>
-        </form>
-
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p class="loading-text">Generando cotización...</p>
         </div>
     </div>
 
     <script>
-        // CATÁLOGO COMPLETO - 198 PRODUCTOS DEL EXCEL
+        // CATÁLOGO COMPLETO - 198 PRODUCTOS
         const CATALOGO_PRODUCTOS = [
     {codigo:"TB0001",medidas:"22 X 12 X 33",tipo:"BOLSA",largo:70,ancho:44,cabida:2,popular:true},
     {codigo:"TB0002",medidas:"40 X 15 X 30",tipo:"BOLSA",largo:84,ancho:57,cabida:1,popular:true},
@@ -686,11 +845,126 @@
     {codigo:"TB0198",medidas:"17 X 13 X 7",tipo:"CAJA_SIN_PEGA",largo:54,ancho:31,cabida:4,popular:false}
 ];
 
-        const WEBHOOK_URL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
+        // MATERIALES CON PRECIOS (del Blueprint)
+        const MATERIALES = {
+            CART_BLANCO_16: {nombre: "Cartón Blanco Cal.16 (270gr)", precio: 636.8544},
+            CART_BLANCO_22: {nombre: "Cartón Blanco Cal.22 (355gr)", precio: 857.304},
+            CART_KRAFT_16: {nombre: "Cartón Kraft Cal.16 (285gr)", precio: 901.0764},
+            ZENITH_16: {nombre: "ZENITH Cal.16 (270gr)", precio: 1286},
+            ZENITH_20_320: {nombre: "ZENITH Cal.20 (320gr)", precio: 1530},
+            ZENITH_20_350: {nombre: "ZENITH Cal.20 (350gr)", precio: 1680},
+            EARTH_PACK: {nombre: "EARTH PACK NATURAL (315gr)", precio: 950},
+            PROPALCOTE_340: {nombre: "PROPALCOTE C2S (340gr)", precio: 420},
+            KRAFT_NAT_90: {nombre: "Kraft Natural 90gr", precio: 189},
+            KRAFT_BLANCO: {nombre: "Kraft Blanco 90gr", precio: 340.2},
+            PARAFINADO: {nombre: "Papel Parafinado 40gr", precio: 224.8722}
+        };
 
+        const WEBHOOK_URL = 'https://appn8n-n8n.lx6zon.easypanel.host/webhook/lito-v2';
         let productoSeleccionado = null;
 
-        // Manejo de cliente tipo
+        // ===== FUNCIONES DE CÁLCULO (del Blueprint) =====
+        function calcularUnidadesPorPliego(troquel) {
+            const o1 = Math.floor(70/troquel.largo) * Math.floor(70/troquel.ancho);
+            const o2 = Math.floor(70/troquel.largo) * Math.floor(50/troquel.ancho);
+            const o3 = Math.floor(50/troquel.largo) * Math.floor(70/troquel.ancho);
+            const o4 = Math.floor(50/troquel.largo) * Math.floor(50/troquel.ancho);
+            return Math.max(o1, o2, o3, o4);
+        }
+
+        function calcularPrecio(cantidad, troquel, material, numTintas, urgencia) {
+            const unidadesPorPliego = calcularUnidadesPorPliego(troquel);
+            const pliegosNecesarios = Math.ceil(cantidad / unidadesPorPliego);
+            
+            const costoMaterial = pliegosNecesarios * material.precio;
+            const costoPlancha = (28000 * numTintas) / cantidad * 1000;
+            const costoImpresion = 30 * numTintas;
+            const costoTroquelado = 40;
+            
+            const costoPorMillar = (costoMaterial / cantidad * 1000) + costoPlancha + costoImpresion + costoTroquelado;
+            
+            let margen = 1.35;
+            if (cantidad < 500) margen = 1.45;
+            if (cantidad >= 5000) margen = 1.30;
+            if (cantidad >= 10000) margen = 1.25;
+            
+            const costoTotal = costoPorMillar * (cantidad/1000);
+            let precioVenta = costoTotal * margen;
+            
+            if (urgencia === 'urgente') precioVenta *= 1.50;
+            if (urgencia === 'express') precioVenta *= 2.00;
+            
+            return {
+                unidadesPorPliego,
+                pliegosNecesarios,
+                precioUnitario: precioVenta / cantidad,
+                subtotal: precioVenta,
+                iva: precioVenta * 0.19,
+                total: precioVenta * 1.19
+            };
+        }
+
+        function formatPrecio(num) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            }).format(num);
+        }
+
+        // ===== ACTUALIZAR VISTA PREVIA =====
+        function actualizarPrevia() {
+            const clienteTipo = document.getElementById('cliente_tipo').value;
+            let cliente = '-';
+            if (clienteTipo === 'frecuente') {
+                cliente = document.getElementById('cliente_frecuente').value || '-';
+            } else if (clienteTipo === 'nuevo') {
+                cliente = document.getElementById('cliente_nuevo').value || '-';
+            }
+            
+            const cantidadPred = document.getElementById('cantidad_predefinida').value;
+            const cantidad = cantidadPred === 'custom' 
+                ? parseInt(document.getElementById('cantidad_custom').value) || 0
+                : parseInt(cantidadPred) || 0;
+            
+            const materialId = document.getElementById('material').value;
+            const tintas = parseInt(document.getElementById('num_tintas').value) || 1;
+            const urgencia = document.getElementById('urgencia').value;
+
+            document.getElementById('prev-cliente').textContent = cliente;
+            
+            if (productoSeleccionado) {
+                const pegasText = productoSeleccionado.pegas ? ` (${productoSeleccionado.pegas} pegas)` : '';
+                document.getElementById('prev-producto').textContent = 
+                    `📦 ${productoSeleccionado.tipo} - ${productoSeleccionado.medidas}${pegasText} (${productoSeleccionado.codigo})`;
+            }
+            
+            document.getElementById('prev-cantidad').textContent = 
+                cantidad > 0 ? `${cantidad.toLocaleString('es-CO')} unidades` : '- unidades';
+            
+            if (materialId && MATERIALES[materialId]) {
+                document.getElementById('prev-material').textContent = MATERIALES[materialId].nombre;
+            }
+            
+            const entregaTextos = {
+                normal: 'Normal - 15 días hábiles ⭐',
+                urgente: 'Urgente - 7 días hábiles ⚡ (+50%)',
+                express: 'Express - 3 días hábiles 🚀 (+100%)'
+            };
+            document.getElementById('prev-entrega').textContent = entregaTextos[urgencia] || entregaTextos.normal;
+
+            if (productoSeleccionado && materialId && cantidad > 0) {
+                const material = MATERIALES[materialId];
+                const resultado = calcularPrecio(cantidad, productoSeleccionado, material, tintas, urgencia);
+                
+                document.getElementById('prev-precio').textContent = formatPrecio(resultado.total);
+                document.getElementById('prev-subtotal').textContent = formatPrecio(resultado.subtotal);
+                document.getElementById('prev-iva').textContent = formatPrecio(resultado.iva);
+                document.getElementById('prev-unitario').textContent = formatPrecio(resultado.precioUnitario);
+            }
+        }
+
+        // ===== EVENT LISTENERS PARA FORMULARIO =====
         document.getElementById('cliente_tipo').addEventListener('change', function() {
             const frecuente = document.getElementById('clienteFrecuenteField');
             const nuevo = document.getElementById('clienteNuevoField');
@@ -706,9 +980,9 @@
                 document.getElementById('cliente_frecuente').required = false;
                 document.getElementById('cliente_nuevo').required = true;
             }
+            actualizarPrevia();
         });
 
-        // Manejo de tipo de producto (CASCADA)
         document.getElementById('tipo_producto').addEventListener('change', function() {
             const tipo = this.value;
             const medidasField = document.getElementById('medidasField');
@@ -716,14 +990,12 @@
             const pegadoCheckbox = document.getElementById('pegadoCheckbox');
             const tipoPegasInfo = document.getElementById('tipoPegasInfo');
             
-            // Mostrar/ocultar info de pegas automáticas
             if (tipo === 'CAJA_CON_PEGAS') {
                 tipoPegasInfo.style.display = 'block';
             } else {
                 tipoPegasInfo.style.display = 'none';
             }
 
-            // Mostrar/ocultar checkbox de pegado (solo para cajas SIN pega)
             if (tipo === 'CAJA_SIN_PEGA') {
                 pegadoCheckbox.style.display = 'flex';
             } else {
@@ -736,13 +1008,9 @@
                 return;
             }
 
-            // Filtrar productos por tipo
             const productosFiltrados = CATALOGO_PRODUCTOS.filter(p => p.tipo === tipo);
-            
-            // Llenar select
             medidasSelect.innerHTML = '<option value="">Selecciona medidas</option>';
             
-            // Populares primero
             const populares = productosFiltrados.filter(p => p.popular);
             if (populares.length > 0) {
                 const optgroupPop = document.createElement('optgroup');
@@ -757,7 +1025,6 @@
                 medidasSelect.appendChild(optgroupPop);
             }
             
-            // Resto
             const normales = productosFiltrados.filter(p => !p.popular);
             if (normales.length > 0) {
                 const optgroupNorm = document.createElement('optgroup');
@@ -772,7 +1039,6 @@
                 medidasSelect.appendChild(optgroupNorm);
             }
             
-            // Personalizada
             const optCustom = document.createElement('option');
             optCustom.value = 'custom';
             optCustom.textContent = '✏️ Medida Personalizada';
@@ -782,7 +1048,6 @@
             medidasField.style.display = 'block';
         });
 
-        // Selección de medidas
         document.getElementById('medidas').addEventListener('change', function() {
             const infoDiv = document.getElementById('productoInfo');
             const customField = document.getElementById('medidasCustomField');
@@ -798,11 +1063,9 @@
                 customField.style.display = 'none';
                 document.getElementById('medidas_custom').required = false;
                 
-                // Mostrar info
                 document.getElementById('info_codigo').textContent = productoSeleccionado.codigo;
                 document.getElementById('info_cabida').textContent = productoSeleccionado.cabida + ' unidades';
                 
-                // Mostrar pegas si las tiene
                 if (productoSeleccionado.pegas && productoSeleccionado.pegas > 0) {
                     document.getElementById('info_pegas').textContent = productoSeleccionado.pegas + ' pegas';
                     infoPegasRow.style.display = 'flex';
@@ -812,9 +1075,9 @@
                 
                 infoDiv.style.display = 'block';
             }
+            actualizarPrevia();
         });
 
-        // Cantidad personalizada
         document.getElementById('cantidad_predefinida').addEventListener('change', function() {
             const customField = document.getElementById('cantidadCustomField');
             if (this.value === 'custom') {
@@ -824,7 +1087,16 @@
                 customField.style.display = 'none';
                 document.getElementById('cantidad_custom').required = false;
             }
+            actualizarPrevia();
         });
+
+        // Event listeners para actualizar previa en tiempo real
+        document.getElementById('cliente_frecuente').addEventListener('change', actualizarPrevia);
+        document.getElementById('cliente_nuevo').addEventListener('input', actualizarPrevia);
+        document.getElementById('cantidad_custom').addEventListener('input', actualizarPrevia);
+        document.getElementById('material').addEventListener('change', actualizarPrevia);
+        document.getElementById('num_tintas').addEventListener('change', actualizarPrevia);
+        document.getElementById('urgencia').addEventListener('change', actualizarPrevia);
 
         // Envío del formulario
         document.getElementById('cotizacionForm').addEventListener('submit', async function(e) {
@@ -838,7 +1110,6 @@
             success.style.display = 'none';
             error.style.display = 'none';
             
-            // Recopilar datos
             const clienteTipo = document.getElementById('cliente_tipo').value;
             const cliente = clienteTipo === 'frecuente' 
                 ? document.getElementById('cliente_frecuente').value 
@@ -900,6 +1171,9 @@
                 form.style.display = 'block';
             }
         });
+
+        // Inicializar vista previa
+        actualizarPrevia();
     </script>
 </body>
 </html>
